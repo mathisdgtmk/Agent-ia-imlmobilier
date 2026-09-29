@@ -1,0 +1,565 @@
+{
+ "fps": 30,
+ "duration": 60,
+ "voice": {
+  "name": "ff_siwis",
+  "lang": "fr-fr",
+  "speed": 0.97
+ },
+ "scenes": [
+  {
+   "id": "hook",
+   "start": 0.0,
+   "end": 7.0
+  },
+  {
+   "id": "problem",
+   "start": 7.0,
+   "end": 15.0
+  },
+  {
+   "id": "solution",
+   "start": 15.0,
+   "end": 24.0
+  },
+  {
+   "id": "features",
+   "start": 24.0,
+   "end": 39.0
+  },
+  {
+   "id": "local",
+   "start": 39.0,
+   "end": 47.0
+  },
+  {
+   "id": "benefit",
+   "start": 47.0,
+   "end": 54.4
+  },
+  {
+   "id": "cta",
+   "start": 54.4,
+   "end": 60.0
+  }
+ ],
+ "lines": [
+  {
+   "id": "s1",
+   "text": "Dans l'immobilier, chaque demande compte. Mais toutes ne peuvent pas attendre.",
+   "start": 1.0,
+   "end": 4.812,
+   "duration": 3.812,
+   "gap_before": 1.0
+  },
+  {
+   "id": "s2",
+   "text": "Entre les appels, les messages et les demandes de visites, répondre à chaque prospect peut vite devenir un défi.",
+   "start": 7.3,
+   "end": 13.55,
+   "duration": 6.25,
+   "gap_before": 2.49
+  },
+  {
+   "id": "s3",
+   "text": "Découvrez votre agent IA : il accompagne vos prospects, répond à leurs premières questions et recueille leurs besoins, même lorsque votre agence est fermée.",
+   "start": 15.2,
+   "end": 23.428,
+   "duration": 8.228,
+   "gap_before": 1.65
+  },
+  {
+   "id": "s4a",
+   "text": "Offrez une première réponse rapide à vos prospects, à tout moment.",
+   "start": 24.3,
+   "end": 27.831,
+   "duration": 3.531,
+   "gap_before": 0.87
+  },
+  {
+   "id": "s4b",
+   "text": "Identifiez les besoins de vos futurs acheteurs et locataires.",
+   "start": 28.3,
+   "end": 31.548,
+   "duration": 3.248,
+   "gap_before": 0.47
+  },
+  {
+   "id": "s4c",
+   "text": "Facilitez vos rendez-vous, selon les outils connectés à votre agent.",
+   "start": 32.2,
+   "end": 35.778,
+   "duration": 3.578,
+   "gap_before": 0.65
+  },
+  {
+   "id": "s4d",
+   "text": "Et gagnez du temps pour ce qui compte vraiment : vos clients.",
+   "start": 36.0,
+   "end": 38.66,
+   "duration": 2.66,
+   "gap_before": 0.22
+  },
+  {
+   "id": "s5",
+   "text": "Une solution personnalisable pour répondre aux besoins des agences immobilières martiniquaises et aux réalités de leur marché.",
+   "start": 39.6,
+   "end": 46.667,
+   "duration": 7.067,
+   "gap_before": 0.94
+  },
+  {
+   "id": "s6",
+   "text": "L'intelligence artificielle ne remplace pas votre expertise. Elle vous aide à mieux accompagner vos clients.",
+   "start": 47.5,
+   "end": 53.658,
+   "duration": 6.158,
+   "gap_before": 0.83
+  },
+  {
+   "id": "s7",
+   "text": "Demandez dès maintenant votre démonstration personnalisée.",
+   "start": 55.1,
+   "end": 58.377,
+   "duration": 3.277,
+   "gap_before": 1.44
+  }
+ ],
+ "captions": [
+  {
+   "line": "s1",
+   "text": "Dans l'immobilier, chaque demande compte.",
+   "start": 1.0,
+   "end": 3.065
+  },
+  {
+   "line": "s1",
+   "text": "Mais toutes ne peuvent pas attendre.",
+   "start": 3.065,
+   "end": 4.812
+  },
+  {
+   "line": "s2",
+   "text": "Entre les appels, les messages",
+   "start": 7.3,
+   "end": 8.951
+  },
+  {
+   "line": "s2",
+   "text": "et les demandes de visites,",
+   "start": 8.951,
+   "end": 10.615
+  },
+  {
+   "line": "s2",
+   "text": "répondre à chaque prospect",
+   "start": 10.615,
+   "end": 11.657
+  },
+  {
+   "line": "s2",
+   "text": "peut vite devenir un défi.",
+   "start": 11.657,
+   "end": 13.55
+  },
+  {
+   "line": "s3",
+   "text": "Découvrez votre agent IA :",
+   "start": 15.2,
+   "end": 16.675
+  },
+  {
+   "line": "s3",
+   "text": "il accompagne vos prospects,",
+   "start": 16.675,
+   "end": 18.45
+  },
+  {
+   "line": "s3",
+   "text": "répond à leurs premières questions",
+   "start": 18.45,
+   "end": 19.822
+  },
+  {
+   "line": "s3",
+   "text": "et recueille leurs besoins,",
+   "start": 19.822,
+   "end": 21.475
+  },
+  {
+   "line": "s3",
+   "text": "même lorsque votre agence est fermée.",
+   "start": 21.475,
+   "end": 23.428
+  },
+  {
+   "line": "s4a",
+   "text": "Offrez une première réponse rapide",
+   "start": 24.3,
+   "end": 25.985
+  },
+  {
+   "line": "s4a",
+   "text": "à vos prospects, à tout moment.",
+   "start": 25.985,
+   "end": 27.831
+  },
+  {
+   "line": "s4b",
+   "text": "Identifiez les besoins de vos",
+   "start": 28.3,
+   "end": 29.663
+  },
+  {
+   "line": "s4b",
+   "text": "futurs acheteurs et locataires.",
+   "start": 29.663,
+   "end": 31.548
+  },
+  {
+   "line": "s4c",
+   "text": "Facilitez vos rendez-vous,",
+   "start": 32.2,
+   "end": 33.678
+  },
+  {
+   "line": "s4c",
+   "text": "selon les outils connectés à votre agent.",
+   "start": 33.678,
+   "end": 35.778
+  },
+  {
+   "line": "s4d",
+   "text": "Et gagnez du temps",
+   "start": 36.0,
+   "end": 36.935
+  },
+  {
+   "line": "s4d",
+   "text": "pour ce qui compte vraiment : vos clients.",
+   "start": 36.935,
+   "end": 38.66
+  },
+  {
+   "line": "s5",
+   "text": "Une solution personnalisable",
+   "start": 39.6,
+   "end": 41.595
+  },
+  {
+   "line": "s5",
+   "text": "pour répondre aux besoins des agences",
+   "start": 41.595,
+   "end": 43.43
+  },
+  {
+   "line": "s5",
+   "text": "immobilières martiniquaises",
+   "start": 43.43,
+   "end": 45.1
+  },
+  {
+   "line": "s5",
+   "text": "et aux réalités de leur marché.",
+   "start": 45.1,
+   "end": 46.667
+  },
+  {
+   "line": "s6",
+   "text": "L'intelligence artificielle",
+   "start": 47.5,
+   "end": 49.176
+  },
+  {
+   "line": "s6",
+   "text": "ne remplace pas votre expertise.",
+   "start": 49.176,
+   "end": 51.377
+  },
+  {
+   "line": "s6",
+   "text": "Elle vous aide à mieux",
+   "start": 51.377,
+   "end": 52.417
+  },
+  {
+   "line": "s6",
+   "text": "accompagner vos clients.",
+   "start": 52.417,
+   "end": 53.658
+  },
+  {
+   "line": "s7",
+   "text": "Demandez dès maintenant votre",
+   "start": 55.1,
+   "end": 56.41
+  },
+  {
+   "line": "s7",
+   "text": "démonstration personnalisée.",
+   "start": 56.41,
+   "end": 58.377
+  }
+ ],
+ "cues": [
+  {
+   "id": "hook_text",
+   "t": 2.6,
+   "sfx": "shimmer",
+   "gain": 0.5
+  },
+  {
+   "id": "hook_out",
+   "t": 6.55,
+   "sfx": "whoosh",
+   "gain": 0.7
+  },
+  {
+   "id": "n_call",
+   "t": 7.9,
+   "sfx": "ring",
+   "gain": 0.55
+  },
+  {
+   "id": "n_msg",
+   "t": 8.7,
+   "sfx": "notif_a",
+   "gain": 0.6
+  },
+  {
+   "id": "n_visit",
+   "t": 9.8,
+   "sfx": "notif_b",
+   "gain": 0.6
+  },
+  {
+   "id": "n_q",
+   "t": 11.0,
+   "sfx": "notif_c",
+   "gain": 0.6
+  },
+  {
+   "id": "n_more",
+   "t": 12.3,
+   "sfx": "notif_soft",
+   "gain": 0.45
+  },
+  {
+   "id": "problem_slow",
+   "t": 13.9,
+   "sfx": "downshift",
+   "gain": 0.7
+  },
+  {
+   "id": "sol_bloom",
+   "t": 15.0,
+   "sfx": "bloom",
+   "gain": 0.9
+  },
+  {
+   "id": "sol_title",
+   "t": 16.0,
+   "sfx": "shimmer",
+   "gain": 0.55
+  },
+  {
+   "id": "sol_devices",
+   "t": 17.6,
+   "sfx": "whoosh_soft",
+   "gain": 0.5
+  },
+  {
+   "id": "chat_1",
+   "t": 18.6,
+   "sfx": "send",
+   "gain": 0.5
+  },
+  {
+   "id": "chat_2",
+   "t": 20.2,
+   "sfx": "recv",
+   "gain": 0.5
+  },
+  {
+   "id": "chat_3",
+   "t": 21.4,
+   "sfx": "send",
+   "gain": 0.5
+  },
+  {
+   "id": "chat_4",
+   "t": 22.6,
+   "sfx": "recv",
+   "gain": 0.5
+  },
+  {
+   "id": "profile_1",
+   "t": 20.6,
+   "sfx": "tick",
+   "gain": 0.45
+  },
+  {
+   "id": "profile_2",
+   "t": 21.8,
+   "sfx": "tick",
+   "gain": 0.45
+  },
+  {
+   "id": "sol_247",
+   "t": 22.7,
+   "sfx": "shimmer",
+   "gain": 0.5
+  },
+  {
+   "id": "f1_in",
+   "t": 24.0,
+   "sfx": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "id": "f1_msg",
+   "t": 24.7,
+   "sfx": "notif_a",
+   "gain": 0.5
+  },
+  {
+   "id": "f1_reply",
+   "t": 26.2,
+   "sfx": "recv",
+   "gain": 0.5
+  },
+  {
+   "id": "f2_in",
+   "t": 28.0,
+   "sfx": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "id": "f2_r1",
+   "t": 28.8,
+   "sfx": "tick",
+   "gain": 0.45
+  },
+  {
+   "id": "f2_r2",
+   "t": 29.5,
+   "sfx": "tick",
+   "gain": 0.45
+  },
+  {
+   "id": "f2_r3",
+   "t": 30.2,
+   "sfx": "tick",
+   "gain": 0.45
+  },
+  {
+   "id": "f2_r4",
+   "t": 30.9,
+   "sfx": "tick",
+   "gain": 0.45
+  },
+  {
+   "id": "f3_in",
+   "t": 32.0,
+   "sfx": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "id": "f3_pick",
+   "t": 34.0,
+   "sfx": "confirm",
+   "gain": 0.6
+  },
+  {
+   "id": "f4_in",
+   "t": 35.8,
+   "sfx": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "id": "loc_in",
+   "t": 39.0,
+   "sfx": "whoosh",
+   "gain": 0.6
+  },
+  {
+   "id": "loc_1",
+   "t": 39.0,
+   "sfx": "shot",
+   "gain": 0.4
+  },
+  {
+   "id": "loc_2",
+   "t": 40.3,
+   "sfx": "shot",
+   "gain": 0.4
+  },
+  {
+   "id": "loc_3",
+   "t": 41.6,
+   "sfx": "shot",
+   "gain": 0.4
+  },
+  {
+   "id": "loc_4",
+   "t": 42.9,
+   "sfx": "shot",
+   "gain": 0.4
+  },
+  {
+   "id": "loc_5",
+   "t": 44.2,
+   "sfx": "shot",
+   "gain": 0.4
+  },
+  {
+   "id": "loc_agency",
+   "t": 45.5,
+   "sfx": "whoosh_soft",
+   "gain": 0.5
+  },
+  {
+   "id": "ben_in",
+   "t": 47.0,
+   "sfx": "whoosh_soft",
+   "gain": 0.5
+  },
+  {
+   "id": "ben_shake",
+   "t": 50.5,
+   "sfx": "thump",
+   "gain": 0.6
+  },
+  {
+   "id": "ben_crm",
+   "t": 52.3,
+   "sfx": "tick",
+   "gain": 0.45
+  },
+  {
+   "id": "cta_line",
+   "t": 54.4,
+   "sfx": "sweep",
+   "gain": 0.8
+  },
+  {
+   "id": "cta_logo",
+   "t": 55.0,
+   "sfx": "shimmer",
+   "gain": 0.6
+  },
+  {
+   "id": "cta_button",
+   "t": 56.4,
+   "sfx": "button",
+   "gain": 0.7
+  },
+  {
+   "id": "cta_tag",
+   "t": 57.6,
+   "sfx": "tick",
+   "gain": 0.4
+  }
+ ],
+ "speed": 0.97
+}

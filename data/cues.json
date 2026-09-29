@@ -1,0 +1,260 @@
+[
+ {
+  "id": "hook_text",
+  "t": 2.6,
+  "sfx": "shimmer",
+  "gain": 0.5
+ },
+ {
+  "id": "hook_out",
+  "t": 6.55,
+  "sfx": "whoosh",
+  "gain": 0.7
+ },
+ {
+  "id": "n_call",
+  "t": 7.9,
+  "sfx": "ring",
+  "gain": 0.55
+ },
+ {
+  "id": "n_msg",
+  "t": 8.7,
+  "sfx": "notif_a",
+  "gain": 0.6
+ },
+ {
+  "id": "n_visit",
+  "t": 9.8,
+  "sfx": "notif_b",
+  "gain": 0.6
+ },
+ {
+  "id": "n_q",
+  "t": 11.0,
+  "sfx": "notif_c",
+  "gain": 0.6
+ },
+ {
+  "id": "n_more",
+  "t": 12.3,
+  "sfx": "notif_soft",
+  "gain": 0.45
+ },
+ {
+  "id": "problem_slow",
+  "t": 13.9,
+  "sfx": "downshift",
+  "gain": 0.7
+ },
+ {
+  "id": "sol_bloom",
+  "t": 15.0,
+  "sfx": "bloom",
+  "gain": 0.9
+ },
+ {
+  "id": "sol_title",
+  "t": 16.0,
+  "sfx": "shimmer",
+  "gain": 0.55
+ },
+ {
+  "id": "sol_devices",
+  "t": 17.6,
+  "sfx": "whoosh_soft",
+  "gain": 0.5
+ },
+ {
+  "id": "chat_1",
+  "t": 18.6,
+  "sfx": "send",
+  "gain": 0.5
+ },
+ {
+  "id": "chat_2",
+  "t": 20.2,
+  "sfx": "recv",
+  "gain": 0.5
+ },
+ {
+  "id": "chat_3",
+  "t": 21.4,
+  "sfx": "send",
+  "gain": 0.5
+ },
+ {
+  "id": "chat_4",
+  "t": 22.6,
+  "sfx": "recv",
+  "gain": 0.5
+ },
+ {
+  "id": "profile_1",
+  "t": 20.6,
+  "sfx": "tick",
+  "gain": 0.45
+ },
+ {
+  "id": "profile_2",
+  "t": 21.8,
+  "sfx": "tick",
+  "gain": 0.45
+ },
+ {
+  "id": "sol_247",
+  "t": 22.7,
+  "sfx": "shimmer",
+  "gain": 0.5
+ },
+ {
+  "id": "f1_in",
+  "t": 24.0,
+  "sfx": "whoosh",
+  "gain": 0.6
+ },
+ {
+  "id": "f1_msg",
+  "t": 24.7,
+  "sfx": "notif_a",
+  "gain": 0.5
+ },
+ {
+  "id": "f1_reply",
+  "t": 26.2,
+  "sfx": "recv",
+  "gain": 0.5
+ },
+ {
+  "id": "f2_in",
+  "t": 28.0,
+  "sfx": "whoosh",
+  "gain": 0.6
+ },
+ {
+  "id": "f2_r1",
+  "t": 28.8,
+  "sfx": "tick",
+  "gain": 0.45
+ },
+ {
+  "id": "f2_r2",
+  "t": 29.5,
+  "sfx": "tick",
+  "gain": 0.45
+ },
+ {
+  "id": "f2_r3",
+  "t": 30.2,
+  "sfx": "tick",
+  "gain": 0.45
+ },
+ {
+  "id": "f2_r4",
+  "t": 30.9,
+  "sfx": "tick",
+  "gain": 0.45
+ },
+ {
+  "id": "f3_in",
+  "t": 32.0,
+  "sfx": "whoosh",
+  "gain": 0.6
+ },
+ {
+  "id": "f3_pick",
+  "t": 34.0,
+  "sfx": "confirm",
+  "gain": 0.6
+ },
+ {
+  "id": "f4_in",
+  "t": 35.8,
+  "sfx": "whoosh",
+  "gain": 0.6
+ },
+ {
+  "id": "loc_in",
+  "t": 39.0,
+  "sfx": "whoosh",
+  "gain": 0.6
+ },
+ {
+  "id": "loc_1",
+  "t": 39.0,
+  "sfx": "shot",
+  "gain": 0.4
+ },
+ {
+  "id": "loc_2",
+  "t": 40.3,
+  "sfx": "shot",
+  "gain": 0.4
+ },
+ {
+  "id": "loc_3",
+  "t": 41.6,
+  "sfx": "shot",
+  "gain": 0.4
+ },
+ {
+  "id": "loc_4",
+  "t": 42.9,
+  "sfx": "shot",
+  "gain": 0.4
+ },
+ {
+  "id": "loc_5",
+  "t": 44.2,
+  "sfx": "shot",
+  "gain": 0.4
+ },
+ {
+  "id": "loc_agency",
+  "t": 45.5,
+  "sfx": "whoosh_soft",
+  "gain": 0.5
+ },
+ {
+  "id": "ben_in",
+  "t": 47.0,
+  "sfx": "whoosh_soft",
+  "gain": 0.5
+ },
+ {
+  "id": "ben_shake",
+  "t": 50.5,
+  "sfx": "thump",
+  "gain": 0.6
+ },
+ {
+  "id": "ben_crm",
+  "t": 52.3,
+  "sfx": "tick",
+  "gain": 0.45
+ },
+ {
+  "id": "cta_line",
+  "t": 54.4,
+  "sfx": "sweep",
+  "gain": 0.8
+ },
+ {
+  "id": "cta_logo",
+  "t": 55.0,
+  "sfx": "shimmer",
+  "gain": 0.6
+ },
+ {
+  "id": "cta_button",
+  "t": 56.4,
+  "sfx": "button",
+  "gain": 0.7
+ },
+ {
+  "id": "cta_tag",
+  "t": 57.6,
+  "sfx": "tick",
+  "gain": 0.4
+ }
+]

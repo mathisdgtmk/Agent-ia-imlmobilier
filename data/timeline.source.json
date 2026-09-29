@@ -1,0 +1,148 @@
+{
+ "fps": 30,
+ "duration": 60,
+ "voice": {
+  "name": "ff_siwis",
+  "lang": "fr-fr",
+  "speed": 0.97
+ },
+ "scenes": [
+  {
+   "id": "hook",
+   "start": 0.0,
+   "end": 7.0
+  },
+  {
+   "id": "problem",
+   "start": 7.0,
+   "end": 15.0
+  },
+  {
+   "id": "solution",
+   "start": 15.0,
+   "end": 24.0
+  },
+  {
+   "id": "features",
+   "start": 24.0,
+   "end": 39.0
+  },
+  {
+   "id": "local",
+   "start": 39.0,
+   "end": 47.0
+  },
+  {
+   "id": "benefit",
+   "start": 47.0,
+   "end": 54.4
+  },
+  {
+   "id": "cta",
+   "start": 54.4,
+   "end": 60.0
+  }
+ ],
+ "lines": [
+  {
+   "id": "s1",
+   "at": 1.0,
+   "text": "Dans l'immobilier, chaque demande compte. Mais toutes ne peuvent pas attendre.",
+   "captions": [
+    "Dans l'immobilier, chaque demande compte.",
+    "Mais toutes ne peuvent pas attendre."
+   ]
+  },
+  {
+   "id": "s2",
+   "at": 7.3,
+   "text": "Entre les appels, les messages et les demandes de visites, répondre à chaque prospect peut vite devenir un défi.",
+   "captions": [
+    "Entre les appels, les messages",
+    "et les demandes de visites,",
+    "répondre à chaque prospect",
+    "peut vite devenir un défi."
+   ]
+  },
+  {
+   "id": "s3",
+   "at": 15.2,
+   "text": "Découvrez votre agent IA : il accompagne vos prospects, répond à leurs premières questions et recueille leurs besoins, même lorsque votre agence est fermée.",
+   "speak": "Découvrez votre agent I.A : il accompagne vos prospects, répond à leurs premières questions et recueille leurs besoins, même lorsque votre agence est fermée.",
+   "captions": [
+    "Découvrez votre agent IA :",
+    "il accompagne vos prospects,",
+    "répond à leurs premières questions",
+    "et recueille leurs besoins,",
+    "même lorsque votre agence est fermée."
+   ]
+  },
+  {
+   "id": "s4a",
+   "at": 24.3,
+   "text": "Offrez une première réponse rapide à vos prospects, à tout moment.",
+   "captions": [
+    "Offrez une première réponse rapide",
+    "à vos prospects, à tout moment."
+   ]
+  },
+  {
+   "id": "s4b",
+   "at": 28.3,
+   "text": "Identifiez les besoins de vos futurs acheteurs et locataires.",
+   "captions": [
+    "Identifiez les besoins de vos",
+    "futurs acheteurs et locataires."
+   ]
+  },
+  {
+   "id": "s4c",
+   "at": 32.2,
+   "text": "Facilitez vos rendez-vous, selon les outils connectés à votre agent.",
+   "captions": [
+    "Facilitez vos rendez-vous,",
+    "selon les outils connectés à votre agent."
+   ]
+  },
+  {
+   "id": "s4d",
+   "at": 36.0,
+   "text": "Et gagnez du temps pour ce qui compte vraiment : vos clients.",
+   "captions": [
+    "Et gagnez du temps",
+    "pour ce qui compte vraiment : vos clients."
+   ]
+  },
+  {
+   "id": "s5",
+   "at": 39.6,
+   "text": "Une solution personnalisable pour répondre aux besoins des agences immobilières martiniquaises et aux réalités de leur marché.",
+   "captions": [
+    "Une solution personnalisable",
+    "pour répondre aux besoins des agences",
+    "immobilières martiniquaises",
+    "et aux réalités de leur marché."
+   ]
+  },
+  {
+   "id": "s6",
+   "at": 47.5,
+   "text": "L'intelligence artificielle ne remplace pas votre expertise. Elle vous aide à mieux accompagner vos clients.",
+   "captions": [
+    "L'intelligence artificielle",
+    "ne remplace pas votre expertise.",
+    "Elle vous aide à mieux",
+    "accompagner vos clients."
+   ]
+  },
+  {
+   "id": "s7",
+   "at": 55.1,
+   "text": "Demandez dès maintenant votre démonstration personnalisée.",
+   "captions": [
+    "Demandez dès maintenant votre",
+    "démonstration personnalisée."
+   ]
+  }
+ ]
+}

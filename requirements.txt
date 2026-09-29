@@ -1,0 +1,10 @@
+numpy
+scipy
+soundfile
+pyloudnorm
+kokoro-onnx
+pillow
+imageio-ffmpeg
+# contrôle qualité (facultatif) : transcription de la voix pour vérifier qu'elle dit bien le script
+sherpa-onnx
+matplotlib
