@@ -38,7 +38,7 @@ Aperçus : `docs/apercu-16x9.png` et `docs/apercu-9x16.png` (une image toutes le
 | Voix ↔ musique | pendant la voix : voix ≈ −17 dB, musique ≈ −27 dB (écart ≈ 10 dB) : la musique ne couvre jamais la voix |
 | Voix dit bien le script | transcription Whisper de chaque ligne : 10/10 reconnues ; seuls écarts = homophones (« agence est » / « agent s'est », « gagnez » / « gagner ») |
 | Sous‑titres synchronisés | 29 sous‑titres vérifiés par transcription de leur fenêtre d'affichage : écart ≤ ≈ 0,2 s ; 3 signalés à la marge (un mot en bord de fenêtre) |
-| Lisibilité | textes, interfaces et sous‑titres vérifiés image par image dans les deux formats (sous‑titres remontés en 9:16 pour rester au‑dessus de l'interface du bas de TikTok/Reels) |
+| Lisibilité | textes, interfaces et sous‑titres vérifiés sur des images clés de chaque scène, dans les deux formats (sous‑titres remontés en 9:16 pour rester au‑dessus de l'interface du bas de TikTok/Reels) — les planches `docs/apercu-*.png` permettent de revoir l'ensemble d'un coup d'œil |
 
 > **À faire par vous** : écouter le rendu avant diffusion. La voix, la musique et les effets ont été validés par des mesures
 > (transcription, spectrogrammes, niveaux) mais **n'ont pas pu être écoutés** lors de la création automatique.
