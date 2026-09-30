@@ -9,3 +9,4 @@ python audio/build_voice.py     # voix (Kokoro) → public/audio/voice_dry.wav +
 (cd audio && python build_music.py)   # musique originale → audio/stems/music.flac
 (cd audio && python build_sfx.py)     # effets sonores calés sur data/cues.json → audio/stems/sfx.flac
 (cd audio && python mix.py)           # mixage + ducking + normalisation → public/audio/soundtrack.wav
+(cd audio && python mix.py --sans-voix)  # version sans voix (musique + effets) → public/audio/soundtrack_sans_voix.wav

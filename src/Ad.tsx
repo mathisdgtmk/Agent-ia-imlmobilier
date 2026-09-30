@@ -21,7 +21,12 @@ loadFonts();
  * Publicité 60 s — « Votre agent IA immobilier » (Martinique).
  * Un seul composant pour les deux formats : les scènes s'adaptent à la taille de l'image (16:9 ou 9:16).
  */
-export const Ad: React.FC = () => {
+export type AdProps = {
+  /** true : voix off + sous-titres (version complète) ; false : musique et effets seuls, sans sous-titres. */
+  voix: boolean;
+};
+
+export const Ad: React.FC<AdProps> = ({voix}) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const fadeIn = 1 - clamp01(1 - t / 0.5);
@@ -35,12 +40,12 @@ export const Ad: React.FC = () => {
       <SceneShell id="benefit" pre={0.2} post={0.3}><Scene6Benefit /></SceneShell>
       <SceneShell id="cta" pre={0.3} post={0}><Scene7Cta /></SceneShell>
       <Transitions />
-      <Subtitles />
+      {voix && <Subtitles />}
       <Vignette />
       <Grain />
       {/* fondu d'ouverture depuis le noir */}
       <AbsoluteFill style={{background: '#000', opacity: 1 - fadeIn, pointerEvents: 'none'}} />
-      <Audio src={staticFile('audio/soundtrack.wav')} />
+      <Audio src={staticFile(voix ? 'audio/soundtrack.wav' : 'audio/soundtrack_sans_voix.wav')} />
     </AbsoluteFill>
   );
 };

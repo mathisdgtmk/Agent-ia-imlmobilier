@@ -3,8 +3,10 @@
 Entrées : public/audio/voice_dry.wav (voix seule — remplaçable par un enregistrement humain de même durée/timing),
           audio/stems/music.flac, audio/stems/sfx.flac
 Sortie  : public/audio/soundtrack.wav (48 kHz, stéréo, -16 LUFS intégré, crête ≤ -1,5 dBFS)
-Usage   : python audio/mix.py
+Usage   : python audio/mix.py                 → version avec voix off
+          python audio/mix.py --sans-voix     → musique + effets seuls (pas de voix, pas de ducking) → public/audio/soundtrack_sans_voix.wav
 """
+import sys
 from pathlib import Path
 import numpy as np
 import soundfile as sf
@@ -68,14 +70,28 @@ def split3(x, f1=280, f2=4200):
 
 
 def main():
-    voice = load(ROOT / "public/audio/voice_dry.wav")[:, 0]
+    sans_voix = "--sans-voix" in sys.argv
     n = int(60 * SR)
+    voice = np.zeros(n) if sans_voix else load(ROOT / "public/audio/voice_dry.wav")[:, 0]
     voice = np.pad(voice, (0, max(0, n - len(voice))))[:n]
     music = load(ROOT / "audio/stems/music.flac")
     music = np.pad(music, ((0, max(0, n - len(music))), (0, 0)))[:n]
     sfx = load(ROOT / "audio/stems/sfx.flac")
     sfx = np.pad(sfx, ((0, max(0, n - len(sfx))), (0, 0)))[:n]
 
+    if sans_voix:
+        # ---- sans voix : la musique reste au niveau « libre » (pas de ducking) ; effets inchangés
+        music_d = music * 10 ** (-6.0 / 20)
+        mix = music_d + sfx * 10 ** (-3.0 / 20)
+        out_name = "soundtrack_sans_voix.wav"
+        v = voice_st = duck = None
+    else:
+        out_name = "soundtrack.wav"
+        mix, music_d, voice_st, v, duck = build_with_voice(voice, music, sfx)
+    finish(mix, music_d, voice_st, v, out_name, sans_voix, duck)
+
+
+def build_with_voice(voice, music, sfx):
     # ---- voix : nettoyage, présence, compression, petite réverbération de pièce
     v = sosfilt(butter(2, 85, "high", fs=SR, output="sos"), voice)
     v = peaking(v, 120, 2.2, 0.7)       # chaleur de la voix grave (effet « proximité »)
@@ -102,7 +118,10 @@ def main():
     music_d = (lo + mid + hi) * 10 ** (-9.5 / 20) * 10 ** (3.5 * free / 20)
 
     mix = voice_st * 1.0 + music_d + sfx * 10 ** (-3.0 / 20)
+    return mix, music_d, voice_st, v, duck
 
+
+def finish(mix, music_d, voice_st, v, out_name, sans_voix, duck):
     # ---- master
     mix = sosfilt(butter(2, 28, "high", fs=SR, output="sos"), mix, axis=0)
     meter = pyln.Meter(SR)
@@ -115,18 +134,23 @@ def main():
         mix = np.tanh(mix / k * 0.9) * k / np.tanh(0.9)
     peak = np.abs(mix).max()
     mix = mix * (10 ** (-1.5 / 20) / peak)
+    if sans_voix:
+        # le limiteur relève légèrement le niveau moyen : on revient à −16 LUFS (comme la version avec voix) ; le gain est négatif, la crête reste ≤ −1,5 dBFS
+        mix = mix * 10 ** ((-16.0 - meter.integrated_loudness(mix)) / 20)
 
     # fondu final très court pour éviter tout clic
     f = int(0.05 * SR)
     mix[-f:] *= np.linspace(1, 0, f)[:, None]
-    sf.write(ROOT / "public/audio/soundtrack.wav", mix.astype(np.float32), SR, subtype="PCM_16")
+    sf.write(ROOT / "public/audio" / out_name, mix.astype(np.float32), SR, subtype="PCM_16")
 
     # ---- rapport
     lu = meter.integrated_loudness(mix)
     def rms_db(x):
         return 20 * np.log10(np.sqrt(np.mean(x**2)) + 1e-12)
+    print(f"loudness intégré : {lu:.1f} LUFS, crête : {20*np.log10(np.abs(mix).max()):.1f} dBFS  → {out_name}")
+    if sans_voix:
+        return
     speech = duck > 0.5
-    print(f"loudness intégré : {lu:.1f} LUFS, crête : {20*np.log10(np.abs(mix).max()):.1f} dBFS")
     print(f"pendant la voix  : voix {rms_db(voice_st[speech]):.1f} dB | musique {rms_db(music_d[speech]):.1f} dB | écart {rms_db(voice_st[speech]) - rms_db(music_d[speech]):.1f} dB")
     print(f"hors voix        : musique {rms_db(music_d[~speech]):.1f} dB")
 

@@ -3,6 +3,8 @@
 #   CONCURRENCY=4 bash scripts/render.sh          → les deux formats
 #   bash scripts/render.sh 16x9                   → seulement l'horizontal
 #   bash scripts/render.sh 9x16                   → seulement le vertical
+#   bash scripts/render.sh sans-voix              → les deux formats SANS voix off ni sous-titres (musique + effets seuls)
+#   bash scripts/render.sh 16x9-sans-voix         → un seul format sans voix (ou 9x16-sans-voix)
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p out
@@ -14,5 +16,11 @@ if [ "$WHICH" = "all" ] || [ "$WHICH" = "16x9" ]; then
 fi
 if [ "$WHICH" = "all" ] || [ "$WHICH" = "9x16" ]; then
   npx remotion render src/index.ts Ad-9x16 out/agent-ia-immobilier-9x16.mp4 --concurrency="$C"
+fi
+if [ "$WHICH" = "sans-voix" ] || [ "$WHICH" = "16x9-sans-voix" ]; then
+  npx remotion render src/index.ts Ad-16x9-sans-voix out/agent-ia-immobilier-16x9-sans-voix.mp4 --concurrency="$C"
+fi
+if [ "$WHICH" = "sans-voix" ] || [ "$WHICH" = "9x16-sans-voix" ]; then
+  npx remotion render src/index.ts Ad-9x16-sans-voix out/agent-ia-immobilier-9x16-sans-voix.mp4 --concurrency="$C"
 fi
 ls -lh out/*.mp4
