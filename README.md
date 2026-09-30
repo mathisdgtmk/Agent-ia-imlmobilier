@@ -6,6 +6,8 @@ Publicité de **60 secondes** présentant un agent IA aux agences immobilières 
 |---|---|---|
 | `out/agent-ia-immobilier-16x9.mp4` | 16:9 — 1920 × 1080, 30 i/s | site web, YouTube, présentation commerciale, Facebook |
 | `out/agent-ia-immobilier-9x16.mp4` | 9:16 — 1080 × 1920, 30 i/s | TikTok, Instagram Reels, stories |
+| `out/agent-ia-immobilier-16x9-sans-voix.mp4` | 16:9, sans voix off ni sous‑titres | mêmes images, **musique et effets seulement** |
+| `out/agent-ia-immobilier-9x16-sans-voix.mp4` | 9:16, sans voix off ni sous‑titres | idem, format vertical |
 
 Voix off française, musique électronique cinématographique originale, effets sonores discrets, sous‑titres français synchronisés.
 Le projet est **entièrement modifiable** : Remotion (React + TypeScript) pour l'image, Python pour le son, FFmpeg (intégré à Remotion) pour l'encodage.
@@ -53,6 +55,8 @@ bash scripts/render.sh         # rend les deux MP4 dans out/   (≈ 10 à 15 min
 ```
 
 Rendre un seul format : `bash scripts/render.sh 16x9` ou `bash scripts/render.sh 9x16`.
+Versions **sans voix off ni sous‑titres** : `bash scripts/render.sh sans-voix` (ou `16x9-sans-voix` / `9x16-sans-voix`) ; la bande‑son correspondante (`public/audio/soundtrack_sans_voix.wav`, musique + effets, −16 LUFS) se régénère avec `python audio/mix.py --sans-voix` (depuis le dossier `audio/`).
+Les textes à l'écran sont identiques dans toutes les versions ; seuls la voix, les sous‑titres et le mixage changent (la mention « Simulation illustrative… » reste affichée dans les scènes 3 et 4).
 Une image fixe (contrôle rapide) : `npx remotion still src/index.ts Ad-16x9 img.png --frame=300`.
 
 > Sur votre machine, Remotion télécharge lui‑même son navigateur. `remotion.config.ts` n'utilise le Chromium local de l'environnement de création que s'il existe.
@@ -66,8 +70,8 @@ Une image fixe (contrôle rapide) : `npx remotion still src/index.ts Ad-16x9 img
 │   ├── timeline.source.json     scènes, lignes de voix (texte, début), sous‑titres      ← à éditer
 │   └── cues.json                repères d'événements + effets sonores associés          ← à éditer
 ├── src/                         PROJET VIDÉO (Remotion)
-│   ├── Root.tsx                 déclare les 2 compositions : Ad-16x9 et Ad-9x16
-│   ├── Ad.tsx                   montage : 7 scènes + transitions + sous‑titres + son
+│   ├── Root.tsx                 déclare les compositions : Ad-16x9, Ad-9x16 et leurs variantes *-sans-voix
+│   ├── Ad.tsx                   montage : 7 scènes + transitions + sous‑titres + son (option `voix` : false = sans voix ni sous‑titres)
 │   ├── config/brand.ts          nom, logo, coordonnées, CTA (provisoires)               ← à éditer
 │   ├── config/media.ts          remplacer une illustration par une photo/vidéo réelle
 │   ├── data/timeline.json       généré (voix + sous‑titres + repères) — ne pas éditer à la main
@@ -79,7 +83,7 @@ Une image fixe (contrôle rapide) : `npx remotion still src/index.ts Ad-16x9 img
 │   ├── build_voice.py           voix off (Kokoro, mélange de voix masculines) + minutage des sous‑titres
 │   ├── build_music.py           musique originale 96 BPM, la mineur
 │   ├── build_sfx.py             effets sonores calés sur data/cues.json
-│   ├── mix.py                   mixage, ducking, normalisation −16 LUFS
+│   ├── mix.py                   mixage, ducking, normalisation −16 LUFS (option --sans-voix)
 │   └── qa_asr.py                contrôle : la voix dit‑elle bien le script ? (Whisper)
 ├── public/                      polices (OFL), textures, audio final (soundtrack.wav)
 ├── docs/                        SCRIPT-VOIX-OFF.md · PERSONNALISATION.md
