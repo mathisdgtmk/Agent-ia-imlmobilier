@@ -30,9 +30,9 @@ const Kicker: React.FC<{i: number; p: number; size: number; align?: 'left' | 'ce
   <div
     style={{
       fontFamily: F.display,
-      fontWeight: 600,
+      fontWeight: 700,
       fontSize: size,
-      letterSpacing: '0.32em',
+      letterSpacing: '0.26em',
       color: dark ? '#8A6A2C' : '#E9D09A',
       opacity: p,
       display: 'flex',
@@ -43,7 +43,7 @@ const Kicker: React.FC<{i: number; p: number; size: number; align?: 'left' | 'ce
     }}
   >
     <span style={{color: dark ? '#1B2540' : '#F8F5EE'}}>{String(i + 1).padStart(2, '0')}</span>
-    <span style={{width: size * 3, height: 1.5, background: 'linear-gradient(90deg,#E9D09A,rgba(233,208,154,0))', display: 'inline-block', transform: `scaleX(${p})`, transformOrigin: 'left'}} />
+    <span style={{width: size * 3, height: 1.5, background: dark ? 'linear-gradient(90deg,#8A6A2C,rgba(138,106,44,0))' : 'linear-gradient(90deg,#E9D09A,rgba(233,208,154,0))', display: 'inline-block', transform: `scaleX(${p})`, transformOrigin: 'left'}} />
     <span>{STEPS[i]}</span>
   </div>
 );
@@ -59,10 +59,10 @@ export const Scene4Features: React.FC = () => {
   const W = [win(t, b[0], b[1]), win(t, b[1], b[2]), win(t, b[2], b[3]), win(t, b[3], b[4] + 0.6)];
   const active = t < b[1] ? 0 : t < b[2] ? 1 : t < b[3] ? 2 : 3;
 
-  const titleSize = (vertical ? 76 : 88) * u;
+  const titleSize = (vertical ? 92 : 108) * u;
   const textLeft = vertical ? 0 : w * 0.07;
-  const titleTop = vertical ? h * 0.115 : h * 0.34;
-  const kickTop = vertical ? h * 0.085 : h * 0.27;
+  const titleTop = vertical ? h * 0.118 : h * 0.33;
+  const kickTop = vertical ? h * 0.085 : h * 0.26;
   const seqStart = (i: number) => b[i];
 
   const Title: React.FC<{i: number; lines: {t: string; gold?: boolean}[][]}> = ({i, lines}) => {
@@ -70,10 +70,10 @@ export const Scene4Features: React.FC = () => {
     return (
       <>
         <div style={{position: 'absolute', left: textLeft, right: vertical ? 0 : undefined, top: kickTop, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start', opacity: wv.op}}>
-          <Kicker i={i} p={prog(t, seqStart(i), seqStart(i) + 0.7, easeOut)} size={(vertical ? 22 : 20) * u} align={vertical ? 'center' : 'left'} />
+          <Kicker i={i} p={prog(t, seqStart(i), seqStart(i) + 0.7, easeOut)} size={(vertical ? 28 : 26) * u} align={vertical ? 'center' : 'left'} />
         </div>
         <div style={{position: 'absolute', left: textLeft, right: vertical ? 0 : undefined, top: titleTop, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start', opacity: wv.op}}>
-          <HeroText t={t} start={seqStart(i) + 0.12} stagger={0.09} size={titleSize} align={vertical ? 'center' : 'left'} lines={lines} />
+          <HeroText t={t} start={seqStart(i) + 0.12} stagger={0.09} size={titleSize} maxWidth={vertical ? w * 0.86 : w * 0.43} align={vertical ? 'center' : 'left'} lines={lines} />
         </div>
       </>
     );
@@ -85,14 +85,14 @@ export const Scene4Features: React.FC = () => {
     {from: 'client', text: 'Bonjour, je souhaite des informations sur votre villa à Sainte-Anne.', at: L('f1_msg')},
     {from: 'ai', text: 'Bonjour ! Avec plaisir. Souhaitez-vous visiter ce bien cette semaine ?', at: L('f1_reply'), typingFrom: L('f1_reply') - 0.9},
   ];
-  const p1w = (vertical ? 440 : 388) * u;
+  const p1w = (vertical ? 400 : 378) * u;
   const p1x = vertical ? w * 0.5 : w * 0.72;
-  const p1top = vertical ? h * 0.3 : h * 0.135;
+  const p1top = vertical ? h * 0.285 : h * 0.095;
 
   /* ---------- séquence 2 : Qualifier ---------- */
   const w2 = W[1];
-  const fs2 = (vertical ? 27 : 21.5) * u;
-  const c2w = vertical ? w * 0.86 : 590 * u;
+  const fs2 = (vertical ? 30 : 25) * u;
+  const c2w = vertical ? w * 0.88 : 660 * u;
   const rows2: ProfileRow[] = [
     {icon: <IconHome size={fs2 * 1.2} />, label: 'Type de bien', value: 'Villa avec piscine', at: L('f2_r1')},
     {icon: <IconPin size={fs2 * 1.2} />, label: 'Secteur recherché', value: 'Les Trois-Îlets', at: L('f2_r2')},
@@ -104,8 +104,8 @@ export const Scene4Features: React.FC = () => {
 
   /* ---------- séquence 3 : Organiser ---------- */
   const w3 = W[2];
-  const fs3 = (vertical ? 25 : 20) * u;
-  const c3w = vertical ? w * 0.9 : 720 * u;
+  const fs3 = (vertical ? 27 : 23.5) * u;
+  const c3w = vertical ? w * 0.9 : 780 * u;
 
   /* ---------- séquence 4 : Gagner du temps ---------- */
   const w4 = W[3];
@@ -152,7 +152,7 @@ export const Scene4Features: React.FC = () => {
           <div style={{position: 'absolute', left: p1x - 420 * u, top: p1top - 60 * u, width: 840 * u, height: 840 * u, borderRadius: '50%', background: 'radial-gradient(circle, rgba(110,150,255,0.30) 0%, rgba(60,90,200,0.10) 45%, rgba(60,90,200,0) 70%)'}} />
           <div style={{position: 'absolute', left: p1x - p1w / 2, top: p1top + Math.sin(t * 0.9) * 5 * u, transform: 'perspective(2400px) rotateY(-8deg) rotateX(2deg)'}}>
             <PhoneFrame w={p1w}>
-              <Chat msgs={msgs1} t={t} w={p1w * 0.94} h={p1w * 2.06 - p1w * 0.06} fs={15.5 * u} name="Agent IA" sub="En ligne" topInset={p1w * 0.11} clock="23:47" />
+              <Chat msgs={msgs1} t={t} w={p1w * 0.94} h={p1w * 2.06 - p1w * 0.06} fs={18.5 * u} name="Agent IA" sub="En ligne" topInset={p1w * 0.11} clock="23:47" />
             </PhoneFrame>
           </div>
           {/* pastille « agence fermée » */}
@@ -172,7 +172,7 @@ export const Scene4Features: React.FC = () => {
               color: '#F3E6BE',
               fontFamily: F.sans,
               fontWeight: 600,
-              fontSize: 22 * u,
+              fontSize: 27 * u,
               opacity: prog(t, 0.5, 1.1, easeOut),
               transform: `translateY(${(1 - prog(t, 0.5, 1.1, easeOut)) * 20}px)`,
             }}
@@ -197,7 +197,7 @@ export const Scene4Features: React.FC = () => {
                 color: '#F8F5EE',
                 fontFamily: F.sans,
                 fontWeight: 600,
-                fontSize: 21 * u,
+                fontSize: 27 * u,
                 opacity: prog(t, L('f1_reply') + 0.3, L('f1_reply') + 0.9, easeOut),
                 transform: `translateY(${(1 - prog(t, L('f1_reply') + 0.3, L('f1_reply') + 0.9, easeOut)) * 20}px)`,
                 boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
@@ -235,7 +235,7 @@ export const Scene4Features: React.FC = () => {
                     color: c.on > 0.5 ? '#F3E6BE' : 'rgba(200,214,240,0.6)',
                     fontFamily: F.sans,
                     fontWeight: 600,
-                    fontSize: 21 * u,
+                    fontSize: 26 * u,
                     boxShadow: c.on > 0.5 ? '0 0 26px rgba(233,205,140,0.25)' : undefined,
                   }}
                 >
@@ -264,8 +264,8 @@ export const Scene4Features: React.FC = () => {
                 gap: 12 * u,
                 fontFamily: F.sans,
                 fontWeight: 500,
-                fontSize: (vertical ? 24 : 19) * u,
-                color: 'rgba(233,214,168,0.88)',
+                fontSize: (vertical ? 28 : 24) * u,
+                color: 'rgba(233,214,168,0.92)',
                 opacity: prog(t, b[2] + 1.0, b[2] + 1.6, easeOut),
               }}
             >
@@ -280,7 +280,7 @@ export const Scene4Features: React.FC = () => {
       {/* --------- 4 : Gagner du temps --------- */}
       {w4.vis && (
         <AbsoluteFill style={{opacity: w4.inn}}>
-          <World w={w} h={h} vertical={vertical} focus={[vertical ? 925 : 960, 540]} anchor={vertical ? [0.5, 0.42] : [0.5, 0.5]} scaleV={0.78} zoom={1 + 0.05 * prog(t4, 0, 3.4)} html={mon4}>
+          <World w={w} h={h} vertical={vertical} focus={[vertical ? 925 : 960, 540]} anchor={vertical ? [0.5, 0.5] : [0.5, 0.5]} scaleV={0.78} zoom={1 + 0.05 * prog(t4, 0, 3.4)} html={mon4}>
             <OfficeSvg
               t={t + 3}
               mood="day"
@@ -292,16 +292,17 @@ export const Scene4Features: React.FC = () => {
             />
           </World>
           <MediaBackdrop slot="timesaving" p={prog(t4, 0, 3.4)} />
-          <AbsoluteFill style={{background: vertical ? 'linear-gradient(180deg,rgba(255,250,240,0.0) 0%)' : 'linear-gradient(90deg,rgba(240,233,219,0.85) 0%,rgba(240,233,219,0.6) 24%,rgba(240,233,219,0) 50%)'}} />
-          <div style={{position: 'absolute', left: textLeft, right: vertical ? 0 : undefined, top: vertical ? h * 0.085 : h * 0.125, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start'}}>
-            <Kicker i={3} p={prog(t, b[3], b[3] + 0.7, easeOut)} size={(vertical ? 22 : 20) * u} align={vertical ? 'center' : 'left'} dark />
+          <AbsoluteFill style={{background: vertical ? 'linear-gradient(180deg,rgba(255,250,240,0.0) 0%)' : 'radial-gradient(ellipse 46% 19% at 21% 17%, rgba(240,233,219,0.93) 0%, rgba(240,233,219,0.86) 60%, rgba(240,233,219,0) 100%)'}} />
+          <div style={{position: 'absolute', left: textLeft, right: vertical ? 0 : undefined, top: vertical ? h * 0.085 : h * 0.05, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start'}}>
+            <Kicker i={3} p={prog(t, b[3], b[3] + 0.7, easeOut)} size={(vertical ? 28 : 26) * u} align={vertical ? 'center' : 'left'} dark />
           </div>
-          <div style={{position: 'absolute', left: textLeft, right: vertical ? 0 : undefined, top: vertical ? h * 0.115 : h * 0.16, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start'}}>
+          <div style={{position: 'absolute', left: textLeft, right: vertical ? 0 : undefined, top: vertical ? h * 0.115 : h * 0.09, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start'}}>
             <HeroText
               t={t}
               start={b[3] + 0.12}
               stagger={0.09}
-              size={titleSize * (vertical ? 1 : 0.86)}
+              size={titleSize * (vertical ? 1 : 0.74)}
+              maxWidth={vertical ? w * 0.86 : w * 0.42}
               align={vertical ? 'center' : 'left'}
               color="#1B2540"
               shadow={false}
@@ -321,8 +322,8 @@ export const Scene4Features: React.FC = () => {
           bottom: vertical ? h * 0.115 : 38 * u,
           textAlign: 'center',
           fontFamily: F.sans,
-          fontSize: (vertical ? 24 : 18) * u,
-          color: 'rgba(230,236,255,0.6)',
+          fontSize: (vertical ? 27 : 21) * u,
+          color: 'rgba(230,236,255,0.7)',
           opacity: (1 - w4.inn) * prog(t, 0.6, 1.2),
         }}
       >

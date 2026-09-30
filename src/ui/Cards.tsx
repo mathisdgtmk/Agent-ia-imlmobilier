@@ -31,10 +31,9 @@ export const NotificationCard: React.FC<{
       style={{
         width: w,
         borderRadius: fs * 1.15,
-        background: glassBg,
+        background: 'linear-gradient(135deg,#1C2A4B,#0E1630)',
         border: `1px solid ${line}`,
         boxShadow: `0 ${fs * 0.9}px ${fs * 2.6}px rgba(0,0,0,0.5), 0 0 ${fs * 2.2 * (0.4 + glow)}px rgba(233,205,140,${0.10 + 0.22 * glow})`,
-        backdropFilter: 'blur(14px)',
         padding: `${fs * 0.9}px ${fs * 1.05}px`,
         display: 'flex',
         alignItems: 'center',
@@ -48,8 +47,8 @@ export const NotificationCard: React.FC<{
         <Icon size={fs * 1.45} />
       </div>
       <div style={{flex: 1, minWidth: 0}}>
-        <div style={{color: '#F8F5EE', fontWeight: 600, fontSize: fs * 1.02, lineHeight: 1.25}}>{title}</div>
-        <div style={{color: 'rgba(210,222,248,0.78)', fontWeight: 400, fontSize: fs * 0.84, lineHeight: 1.3, marginTop: fs * 0.12, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{body}</div>
+        <div style={{color: '#F8F5EE', fontWeight: 600, fontSize: fs * 1.08, lineHeight: 1.25}}>{title}</div>
+        <div style={{color: 'rgba(210,222,248,0.78)', fontWeight: 400, fontSize: fs * 0.9, lineHeight: 1.3, marginTop: fs * 0.12, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{body}</div>
       </div>
       <div style={{color: 'rgba(233,214,168,0.85)', fontSize: fs * 0.72, fontWeight: 500, alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: fs * 0.35}}>
         <span style={{width: fs * 0.5, height: fs * 0.5, borderRadius: '50%', background: '#F3E6BE', boxShadow: '0 0 10px rgba(243,230,190,0.9)'}} />

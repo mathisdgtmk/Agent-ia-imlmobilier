@@ -2,9 +2,20 @@
  "fps": 30,
  "duration": 60,
  "voice": {
-  "name": "ff_siwis",
+  "engine": "kokoro",
+  "blend": [
+   [
+    "pm_alex",
+    0.5
+   ],
+   [
+    "im_nicola",
+    0.5
+   ]
+  ],
   "lang": "fr-fr",
-  "speed": 0.97
+  "speed": 0.93,
+  "note": "voix d'homme grave : mélange de deux voix masculines Kokoro (les vecteurs de style sont interpolés)"
  },
  "scenes": [
   {
@@ -48,81 +59,81 @@
    "id": "s1",
    "text": "Dans l'immobilier, chaque demande compte. Mais toutes ne peuvent pas attendre.",
    "start": 1.0,
-   "end": 4.812,
-   "duration": 3.812,
+   "end": 4.644,
+   "duration": 3.644,
    "gap_before": 1.0
   },
   {
    "id": "s2",
    "text": "Entre les appels, les messages et les demandes de visites, répondre à chaque prospect peut vite devenir un défi.",
    "start": 7.3,
-   "end": 13.55,
-   "duration": 6.25,
-   "gap_before": 2.49
+   "end": 12.964,
+   "duration": 5.664,
+   "gap_before": 2.66
   },
   {
    "id": "s3",
    "text": "Découvrez votre agent IA : il accompagne vos prospects, répond à leurs premières questions et recueille leurs besoins, même lorsque votre agence est fermée.",
    "start": 15.2,
-   "end": 23.428,
-   "duration": 8.228,
-   "gap_before": 1.65
+   "end": 22.841,
+   "duration": 7.641,
+   "gap_before": 2.24
   },
   {
    "id": "s4a",
    "text": "Offrez une première réponse rapide à vos prospects, à tout moment.",
    "start": 24.3,
-   "end": 27.831,
-   "duration": 3.531,
-   "gap_before": 0.87
+   "end": 27.599,
+   "duration": 3.299,
+   "gap_before": 1.46
   },
   {
    "id": "s4b",
    "text": "Identifiez les besoins de vos futurs acheteurs et locataires.",
    "start": 28.3,
-   "end": 31.548,
-   "duration": 3.248,
-   "gap_before": 0.47
+   "end": 31.519,
+   "duration": 3.219,
+   "gap_before": 0.7
   },
   {
    "id": "s4c",
    "text": "Facilitez vos rendez-vous, selon les outils connectés à votre agent.",
    "start": 32.2,
-   "end": 35.778,
-   "duration": 3.578,
-   "gap_before": 0.65
+   "end": 35.834,
+   "duration": 3.634,
+   "gap_before": 0.68
   },
   {
    "id": "s4d",
    "text": "Et gagnez du temps pour ce qui compte vraiment : vos clients.",
    "start": 36.0,
-   "end": 38.66,
-   "duration": 2.66,
-   "gap_before": 0.22
+   "end": 38.689,
+   "duration": 2.689,
+   "gap_before": 0.17
   },
   {
    "id": "s5",
    "text": "Une solution personnalisable pour répondre aux besoins des agences immobilières martiniquaises et aux réalités de leur marché.",
    "start": 39.6,
-   "end": 46.667,
-   "duration": 7.067,
-   "gap_before": 0.94
+   "end": 46.073,
+   "duration": 6.473,
+   "gap_before": 0.91
   },
   {
    "id": "s6",
    "text": "L'intelligence artificielle ne remplace pas votre expertise. Elle vous aide à mieux accompagner vos clients.",
    "start": 47.5,
-   "end": 53.658,
-   "duration": 6.158,
-   "gap_before": 0.83
+   "end": 53.013,
+   "duration": 5.513,
+   "gap_before": 1.43
   },
   {
    "id": "s7",
    "text": "Demandez dès maintenant votre démonstration personnalisée.",
    "start": 55.1,
-   "end": 58.377,
-   "duration": 3.277,
-   "gap_before": 1.44
+   "end": 57.995,
+   "duration": 2.896,
+   "gap_before": 2.09
   }
  ],
  "captions": [
@@ -130,175 +141,175 @@
    "line": "s1",
    "text": "Dans l'immobilier, chaque demande compte.",
    "start": 1.0,
-   "end": 3.065
+   "end": 2.71
   },
   {
    "line": "s1",
    "text": "Mais toutes ne peuvent pas attendre.",
-   "start": 3.065,
-   "end": 4.812
+   "start": 2.71,
+   "end": 4.644
   },
   {
    "line": "s2",
    "text": "Entre les appels, les messages",
    "start": 7.3,
-   "end": 8.951
+   "end": 8.762
   },
   {
    "line": "s2",
    "text": "et les demandes de visites,",
-   "start": 8.951,
-   "end": 10.615
+   "start": 8.762,
+   "end": 10.117
   },
   {
    "line": "s2",
    "text": "répondre à chaque prospect",
-   "start": 10.615,
-   "end": 11.657
+   "start": 10.117,
+   "end": 11.468
   },
   {
    "line": "s2",
    "text": "peut vite devenir un défi.",
-   "start": 11.657,
-   "end": 13.55
+   "start": 11.468,
+   "end": 12.964
   },
   {
    "line": "s3",
    "text": "Découvrez votre agent IA :",
    "start": 15.2,
-   "end": 16.675
+   "end": 16.782
   },
   {
    "line": "s3",
    "text": "il accompagne vos prospects,",
-   "start": 16.675,
-   "end": 18.45
+   "start": 16.782,
+   "end": 18.152
   },
   {
    "line": "s3",
    "text": "répond à leurs premières questions",
-   "start": 18.45,
-   "end": 19.822
+   "start": 18.152,
+   "end": 19.618
   },
   {
    "line": "s3",
    "text": "et recueille leurs besoins,",
-   "start": 19.822,
-   "end": 21.475
+   "start": 19.618,
+   "end": 20.902
   },
   {
    "line": "s3",
    "text": "même lorsque votre agence est fermée.",
-   "start": 21.475,
-   "end": 23.428
+   "start": 20.902,
+   "end": 22.841
   },
   {
    "line": "s4a",
    "text": "Offrez une première réponse rapide",
    "start": 24.3,
-   "end": 25.985
+   "end": 26.005
   },
   {
    "line": "s4a",
    "text": "à vos prospects, à tout moment.",
-   "start": 25.985,
-   "end": 27.831
+   "start": 26.005,
+   "end": 27.599
   },
   {
    "line": "s4b",
    "text": "Identifiez les besoins de vos",
    "start": 28.3,
-   "end": 29.663
+   "end": 29.721
   },
   {
    "line": "s4b",
    "text": "futurs acheteurs et locataires.",
-   "start": 29.663,
-   "end": 31.548
+   "start": 29.721,
+   "end": 31.519
   },
   {
    "line": "s4c",
    "text": "Facilitez vos rendez-vous,",
    "start": 32.2,
-   "end": 33.678
+   "end": 33.59
   },
   {
    "line": "s4c",
    "text": "selon les outils connectés à votre agent.",
-   "start": 33.678,
-   "end": 35.778
+   "start": 33.59,
+   "end": 35.834
   },
   {
    "line": "s4d",
    "text": "Et gagnez du temps",
    "start": 36.0,
-   "end": 36.935
+   "end": 36.98
   },
   {
    "line": "s4d",
    "text": "pour ce qui compte vraiment : vos clients.",
-   "start": 36.935,
-   "end": 38.66
+   "start": 36.98,
+   "end": 38.689
   },
   {
    "line": "s5",
    "text": "Une solution personnalisable",
    "start": 39.6,
-   "end": 41.595
+   "end": 41.453
   },
   {
    "line": "s5",
    "text": "pour répondre aux besoins des agences",
-   "start": 41.595,
-   "end": 43.43
+   "start": 41.453,
+   "end": 42.965
   },
   {
    "line": "s5",
    "text": "immobilières martiniquaises",
-   "start": 43.43,
-   "end": 45.1
+   "start": 42.965,
+   "end": 44.485
   },
   {
    "line": "s5",
    "text": "et aux réalités de leur marché.",
-   "start": 45.1,
-   "end": 46.667
+   "start": 44.485,
+   "end": 46.073
   },
   {
    "line": "s6",
    "text": "L'intelligence artificielle",
    "start": 47.5,
-   "end": 49.176
+   "end": 48.91
   },
   {
    "line": "s6",
    "text": "ne remplace pas votre expertise.",
-   "start": 49.176,
-   "end": 51.377
+   "start": 48.91,
+   "end": 50.797
   },
   {
    "line": "s6",
    "text": "Elle vous aide à mieux",
-   "start": 51.377,
-   "end": 52.417
+   "start": 50.797,
+   "end": 51.683
   },
   {
    "line": "s6",
    "text": "accompagner vos clients.",
-   "start": 52.417,
-   "end": 53.658
+   "start": 51.683,
+   "end": 53.013
   },
   {
    "line": "s7",
    "text": "Demandez dès maintenant votre",
    "start": 55.1,
-   "end": 56.41
+   "end": 56.433
   },
   {
    "line": "s7",
    "text": "démonstration personnalisée.",
-   "start": 56.41,
-   "end": 58.377
+   "start": 56.433,
+   "end": 57.995
   }
  ],
  "cues": [
@@ -561,5 +572,5 @@
    "gain": 0.4
   }
  ],
- "speed": 0.97
+ "speed": 0.93
 }

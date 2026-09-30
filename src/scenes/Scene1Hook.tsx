@@ -12,26 +12,27 @@ export const Scene1Hook: React.FC = () => {
   const t = useSceneT();
   const {w, h, vertical, u} = useLayout();
   const p = prog(t, -0.4, 7.4, easeInOut);
-  const fs = (vertical ? 74 : 92) * u;
+  const fs = (vertical ? 92 : 108) * u;
   const lines = vertical
     ? [
         [{t: 'Et si votre agence'}],
-        [{t: 'immobilière ne manquait'}],
-        [{t: 'plus'}, {t: 'aucune', gold: true}],
-        [{t: 'opportunité ?', gold: true}],
+        [{t: 'immobilière ne'}],
+        [{t: 'manquait plus'}],
+        [{t: 'aucune', gold: true}, {t: 'opportunité ?', gold: true}],
       ]
     : [
-        [{t: 'Et si votre agence immobilière'}],
-        [{t: 'ne manquait plus'}, {t: 'aucune opportunité ?', gold: true}],
+        [{t: 'Et si votre agence'}],
+        [{t: 'immobilière ne manquait'}],
+        [{t: 'plus'}, {t: 'aucune opportunité ?', gold: true}],
       ];
   return (
     <AbsoluteFill>
       <TwilightVilla w={w} h={h} t={t + 0.4} p={p} vertical={vertical} />
       <MediaBackdrop slot="hook" p={p} />
       {/* voile pour la lisibilité du titre */}
-      <AbsoluteFill style={{background: 'radial-gradient(ellipse 70% 40% at 50% 26%, rgba(3,6,15,0.55), rgba(3,6,15,0) 70%)'}} />
-      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.13 : 0.15), display: 'flex', justifyContent: 'center'}}>
-        <HeroText lines={lines} t={t} start={2.6} out={[6.45, 6.95]} size={fs} />
+      <AbsoluteFill style={{background: 'radial-gradient(ellipse 78% 46% at 50% 24%, rgba(3,6,15,0.62), rgba(3,6,15,0) 72%)'}} />
+      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.1 : 0.075), display: 'flex', justifyContent: 'center'}}>
+        <HeroText lines={lines} t={t} start={2.6} out={[6.45, 6.95]} size={fs} maxWidth={w * (vertical ? 0.86 : 0.78)} />
       </div>
     </AbsoluteFill>
   );

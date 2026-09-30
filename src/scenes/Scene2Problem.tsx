@@ -13,6 +13,8 @@ import {easeInOut, easeOut, prog} from '../lib/anim';
 import {F} from '../theme';
 import {MediaBackdrop} from '../components/MediaBackdrop';
 
+const PHRASES = ['Des messages.', 'Des appels.', 'Des demandes.', 'Toute la journée.'];
+
 const EVENTS: {id: string; kind: NotifKind; title: string; body: string; name: string; snippet: string; time: string}[] = [
   {id: 'n_call', kind: 'call', title: 'Appel entrant', body: 'Sophie M. · Fort-de-France', name: 'Appel entrant', snippet: 'Sophie M. — Fort-de-France', time: '10:42'},
   {id: 'n_msg', kind: 'msg', title: 'Nouveau message', body: 'La villa est-elle toujours disponible ?', name: 'Nouveau message', snippet: 'La villa est-elle toujours disponible ?', time: '10:43'},
@@ -53,12 +55,12 @@ export const Scene2Problem: React.FC = () => {
   );
 
   // pile de notifications (verre dépoli)
-  const cardW = vertical ? w * 0.88 : w * 0.3;
-  const fs = (vertical ? 30 : 21.5) * u;
+  const cardW = vertical ? w * 0.9 : w * 0.34;
+  const fs = (vertical ? 32 : 26) * u;
   const cardH = fs * 4.6;
   const peek = fs * 0.62;
-  const stackLeft = vertical ? (w - cardW) / 2 : w * 0.655;
-  const stackTop = vertical ? h * 0.655 : h * 0.1;
+  const stackLeft = vertical ? (w - cardW) / 2 : w * 0.615;
+  const stackTop = vertical ? h * 0.618 : h * 0.115;
   const arrived = EVENTS.map((_, i) => prog(t, times[i], times[i] + 0.7, easeOut));
   const count = times.filter((x) => t >= x).length + (t >= moreT ? 2 : 0);
 
@@ -77,24 +79,19 @@ export const Scene2Problem: React.FC = () => {
       </World>
       <MediaBackdrop slot="problem" p={prog(t, -0.4, 7.4)} />
       {/* dégradés pour la lisibilité (texte en haut, sous-titres en bas) */}
-      <AbsoluteFill style={{background: vertical ? 'linear-gradient(180deg,rgba(3,5,11,0.85) 0%,rgba(3,5,11,0.0) 26%)' : 'linear-gradient(90deg,rgba(3,5,11,0.55) 0%,rgba(3,5,11,0) 45%)'}} />
+      <AbsoluteFill style={{background: vertical ? 'linear-gradient(180deg,rgba(3,5,11,0.88) 0%,rgba(3,5,11,0.0) 26%)' : 'linear-gradient(90deg,rgba(3,5,11,0.7) 0%,rgba(3,5,11,0.35) 34%,rgba(3,5,11,0) 52%)'}} />
 
-      {/* texte à l'écran */}
-      <div style={{position: 'absolute', left: vertical ? 0 : w * 0.065, right: vertical ? 0 : undefined, top: vertical ? h * 0.06 : h * 0.13, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start'}}>
-        <HeroText
-          t={t}
-          start={cue('n_call') - s.start + 0.35}
-          stagger={0.55}
-          out={[6.55, 7.0]}
-          size={(vertical ? 66 : 76) * u}
-          align={vertical ? 'center' : 'left'}
-          lines={
-            vertical
-              ? [[{t: 'Des messages. Des appels.'}], [{t: 'Des demandes.'}], [{t: 'Toute la journée.', gold: true}]]
-              : [[{t: 'Des messages. Des appels.'}], [{t: 'Des demandes.'}], [{t: 'Toute la journée.', gold: true}]]
-          }
-        />
-      </div>
+      {/* texte à l'écran : une phrase à la fois, en grand */}
+      {PHRASES.map((ph, i) => {
+        const t0 = cue('n_call') - s.start + 0.3 + i * 1.3;
+        const t1 = i === PHRASES.length - 1 ? 6.55 : t0 + 1.3;
+        if (t < t0 - 0.2 || t > t1 + 0.6) return null;
+        return (
+          <div key={i} style={{position: 'absolute', left: vertical ? 0 : w * 0.065, right: vertical ? 0 : undefined, top: vertical ? h * 0.075 : h * 0.09, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start'}}>
+            <HeroText t={t} start={t0} stagger={0.12} out={[t1 - 0.25, t1 + 0.25]} size={(vertical ? 104 : 128) * u} maxWidth={vertical ? w * 0.86 : w * 0.5} align={vertical ? 'center' : 'left'} lines={[[{t: ph, gold: i === PHRASES.length - 1}]]} />
+          </div>
+        );
+      })}
 
       {/* compteur + pile de notifications */}
       <div style={{position: 'absolute', left: stackLeft, top: stackTop, width: cardW}}>

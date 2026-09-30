@@ -32,10 +32,10 @@ export const Logo: React.FC<{k?: number; p?: number; align?: 'center' | 'left'; 
       <div
         style={{
           fontFamily: F.display,
-          fontWeight: 600,
-          fontSize: 62 * k,
-          letterSpacing: `${0.34 * (0.4 + 0.6 * p)}em`,
-          marginRight: `-${0.34 * (0.4 + 0.6 * p)}em`,
+          fontWeight: 700,
+          fontSize: 66 * k,
+          letterSpacing: `${0.3 * (0.4 + 0.6 * p)}em`,
+          marginRight: `-${0.3 * (0.4 + 0.6 * p)}em`,
           color: '#F8F5EE',
           whiteSpace: 'nowrap',
           opacity: p,
@@ -47,11 +47,11 @@ export const Logo: React.FC<{k?: number; p?: number; align?: 'center' | 'left'; 
       <div
         style={{
           fontFamily: F.serif,
-          fontWeight: 500,
-          fontSize: 122 * k,
+          fontWeight: 600,
+          fontSize: 112 * k,
           lineHeight: 1,
-          letterSpacing: `${0.2 * (0.4 + 0.6 * p)}em`,
-          marginRight: `-${0.2 * (0.4 + 0.6 * p)}em`,
+          letterSpacing: `${0.14 * (0.4 + 0.6 * p)}em`,
+          marginRight: `-${0.14 * (0.4 + 0.6 * p)}em`,
           whiteSpace: 'nowrap',
           opacity: p,
           filter: p < 1 ? `blur(${(1 - p) * 10}px)` : undefined,

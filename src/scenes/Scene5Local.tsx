@@ -6,7 +6,7 @@ import {Vista, VistaKind} from '../illustrations/Vistas';
 import {MartiniqueMap, PlaceKey} from '../illustrations/MartiniqueMap';
 import {World} from '../illustrations/World';
 import {StorefrontSvg, StorefrontSign} from '../illustrations/Storefront';
-import {HeroText} from '../components/Type';
+import {HeroText, FitText} from '../components/Type';
 import {IconPin} from '../ui/Icons';
 import {cue, sceneById} from '../lib/timeline';
 import {easeInOut, easeOut, prog} from '../lib/anim';
@@ -53,7 +53,7 @@ export const Scene5Local: React.FC = () => {
     : [[{t: 'Pensé pour les agences immobilières'}], [{t: 'en Martinique.', gold: true}]];
   const active = SHOTS[Math.min(idx, SHOTS.length - 1)];
   const visited = SHOTS.slice(0, Math.min(idx, SHOTS.length)).map((x) => x.place);
-  const mapW = (vertical ? 230 : 250) * u;
+  const mapW = (vertical ? 270 : 290) * u;
   const mapReveal = prog(t, 0.1, 1.2, easeOut);
   const chipT = t - starts[Math.min(idx, SHOTS.length - 1)];
   const chipOp = inAgency ? 1 - prog(t, agencyAt, agencyAt + 0.3, (n) => n) : prog(chipT, 0.15, 0.6, easeOut);
@@ -84,8 +84,8 @@ export const Scene5Local: React.FC = () => {
             h={h}
             vertical={vertical}
             focus={[850, 520]}
-            anchor={vertical ? [0.5, 0.5] : [0.5, 0.52]}
-            scaleV={0.72}
+            anchor={vertical ? [0.5, 0.5] : [0.5, 0.54]}
+            scaleV={vertical ? 0.72 : 0.68}
             zoom={zoomA}
             html={<StorefrontSign p={prog(t, agencyAt + 0.5, agencyAt + 1.2, easeOut)} brandName={BRAND.agencyName} />}
           >
@@ -99,12 +99,12 @@ export const Scene5Local: React.FC = () => {
       <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(3,6,15,0.66) 0%, rgba(3,6,15,0.25) 26%, rgba(3,6,15,0) 42%)'}} />
 
       {/* titre */}
-      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.075 : 0.065), display: 'flex', justifyContent: 'center'}}>
-        <HeroText t={t} start={titleStart} stagger={0.08} size={(vertical ? 66 : 70) * u} lines={lines} out={[7.8, 8.3]} />
+      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.07 : 0.06), display: 'flex', justifyContent: 'center'}}>
+        <HeroText t={t} start={titleStart} stagger={0.08} size={(vertical ? 76 : 86) * u} maxWidth={w * (vertical ? 0.88 : 0.86)} lines={lines} out={[7.8, 8.3]} />
       </div>
 
       {/* carte de la Martinique */}
-      <div style={{position: 'absolute', right: vertical ? 40 * u : 64 * u, top: vertical ? h * 0.5 : h * 0.3, opacity: mapReveal * (1 - prog(t, agencyAt, agencyAt + 0.45, (n) => n))}}>
+      <div style={{position: 'absolute', right: vertical ? 40 * u : 64 * u, top: vertical ? h * 0.47 : h * 0.31, opacity: mapReveal * (1 - prog(t, agencyAt, agencyAt + 0.45, (n) => n))}}>
         <MartiniqueMap w={mapW} t={t} active={inAgency ? null : active.place} reveal={mapReveal} visited={visited} />
       </div>
 
@@ -113,7 +113,7 @@ export const Scene5Local: React.FC = () => {
         style={{
           position: 'absolute',
           left: vertical ? 56 * u : 72 * u,
-          top: vertical ? h * 0.685 : h * 0.79,
+          top: vertical ? h * 0.69 : h * 0.775,
           display: 'flex',
           alignItems: 'center',
           gap: 16 * u,
@@ -121,11 +121,11 @@ export const Scene5Local: React.FC = () => {
           transform: `translateY(${(1 - chipOp) * 14}px)`,
         }}
       >
-        <div style={{width: 58 * u, height: 58 * u, borderRadius: '50%', border: '1px solid rgba(233,214,168,0.5)', background: 'rgba(10,16,34,0.7)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <IconPin size={30 * u} color="#F3E6BE" />
+        <div style={{width: 68 * u, height: 68 * u, borderRadius: '50%', border: '1px solid rgba(233,214,168,0.5)', background: 'rgba(10,16,34,0.7)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <IconPin size={34 * u} color="#F3E6BE" />
         </div>
         <div>
-          <div style={{fontFamily: F.display, fontWeight: 600, fontSize: (vertical ? 30 : 32) * u, letterSpacing: '0.16em', color: '#F8F5EE', textShadow: '0 4px 24px rgba(0,0,0,0.7)', textTransform: 'uppercase'}}>{active.label}</div>
+          <FitText text={active.label.toUpperCase()} size={(vertical ? 38 : 42) * u} maxWidth={(vertical ? w - 56 * u - 68 * u - 16 * u - 56 * u : w * 0.5)} family={F.display} weight={600} spacingEm={0.12} style={{color: '#F8F5EE', textShadow: '0 4px 24px rgba(0,0,0,0.7)'}} />
           <div style={{width: 120 * u, height: 2, marginTop: 8 * u, background: 'linear-gradient(90deg,#E9D09A,rgba(233,208,154,0))'}} />
         </div>
       </div>

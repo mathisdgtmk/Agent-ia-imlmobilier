@@ -2,9 +2,20 @@
  "fps": 30,
  "duration": 60,
  "voice": {
-  "name": "ff_siwis",
+  "engine": "kokoro",
+  "blend": [
+   [
+    "pm_alex",
+    0.5
+   ],
+   [
+    "im_nicola",
+    0.5
+   ]
+  ],
   "lang": "fr-fr",
-  "speed": 0.97
+  "speed": 0.93,
+  "note": "voix d'homme grave : mélange de deux voix masculines Kokoro (les vecteurs de style sont interpolés)"
  },
  "scenes": [
   {
@@ -68,7 +79,7 @@
    "id": "s3",
    "at": 15.2,
    "text": "Découvrez votre agent IA : il accompagne vos prospects, répond à leurs premières questions et recueille leurs besoins, même lorsque votre agence est fermée.",
-   "speak": "Découvrez votre agent I.A : il accompagne vos prospects, répond à leurs premières questions et recueille leurs besoins, même lorsque votre agence est fermée.",
+   "speak": "Découvrez votre agent I A. Il accompagne vos prospects, répond à leurs premières questions et recueille leurs besoins, même lorsque votre agence est fermée.",
    "captions": [
     "Découvrez votre agent IA :",
     "il accompagne vos prospects,",
@@ -142,7 +153,8 @@
    "captions": [
     "Demandez dès maintenant votre",
     "démonstration personnalisée."
-   ]
+   ],
+   "speak": "Demandez, dès maintenant, votre démonstration personnalisée."
   }
  ]
 }

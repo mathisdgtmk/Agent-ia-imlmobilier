@@ -229,7 +229,7 @@ export const Vista: React.FC<{kind: VistaKind; w: number; h: number; t: number; 
             ))}
           </Layer>
           <Layer w={w} h={h} scale={cam(0.08)} origin={org}>
-            <Plane x={w * (-0.1 + 1.25 * p)} y={h * (0.26 - 0.03 * p)} s={h * 0.0016} rot={-4} t={t} />
+            <Plane x={w * (-0.1 + 1.25 * p)} y={h * ((vertical ? 0.34 : 0.36) - 0.03 * p)} s={h * (vertical ? 0.0012 : 0.0015)} rot={-4} t={t} />
           </Layer>
           <Layer w={w} h={h} scale={cam(0.5)} origin={[w / 2, h]} tx={pan(2)} blur={2.2}>
             <Reeds w={w} y={h * 1.02} h={h * 0.34} seed="lamR" t={t} color="#02060B" />

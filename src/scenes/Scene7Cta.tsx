@@ -4,7 +4,7 @@ import {useSceneT} from '../components/SceneShell';
 import {useLayout} from '../lib/layout';
 import {Logo} from '../components/Logo';
 import {GoldLine, Dust} from '../components/Gold';
-import {HeroText} from '../components/Type';
+import {HeroText, FitText} from '../components/Type';
 import {IconSpark} from '../ui/Icons';
 import {cue, sceneById} from '../lib/timeline';
 import {easeInOut, easeOut, prog} from '../lib/anim';
@@ -30,8 +30,14 @@ export const Scene7Cta: React.FC = () => {
   const fadeOut = 1 - prog(t, end - 0.55, end, easeInOut);
   const pulse = 0.5 + 0.5 * Math.sin(t * 3.2);
 
-  const btnW = (vertical ? 960 : 860) * u;
-  const btnH = (vertical ? 118 : 100) * u;
+  const btnW = (vertical ? 1000 : 1140) * u;
+  const btnH = (vertical ? 176 : 116) * u;
+  const btnPad = (vertical ? 64 : 70) * u;
+  const iconS = (vertical ? 48 : 40) * u;
+  const labelMax = btnW - 2 * btnPad - iconS - 24 * u;
+  const cut = BRAND.ctaLabel.lastIndexOf(' ');
+  const labelLines = vertical && cut > 0 ? [BRAND.ctaLabel.slice(0, cut), BRAND.ctaLabel.slice(cut + 1)] : [BRAND.ctaLabel];
+  const labelSize = (vertical ? 56 : 40) * u;
   // la phrase d'accroche vient de src/config/brand.ts : elle est répartie automatiquement sur 2 (16:9) ou 3 (9:16) lignes
   const words = BRAND.ctaPrompt.split(' ');
   const nLines = vertical ? 3 : 2;
@@ -58,7 +64,7 @@ export const Scene7Cta: React.FC = () => {
       <GoldLine p={lineP} w={w} h={h} y={vertical ? 0.16 : 0.2} thickness={4 * u} fade={lineFade} />
 
       {/* logo */}
-      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.06 : 0.07), display: 'flex', justifyContent: 'center'}}>
+      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.07 : 0.05), display: 'flex', justifyContent: 'center'}}>
         <Logo k={(vertical ? 0.62 : 0.56) * u} p={logoP} />
       </div>
       {/* filet doré sous le logo */}
@@ -66,7 +72,7 @@ export const Scene7Cta: React.FC = () => {
         style={{
           position: 'absolute',
           left: '50%',
-          top: h * (vertical ? 0.235 : 0.285),
+          top: h * (vertical ? 0.198 : 0.255),
           width: (vertical ? 520 : 640) * u * logoP,
           height: 2,
           marginLeft: -((vertical ? 520 : 640) * u * logoP) / 2,
@@ -76,12 +82,12 @@ export const Scene7Cta: React.FC = () => {
       />
 
       {/* question */}
-      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.31 : 0.36), display: 'flex', justifyContent: 'center'}}>
-        <HeroText t={t} start={promptAt} stagger={0.1} size={(vertical ? 70 : 72) * u} lines={lines} />
+      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.285 : 0.315), display: 'flex', justifyContent: 'center'}}>
+        <HeroText t={t} start={promptAt} stagger={0.1} size={(vertical ? 88 : 90) * u} maxWidth={w * (vertical ? 0.9 : 0.84)} lines={lines} />
       </div>
 
       {/* bouton animé */}
-      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.545 : 0.635), display: 'flex', justifyContent: 'center', opacity: btnP, transform: `translateY(${(1 - btnP) * 30 * u}px) scale(${(0.86 + 0.14 * btnP) * (1 - 0.035 * press)})`, filter: btnP < 1 ? `blur(${(1 - btnP) * 8}px)` : undefined}}>
+      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.52 : 0.59), display: 'flex', justifyContent: 'center', opacity: btnP, transform: `translateY(${(1 - btnP) * 30 * u}px) scale(${(0.86 + 0.14 * btnP) * (1 - 0.035 * press)})`, filter: btnP < 1 ? `blur(${(1 - btnP) * 8}px)` : undefined}}>
         <div style={{position: 'relative'}}>
           {/* ondes */}
           {[0, 1].map((k) => {
@@ -99,20 +105,19 @@ export const Scene7Cta: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: 20 * u,
+              gap: 24 * u,
               overflow: 'hidden',
-              fontFamily: F.display,
-              fontWeight: 700,
-              fontSize: (vertical ? 29 : 27) * u,
-              letterSpacing: '0.1em',
-              whiteSpace: 'nowrap',
               color: '#1B1509',
             }}
           >
             {/* reflet qui balaie le bouton */}
             <div style={{position: 'absolute', top: 0, bottom: 0, left: `${-30 + ((t * 45) % 160)}%`, width: '22%', transform: 'skewX(-20deg)', background: 'linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,0.65),rgba(255,255,255,0))'}} />
-            <IconSpark size={30 * u} color="#1B1509" />
-            <span style={{position: 'relative'}}>{BRAND.ctaLabel}</span>
+            <IconSpark size={iconS} color="#1B1509" />
+            <div style={{position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 * u}}>
+              {labelLines.map((ln) => (
+                <FitText key={ln} text={ln} size={labelSize} maxWidth={labelMax} family={F.display} weight={700} spacingEm={0.09} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -123,19 +128,14 @@ export const Scene7Cta: React.FC = () => {
           position: 'absolute',
           left: 0,
           right: 0,
-          top: h * (vertical ? 0.635 : 0.77),
-          textAlign: 'center',
-          fontFamily: F.sans,
-          fontWeight: 500,
-          fontSize: (vertical ? 32 : 28) * u,
-          letterSpacing: '0.2em',
-          color: '#E9D09A',
-          textTransform: 'uppercase',
+          top: h * (vertical ? 0.635 : 0.725),
+          display: 'flex',
+          justifyContent: 'center',
           opacity: tagP,
           transform: `translateY(${(1 - tagP) * 14}px)`,
         }}
       >
-        {BRAND.tagline}
+        <FitText text={BRAND.tagline.toUpperCase()} size={(vertical ? 36 : 34) * u} maxWidth={w * 0.9} family={F.display} weight={600} spacingEm={0.16} style={{color: '#E9D09A'}} />
       </div>
 
       {/* coordonnées provisoires */}
@@ -145,12 +145,12 @@ export const Scene7Cta: React.FC = () => {
             position: 'absolute',
             left: 0,
             right: 0,
-            top: h * (vertical ? 0.69 : 0.845),
+            top: h * (vertical ? 0.68 : 0.78),
             textAlign: 'center',
             fontFamily: F.sans,
             fontWeight: 400,
-            fontSize: (vertical ? 28 : 25) * u,
-            letterSpacing: '0.06em',
+            fontSize: (vertical ? 34 : 29) * u,
+            letterSpacing: '0.05em',
             color: 'rgba(248,245,238,0.78)',
             opacity: contactP,
           }}

@@ -78,7 +78,8 @@ def main():
 
     # ---- voix : nettoyage, présence, compression, petite réverbération de pièce
     v = sosfilt(butter(2, 85, "high", fs=SR, output="sos"), voice)
-    v = peaking(v, 250, -2.0, 0.9)      # dégage le bas-médium
+    v = peaking(v, 120, 2.2, 0.7)       # chaleur de la voix grave (effet « proximité »)
+    v = peaking(v, 250, -1.6, 0.9)      # dégage le bas-médium
     v = peaking(v, 3200, 2.6, 0.9)      # présence / intelligibilité
     v = peaking(v, 7500, 1.2, 0.8)      # un peu d'air
     v = compress(v, -24, 2.6, 0.008, 0.14, 3.0)

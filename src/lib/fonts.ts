@@ -1,6 +1,18 @@
 import {continueRender, delayRender, staticFile} from 'remotion';
 
 const FACES: {family: string; weight: number; style: string; file: string}[] = [
+  {family: 'Playfair Display', weight: 400, style: 'normal', file: 'playfair-display-latin-400-normal.woff2'},
+  {family: 'Playfair Display', weight: 500, style: 'normal', file: 'playfair-display-latin-500-normal.woff2'},
+  {family: 'Playfair Display', weight: 600, style: 'normal', file: 'playfair-display-latin-600-normal.woff2'},
+  {family: 'Playfair Display', weight: 700, style: 'normal', file: 'playfair-display-latin-700-normal.woff2'},
+  {family: 'Playfair Display', weight: 400, style: 'italic', file: 'playfair-display-latin-400-italic.woff2'},
+  {family: 'Playfair Display', weight: 500, style: 'italic', file: 'playfair-display-latin-500-italic.woff2'},
+  {family: 'Playfair Display', weight: 600, style: 'italic', file: 'playfair-display-latin-600-italic.woff2'},
+  {family: 'Playfair Display', weight: 700, style: 'italic', file: 'playfair-display-latin-700-italic.woff2'},
+  {family: 'Cinzel', weight: 400, style: 'normal', file: 'cinzel-latin-400-normal.woff2'},
+  {family: 'Cinzel', weight: 500, style: 'normal', file: 'cinzel-latin-500-normal.woff2'},
+  {family: 'Cinzel', weight: 600, style: 'normal', file: 'cinzel-latin-600-normal.woff2'},
+  {family: 'Cinzel', weight: 700, style: 'normal', file: 'cinzel-latin-700-normal.woff2'},
   {family: 'Cormorant Garamond', weight: 300, style: 'normal', file: 'cormorant-garamond-latin-300-normal.woff2'},
   {family: 'Cormorant Garamond', weight: 400, style: 'normal', file: 'cormorant-garamond-latin-400-normal.woff2'},
   {family: 'Cormorant Garamond', weight: 500, style: 'normal', file: 'cormorant-garamond-latin-500-normal.woff2'},

@@ -53,12 +53,16 @@ def syllables(text):
     return max(1, len(re.findall(r"[aeiouyàâäéèêëîïôöùûüœ]+", text.lower())))
 
 
-def align_captions(chunks, dur, pauses):
+def align_captions(chunks, dur, pauses, measured=None):
     """Répartit les sous-titres sur la durée de la ligne (poids = syllabes), puis recale chaque frontière
     sur une vraie pause de la voix : plus la pause est longue, plus l'écart toléré est grand
     (fin de phrase = silence net ; virgule = respiration courte)."""
     # une virgule / un point / deux-points = une petite pause, soit ≈ 1,3 syllabe de durée
-    w = np.array([syllables(c) + 0.4 + 1.3 * sum(c.count(x) for x in ',.:;') for c in chunks], dtype=float)
+    if measured is not None:
+        # durées réelles de chaque segment (synthétisé isolément) + petite pause si le segment finit par une ponctuation
+        w = np.array([d + 0.12 * sum(c.count(x) for x in ',.:;') for d, c in zip(measured, chunks)], dtype=float)
+    else:
+        w = np.array([syllables(c) + 0.4 + 1.3 * sum(c.count(x) for x in ',.:;') for c in chunks], dtype=float)
     cum = np.cumsum(w) / w.sum() * dur
     bounds = [0.0]
     for k in range(len(chunks) - 1):
@@ -78,6 +82,15 @@ def align_captions(chunks, dur, pauses):
     return [(bounds[i], bounds[i + 1]) for i in range(len(chunks))]
 
 
+def measure_chunks(kokoro, voice, speed, lang, chunks):
+    """Durée (s) de chaque segment de sous-titre synthétisé isolément (sert uniquement de clé de répartition)."""
+    out = []
+    for c in chunks:
+        a, sr = kokoro.create(re.sub(r"\bIA\b", "I A", c), voice=voice, speed=speed, lang=lang)
+        out.append(len(trim(a.astype(np.float32), sr)) / sr)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--speed", type=float, default=None)
@@ -89,13 +102,18 @@ def main():
     v = src["voice"]
     speed = args.speed or v["speed"]
     kokoro = Kokoro(str(ROOT / "models/kokoro-v1.0.onnx"), str(ROOT / "models/voices-v1.0.bin"))
+    # Voix : soit un nom ("name"), soit un mélange pondéré de plusieurs voix ("blend"), par interpolation des vecteurs de style.
+    if "blend" in v:
+        voice = sum(w * kokoro.get_voice_style(n) for n, w in v["blend"])
+    else:
+        voice = v["name"]
 
     total = int(src["duration"] * SR)
     track = np.zeros(total, dtype=np.float32)
     lines_out, caps_out = [], []
     prev_end = 0.0
     for ln in src["lines"]:
-        a, sr = kokoro.create(ln.get("speak", ln["text"]), voice=v["name"], speed=speed, lang=v["lang"])
+        a, sr = kokoro.create(ln.get("speak", ln["text"]), voice=voice, speed=speed, lang=v["lang"])
         a = trim(a.astype(np.float32), sr)
         a = resample_poly(a, SR, sr).astype(np.float32)
         dur = len(a) / SR
@@ -110,7 +128,8 @@ def main():
         a[:f] *= np.linspace(0, 1, f)
         a[-f:] *= np.linspace(1, 0, f)
         track[i0 : i0 + len(a)] += a
-        caps = align_captions(ln["captions"], dur, pauses)
+        measured = measure_chunks(kokoro, voice, speed, v["lang"], ln["captions"]) if len(ln["captions"]) > 1 else None
+        caps = align_captions(ln["captions"], dur, pauses, measured)
         for text, (cs, ce) in zip(ln["captions"], caps):
             caps_out.append({"line": ln["id"], "text": text, "start": round(start + cs, 3), "end": round(start + ce, 3)})
         lines_out.append({"id": ln["id"], "text": ln["text"], "start": round(start, 3), "end": round(start + dur, 3),

@@ -17,9 +17,10 @@ export const C = {
 } as const;
 
 export const F = {
-  serif: '"Cormorant Garamond", "Times New Roman", serif',
-  sans: 'Inter, "Helvetica Neue", Arial, sans-serif',
-  display: 'Montserrat, Inter, Arial, sans-serif',
+  serif: '"Playfair Display", "Times New Roman", serif', // titres : serif à fort contraste, élégant et lisible en grand
+  sans: 'Inter, "Helvetica Neue", Arial, sans-serif', // interfaces
+  display: 'Cinzel, "Playfair Display", serif', // marque, libellés et bouton : capitales romaines de prestige
+  sub: 'Montserrat, Inter, Arial, sans-serif', // sous-titres
 } as const;
 
 export const goldGradient =

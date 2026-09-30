@@ -55,7 +55,7 @@ export const Scene6Benefit: React.FC = () => {
     {name: 'Julien P.', kind: 'Demande de visite', status: 'Visite proposée', time: '11:03', at: tC + 1.65},
     {name: 'Amélie T.', kind: 'Question sur un bien', status: 'Nouveau', time: '11:07', at: tC + 2.0},
   ];
-  const lw = (vertical ? 980 : 1040) * u;
+  const lw = (vertical ? 960 : 1000) * u;
   const scrW = lw * 0.968;
   const scrH = lw * 0.625 - lw * 0.032;
   const lz = 1 + 0.05 * prog(t, tC, s.end - s.start, easeInOut);
@@ -96,9 +96,9 @@ export const Scene6Benefit: React.FC = () => {
       {shotC && (
         <AbsoluteFill style={{opacity: opC, background: 'radial-gradient(ellipse 80% 70% at 50% 50%, #0F1D45 0%, #06080F 70%)'}}>
           <Dust t={t} w={w} h={h} n={30} opacity={0.5} seed="crm" />
-          <div style={{position: 'absolute', left: (w - lw) / 2, top: h * (vertical ? 0.3 : 0.235), transform: `scale(${lz}) perspective(2400px) rotateY(-3deg)`, transformOrigin: '50% 40%'}}>
+          <div style={{position: 'absolute', left: (w - lw) / 2, top: h * (vertical ? 0.3 : 0.3), transform: `scale(${lz}) perspective(2400px) rotateY(-3deg)`, transformOrigin: '50% 40%'}}>
             <LaptopFrame w={lw}>
-              <CrmList rows={rows} t={t} w={scrW} h={scrH} fs={(vertical ? 21 : 21) * u} />
+              <CrmList rows={rows} t={t} w={scrW} h={scrH} fs={(vertical ? 24 : 24) * u} />
             </LaptopFrame>
           </div>
         </AbsoluteFill>
@@ -109,18 +109,15 @@ export const Scene6Benefit: React.FC = () => {
 
       {/* voile haut pour le titre */}
       <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(4,6,14,0.62) 0%, rgba(4,6,14,0.2) 26%, rgba(4,6,14,0) 40%)'}} />
-      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.07 : 0.07), display: 'flex', justifyContent: 'center'}}>
+      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.06 : 0.05), display: 'flex', justifyContent: 'center'}}>
         <HeroText
           t={t}
           start={1.05}
           stagger={0.09}
-          size={(vertical ? 70 : 74) * u}
+          size={(vertical ? 88 : 92) * u}
+          maxWidth={w * (vertical ? 0.88 : 0.86)}
           out={[7.1, 7.5]}
-          lines={
-            vertical
-              ? [[{t: "L'intelligence"}, {t: 'artificielle'}], [{t: 'au service de'}], [{t: "l'humain.", gold: true}]]
-              : [[{t: "L'intelligence artificielle"}], [{t: 'au service de'}, {t: "l'humain.", gold: true}]]
-          }
+          lines={[[{t: "L'intelligence artificielle"}], [{t: 'au service de'}, {t: "l'humain.", gold: true}]]}
         />
       </div>
     </AbsoluteFill>
