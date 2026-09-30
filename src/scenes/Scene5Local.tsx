@@ -108,26 +108,28 @@ export const Scene5Local: React.FC = () => {
         <MartiniqueMap w={mapW} t={t} active={inAgency ? null : active.place} reveal={mapReveal} visited={visited} />
       </div>
 
-      {/* étiquette de lieu */}
+      {/* étiquette de lieu (pastille sombre : lisible sur tous les plans, y compris les façades éclairées) */}
       <div
         style={{
           position: 'absolute',
-          left: vertical ? 56 * u : 72 * u,
-          top: vertical ? h * 0.69 : h * 0.775,
+          left: vertical ? 48 * u : 72 * u,
+          top: vertical ? h * 0.69 : h * 0.765,
           display: 'flex',
           alignItems: 'center',
-          gap: 16 * u,
+          gap: 18 * u,
+          padding: `${10 * u}px ${34 * u}px ${10 * u}px ${12 * u}px`,
+          borderRadius: 100 * u,
+          border: '1px solid rgba(233,214,168,0.32)',
+          background: 'rgba(5,9,22,0.72)',
+          backdropFilter: 'blur(10px)',
           opacity: chipOp,
           transform: `translateY(${(1 - chipOp) * 14}px)`,
         }}
       >
-        <div style={{width: 68 * u, height: 68 * u, borderRadius: '50%', border: '1px solid rgba(233,214,168,0.5)', background: 'rgba(10,16,34,0.7)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          <IconPin size={34 * u} color="#F3E6BE" />
+        <div style={{width: 64 * u, height: 64 * u, borderRadius: '50%', border: '1px solid rgba(233,214,168,0.5)', background: 'rgba(10,16,34,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <IconPin size={32 * u} color="#F3E6BE" />
         </div>
-        <div>
-          <FitText text={active.label.toUpperCase()} size={(vertical ? 38 : 42) * u} maxWidth={(vertical ? w - 56 * u - 68 * u - 16 * u - 56 * u : w * 0.5)} family={F.display} weight={600} spacingEm={0.12} style={{color: '#F8F5EE', textShadow: '0 4px 24px rgba(0,0,0,0.7)'}} />
-          <div style={{width: 120 * u, height: 2, marginTop: 8 * u, background: 'linear-gradient(90deg,#E9D09A,rgba(233,208,154,0))'}} />
-        </div>
+        <FitText text={active.label.toUpperCase()} size={(vertical ? 36 : 40) * u} maxWidth={vertical ? w - 48 * u - 12 * u - 64 * u - 18 * u - 34 * u - 48 * u : w * 0.5} family={F.display} weight={600} spacingEm={0.12} style={{color: '#F8F5EE'}} />
       </div>
     </AbsoluteFill>
   );
