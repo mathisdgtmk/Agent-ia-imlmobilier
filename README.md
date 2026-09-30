@@ -34,11 +34,11 @@ Aperçus : `docs/apercu-16x9.png` et `docs/apercu-9x16.png` (une image toutes le
 | Durée | 60,05 s (60 s d'image + fin d'audio) — 1 800 images à 30 i/s |
 | 16:9 | 1920 × 1080, H.264 High, yuv420p, BT.709, AAC stéréo 48 kHz — 31 Mo |
 | 9:16 | 1080 × 1920, mêmes réglages — 31 Mo |
-| Loudness | −16,3 LUFS intégré, crête vraie −1,5 dBTP (niveau adapté aux réseaux sociaux) |
-| Voix ↔ musique | pendant la voix : voix ≈ −17 dB, musique ≈ −27 dB (écart ≈ 10 dB) : la musique ne couvre jamais la voix |
-| Voix dit bien le script | transcription Whisper de chaque ligne : 10/10 reconnues ; seuls écarts = homophones (« agence est » / « agent s'est », « gagnez » / « gagner ») |
-| Sous‑titres synchronisés | 29 sous‑titres vérifiés par transcription de leur fenêtre d'affichage : écart ≤ ≈ 0,2 s ; 3 signalés à la marge (un mot en bord de fenêtre) |
-| Lisibilité | textes, interfaces et sous‑titres vérifiés sur des images clés de chaque scène, dans les deux formats (sous‑titres remontés en 9:16 pour rester au‑dessus de l'interface du bas de TikTok/Reels) — les planches `docs/apercu-*.png` permettent de revoir l'ensemble d'un coup d'œil |
+| Loudness | −16,3 LUFS intégré, crête −1,5 dBFS (niveau adapté aux réseaux sociaux), mesuré sur la piste audio des MP4 finaux |
+| Voix ↔ musique | pendant la voix : voix ≈ −17,6 dB, musique ≈ −26,6 dB (écart ≈ 9 dB) : la musique ne couvre jamais la voix |
+| Voix dit bien le script | transcription Whisper de chaque ligne : 4 lignes sur 10 reconnues mot pour mot ; les 6 autres avec de petits écarts de transcription (homophones ou mots voisins : « agence est » / « agent s'est », « dès » / « de », « gagnez » / « gagner », « ce qui » / « ceux qui », « futurs » / « futures », « visites » / « visite ») ; aucune phrase perdue ni déformée |
+| Sous‑titres synchronisés | 10 changements de sous‑titre tombent sur les vraies pauses de la voix (à ±0,05 s) ; sur les 19 changements de sous‑titre à l'intérieur d'une phrase, le nombre de mots déjà prononcés (transcription Whisper) correspond à ±1 mot dans 17 cas, les 2 autres étant des artefacts de transcription sur audio coupé (contre‑vérifiés à la main) |
+| Lisibilité | textes, interfaces et sous‑titres vérifiés sur des images clés de chaque scène, dans les deux formats (sous‑titres remontés en 9:16 pour rester au‑dessus de l'interface du bas de TikTok/Reels) ; tous les titres sont mesurés et réduits automatiquement pour rester dans la zone de sécurité — les planches `docs/apercu-*.png` permettent de revoir l'ensemble d'un coup d'œil |
 
 > **À faire par vous** : écouter le rendu avant diffusion. La voix, la musique et les effets ont été validés par des mesures
 > (transcription, spectrogrammes, niveaux) mais **n'ont pas pu être écoutés** lors de la création automatique.
