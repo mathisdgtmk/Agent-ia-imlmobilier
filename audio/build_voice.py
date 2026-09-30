@@ -1,4 +1,4 @@
-"""Synthétise la voix off (Kokoro, voix française ff_siwis) et écrit la timeline.
+"""Synthétise la voix off (Kokoro, mélange de voix masculines défini dans data/timeline.source.json) et écrit la timeline.
 
 Entrée  : data/timeline.source.json
 Sorties : public/audio/voice_dry.wav  (48 kHz mono, 60 s, voix seule, non traitée)

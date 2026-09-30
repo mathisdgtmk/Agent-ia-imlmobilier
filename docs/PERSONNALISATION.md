@@ -28,7 +28,7 @@ disclaimer: 'Simulation illustrative. Fonctionnalités selon configuration.',
 ## 3. Couleurs et polices
 
 * Couleurs : `src/theme.ts` (`C` et `goldGradient`). Noir profond `#04060B`, blanc `#F8F5EE`, doré champagne `#DCC182`, bleu nuit `#0B1733`.
-* Polices (licence SIL OFL, incluses dans `public/fonts/`) : *Cormorant Garamond* (titres), *Montserrat* (marque), *Inter* (interfaces, sous‑titres).
+* Polices (licence SIL OFL, incluses dans `public/fonts/`) : *Playfair Display* (titres, en italique), *Cinzel* (marque, libellés, bouton), *Montserrat* (sous‑titres), *Inter* (interfaces).
   Pour en changer : ajoutez les `.woff2` dans `public/fonts/` et déclarez‑les dans `src/lib/fonts.ts` et `src/theme.ts`.
 
 ## 4. Textes à l'écran et sous‑titres
@@ -41,7 +41,7 @@ disclaimer: 'Simulation illustrative. Fonctionnalités selon configuration.',
 
 Deux options :
 
-1. **Synthèse (par défaut)** — `python audio/build_voice.py` (modèle Kokoro, voix `ff_siwis`). Vitesse : `data/timeline.source.json` → `voice.speed`.
+1. **Synthèse (par défaut)** — `python audio/build_voice.py` (modèle Kokoro, mélange de deux voix masculines `pm_alex` + `im_nicola`). Réglages : `data/timeline.source.json` → `voice` (`blend` = voix et pondérations, `speed` = débit).
 2. **Enregistrement humain** — voir la fin de `docs/SCRIPT-VOIX-OFF.md` : remplacez `public/audio/voice_dry.wav` (60 s, mono, 48 kHz) puis `python audio/mix.py`.
 
 ## 6. Musique et effets sonores

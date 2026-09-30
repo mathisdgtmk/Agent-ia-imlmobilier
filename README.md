@@ -19,7 +19,7 @@ Aperçus : `docs/apercu-16x9.png` et `docs/apercu-9x16.png` (une image toutes le
   **illustrations animées** (parallaxe, lumière, particules, caméra), pas des prises de vue réelles. Les interfaces (chat, fiche prospect,
   calendrier, suivi des demandes) sont animées en HTML/CSS. La carte de la Martinique est tracée depuis les données publiques Natural Earth.
   → Pour passer à des images réelles, voir `docs/PERSONNALISATION.md` § 7 (`src/config/media.ts`).
-* **Voix de synthèse** (Kokoro, voix française `ff_siwis`) : intelligible et posée, mais une voix humaine sera plus chaleureuse. Remplacement simple (voir `docs/`).
+* **Voix de synthèse masculine** (Kokoro : mélange de deux voix d'homme, grave et posée, débit fluide) : la plus naturelle qu'il était possible de produire sans service en ligne, mais une voix humaine restera plus chaleureuse. Remplacement simple, sans rien recaler (voir `docs/SCRIPT-VOIX-OFF.md`).
 * **Musique et effets 100 % originaux** (synthétisés dans `audio/`) : aucun droit à acquitter.
 * **Aucun faux avis, aucune fausse statistique.** Les conversations, prénoms, budgets et créneaux affichés sont des **exemples illustratifs**,
   signalés à l'écran (« Simulation illustrative. Fonctionnalités selon configuration. ») ; les fonctionnalités d'organisation sont annoncées
@@ -76,7 +76,7 @@ Une image fixe (contrôle rapide) : `npx remotion still src/index.ts Ad-16x9 img
 │   ├── ui/                      interfaces : chat, smartphone, ordinateur, calendrier, notifications
 │   └── components/              sous‑titres, titres animés, logo, transitions, grain de pellicule
 ├── audio/                       PROJET SON (Python)
-│   ├── build_voice.py           voix off (Kokoro) + minutage des sous‑titres
+│   ├── build_voice.py           voix off (Kokoro, mélange de voix masculines) + minutage des sous‑titres
 │   ├── build_music.py           musique originale 96 BPM, la mineur
 │   ├── build_sfx.py             effets sonores calés sur data/cues.json
 │   ├── mix.py                   mixage, ducking, normalisation −16 LUFS
@@ -103,7 +103,7 @@ Les bornes de scènes sont dans `data/timeline.source.json` ; elles ont été aj
 ## Crédits et licences
 
 * Code : ce dépôt. Remotion (licence Remotion — gratuite pour les particuliers et les petites équipes ; voir remotion.pro/license pour un usage en entreprise).
-* Polices : Cormorant Garamond, Montserrat, Inter — SIL Open Font License (fichiers dans `public/fonts/`).
-* Voix de synthèse : Kokoro‑82M (Apache 2.0), voix `ff_siwis` (corpus SIWIS, CC BY 4.0).
+* Polices : Playfair Display (titres), Cinzel (marque et libellés), Montserrat (sous‑titres), Inter (interfaces) — SIL Open Font License (fichiers et licences dans `public/fonts/`).
+* Voix de synthèse : Kokoro‑82M (Apache 2.0), mélange des voix `pm_alex` et `im_nicola`.
 * Contour de la Martinique : Natural Earth via `world-atlas` (domaine public).
 * Musique, effets, illustrations, interfaces : créations originales générées pour ce projet.

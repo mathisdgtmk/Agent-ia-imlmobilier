@@ -1,23 +1,23 @@
 # Script de la voix off — « Votre agent IA immobilier » (60 s)
 
-Ton : posé, chaleureux, assuré. Débit naturel (≈ 5 syllabes/s), pauses aux virgules et entre les scènes.
+Ton : voix d'homme grave, posée, chaleureuse et assurée. Débit naturel et fluide, pauses aux virgules et entre les scènes.
 Les horaires ci‑dessous sont ceux **mesurés** sur la voix synthétique fournie (`public/audio/voice_dry.wav`) ;
 ils servent aussi de repères si vous enregistrez la narration avec un comédien ou une comédienne.
 
 | Scène | Fenêtre image | Début → fin de la voix | Texte dit |
 |---|---|---|---|
-| 1 · L'accroche | 0 – 7 s | 1,00 → 4,81 | « Dans l'immobilier, chaque demande compte. Mais toutes ne peuvent pas attendre. » |
-| 2 · Le problème | 7 – 15 s | 7,30 → 13,55 | « Entre les appels, les messages et les demandes de visites, répondre à chaque prospect peut vite devenir un défi. » |
-| 3 · La solution | 15 – 24 s | 15,20 → 23,43 | « Découvrez votre agent IA : il accompagne vos prospects, répond à leurs premières questions et recueille leurs besoins, même lorsque votre agence est fermée. » |
-| 4 · Fonctionnalités (1 – Répondre) | 24 – 28 s | 24,30 → 27,83 | « Offrez une première réponse rapide à vos prospects, à tout moment. » |
-| 4 (2 – Qualifier) | 28 – 32 s | 28,30 → 31,55 | « Identifiez les besoins de vos futurs acheteurs et locataires. » |
-| 4 (3 – Organiser) | 32 – 35,8 s | 32,20 → 35,78 | « Facilitez vos rendez‑vous, selon les outils connectés à votre agent. » |
-| 4 (4 – Gagner du temps) | 35,8 – 39 s | 36,00 → 38,66 | « Et gagnez du temps pour ce qui compte vraiment : vos clients. » |
-| 5 · L'ancrage local | 39 – 47 s | 39,60 → 46,67 | « Une solution personnalisable pour répondre aux besoins des agences immobilières martiniquaises et aux réalités de leur marché. » |
-| 6 · Le bénéfice | 47 – 54,4 s | 47,50 → 53,66 | « L'intelligence artificielle ne remplace pas votre expertise. Elle vous aide à mieux accompagner vos clients. » |
-| 7 · Appel à l'action | 54,4 – 60 s | 55,10 → 58,38 | « Demandez dès maintenant votre démonstration personnalisée. » |
+| 1 · L'accroche | 0 – 7 s | 1,00 → 4,64 | « Dans l'immobilier, chaque demande compte. Mais toutes ne peuvent pas attendre. » |
+| 2 · Le problème | 7 – 15 s | 7,30 → 12,96 | « Entre les appels, les messages et les demandes de visites, répondre à chaque prospect peut vite devenir un défi. » |
+| 3 · La solution | 15 – 24 s | 15,20 → 22,84 | « Découvrez votre agent IA : il accompagne vos prospects, répond à leurs premières questions et recueille leurs besoins, même lorsque votre agence est fermée. » |
+| 4 · Fonctionnalités (1 – Répondre) | 24 – 28 s | 24,30 → 27,60 | « Offrez une première réponse rapide à vos prospects, à tout moment. » |
+| 4 (2 – Qualifier) | 28 – 32 s | 28,30 → 31,52 | « Identifiez les besoins de vos futurs acheteurs et locataires. » |
+| 4 (3 – Organiser) | 32 – 35,8 s | 32,20 → 35,83 | « Facilitez vos rendez‑vous, selon les outils connectés à votre agent. » |
+| 4 (4 – Gagner du temps) | 35,8 – 39 s | 36,00 → 38,69 | « Et gagnez du temps pour ce qui compte vraiment : vos clients. » |
+| 5 · L'ancrage local | 39 – 47 s | 39,60 → 46,07 | « Une solution personnalisable pour répondre aux besoins des agences immobilières martiniquaises et aux réalités de leur marché. » |
+| 6 · Le bénéfice | 47 – 54,4 s | 47,50 → 53,01 | « L'intelligence artificielle ne remplace pas votre expertise. Elle vous aide à mieux accompagner vos clients. » |
+| 7 · Appel à l'action | 54,4 – 60 s | 55,10 → 58,00 | « Demandez dès maintenant votre démonstration personnalisée. » |
 
-Prononciation : « IA » se dit *i‑a* (dans le fichier de synthèse on écrit « I.A. »).
+Prononciation : « IA » se dit *i‑a* (dans le fichier de synthèse on écrit « I A » : la graphie « I.A. » est mal lue par la voix masculine). Le champ facultatif `speak` de `data/timeline.source.json` permet d'écrire une version phonétique différente du texte affiché.
 
 ## Ce qui a été ajusté par rapport au texte de départ (et pourquoi)
 
@@ -46,6 +46,10 @@ Les scènes 1, 2, 5 et 6 sont dites **mot pour mot** comme dans votre brief.
 
 ## Voix de synthèse utilisée
 
-Kokoro‑82M (licence Apache 2.0), voix française `ff_siwis` (entraînée sur le corpus SIWIS, CC BY 4.0 — mention conseillée :
-« Voix de synthèse : Kokoro / SIWIS »). Aucun droit de voix à acquitter, mais le rendu reste une voix de synthèse :
-un enregistrement humain donnera un résultat plus chaleureux pour une diffusion payante.
+Kokoro‑82M (licence Apache 2.0). La voix est un **mélange à parts égales de deux voix masculines** du modèle (`pm_alex` et `im_nicola`,
+dont les vecteurs de style sont interpolés), lu en langue française à 0,93× pour un rythme posé. Le mélange donne une voix plus grave
+(fréquence fondamentale moyenne ≈ 113 Hz) et moins « robotique » qu'une voix unique ; le mixage ajoute un léger renfort dans les graves,
+une compression douce et une petite réverbération de studio. Réglages dans `data/timeline.source.json` → `voice` (`blend`, `speed`).
+
+Aucun droit de voix à acquitter, mais le rendu reste une **voix de synthèse** : un enregistrement humain donnera un résultat plus
+chaleureux pour une diffusion payante (voir la section précédente pour le remplacer sans rien recaler).
