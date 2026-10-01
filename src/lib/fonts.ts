@@ -26,6 +26,11 @@ const FACES: {family: string; weight: number; style: string; file: string}[] = [
   {family: 'Montserrat', weight: 500, style: 'normal', file: 'montserrat-latin-500-normal.woff2'},
   {family: 'Montserrat', weight: 600, style: 'normal', file: 'montserrat-latin-600-normal.woff2'},
   {family: 'Montserrat', weight: 700, style: 'normal', file: 'montserrat-latin-700-normal.woff2'},
+  // Version « Noir & Blanc » : Arial Black → Archivo Black (équivalent libre), MACHINE → Krona One (équivalent libre), interfaces → Arimo (= Arial)
+  {family: 'Archivo Black', weight: 400, style: 'normal', file: 'archivo-black-latin-400-normal.woff2'},
+  {family: 'Krona One', weight: 400, style: 'normal', file: 'krona-one-latin-400-normal.woff2'},
+  {family: 'Arimo', weight: 400, style: 'normal', file: 'arimo-latin-400-normal.woff2'},
+  {family: 'Arimo', weight: 700, style: 'normal', file: 'arimo-latin-700-normal.woff2'},
 ];
 
 let started = false;

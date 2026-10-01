@@ -20,12 +20,12 @@ from dsp import *  # noqa
 
 ROOT = Path(__file__).resolve().parent.parent
 plan = json.loads((ROOT / "data/noir.json").read_text())
-DUR = 60.0
 BPM = plan["bpm"]
 BEAT = 60.0 / BPM          # 0,6 s
 BAR = BEAT * 4             # 2,4 s
 S16 = BEAT / 4             # 0,15 s
 NB = plan["bars"]
+DUR = NB * BAR             # 64,8 s
 
 # --- harmonie : (racine grave, notes de nappe, notes d'arpège)
 CH = {
@@ -36,18 +36,18 @@ CH = {
     "E":     (28 + 12, [52, 56, 59, 64, 68], [52, 56, 59, 64, 68, 71, 76]),
 }
 PROG = ["Am9", "Fmaj7", "Am9",                                  # 0-2   accroche
-        "Am9", "Am9", "E",                                      # 3-5   problème (E = tension)
-        "Fmaj7", "G", "Am9",                                    # 6-8   solution
-        "Am9", "Fmaj7", "Cmaj9", "G", "Am9", "G",               # 9-14  fonctions
-        "Fmaj7", "Cmaj9", "G",                                  # 15-17 ancrage local
-        "Am9", "Fmaj7", "G",                                    # 18-20 bénéfice
-        "Am9", "Fmaj7", "G", "Am9"]                             # 21-24 appel à l'action
+        "Am9", "Am9", "Fmaj7", "Am9", "E",                      # 3-7   constat (E = tension)
+        "Fmaj7", "G", "Am9",                                    # 8-10  solution
+        "Am9", "Fmaj7", "Cmaj9", "G", "Am9", "G",               # 11-16 fonctions
+        "Fmaj7", "Cmaj9", "G",                                  # 17-19 ancrage local
+        "Am9", "Fmaj7", "G",                                    # 20-22 bénéfice
+        "Am9", "Fmaj7", "G", "Am9"]                             # 23-26 appel à l'action
 assert len(PROG) == NB
 
 
 def section(b):
-    return ("hook" if b < 3 else "problem" if b < 6 else "solution" if b < 9 else "features" if b < 15
-            else "local" if b < 18 else "benefit" if b < 21 else "cta")
+    return ("hook" if b < 3 else "problem" if b < 8 else "solution" if b < 11 else "features" if b < 17
+            else "local" if b < 20 else "benefit" if b < 23 else "cta")
 
 
 pad_bus = Stereo(DUR + 5)
@@ -80,19 +80,19 @@ for b, name in enumerate(PROG):
     elif s == "problem":
         cut, g = 800 + 150 * (b - 3), 0.38
     elif s == "solution":
-        cut, g = 1400 + 600 * (b - 6), 0.62 + 0.10 * (b - 6)
+        cut, g = 1400 + 600 * (b - 8), 0.62 + 0.10 * (b - 8)
     elif s == "features":
         cut, g = 2400, 0.58
     elif s == "local":
         cut, g = 2300, 0.9
     elif s == "benefit":
-        cut, g = 2100 + 450 * (b - 18), 0.85 + 0.05 * (b - 18)
+        cut, g = 2100 + 450 * (b - 20), 0.85 + 0.05 * (b - 20)
     else:
         cut, g = 3500, 1.0
     dur = BAR + 1.2
-    if b == 5:
+    if b == 7:
         dur = BAR - 0.55          # coupure avant le trou de silence (13,9 s)
-    if b == 24:
+    if b == 26:
         dur = 5.0
     for k, m in enumerate(padn):
         n = pad_note(hz(m), dur, cutoff=cut, phase_seed=b * 10 + k)
@@ -118,7 +118,7 @@ for b, name in enumerate(PROG):
     elif s == "problem":
         for i in range(8):                                       # pulsation en croches, de plus en plus appuyée
             bass_bus.put(sub(f, BEAT * 0.4, 0.5 + 0.04 * (b - 3) + (0.12 if i % 2 == 0 else 0)), t0 + i * BEAT / 2)
-    elif s == "solution" and b >= 7:
+    elif s == "solution" and b >= 9:
         bass_bus.put(sub(f, BAR * 0.42, 0.8), t0)
         bass_bus.put(sub(f, BEAT * 1.1, 0.65), t0 + BEAT * 2.5)
     elif s == "solution":
@@ -130,12 +130,12 @@ for b, name in enumerate(PROG):
     elif s == "local":
         bass_bus.put(sub(f, BAR * 0.95, 0.7), t0)
     elif s == "benefit":
-        if b < 20:
+        if b < 22:
             bass_bus.put(sub(f, BAR * 0.95, 0.65), t0)
         else:
             bass_bus.put(sub(f, BEAT * 1.3, 0.85), t0)
             bass_bus.put(sub(f, BEAT * 1.3, 0.8), t0 + BEAT * 2)
-    elif b == 24:
+    elif b == 26:
         bass_bus.put(sub(f, 3.0, 0.85), t0)
 
 # ================================================================= PIANO
@@ -144,12 +144,12 @@ def pn(m, t, vel=0.7, bright=1.0, dur=3.2, pan=0.0, g=0.5):
 
 
 MEL = {
-    15: [(0, 72, 1.5), (2.5, 69, 1.0), (3.5, 67, 2.0)],
-    16: [(0, 71, 2.0), (2.5, 74, 1.0), (3.5, 72, 2.0)],
-    17: [(0, 74, 1.0), (1, 71, 1.5), (2.5, 67, 1.0), (3.5, 71, 2.0)],
-    18: [(0, 76, 1.5), (2, 72, 1.0), (3, 69, 1.5)],
-    19: [(0, 77, 1.5), (2, 76, 1.0), (3, 72, 1.5)],
-    20: [(0, 74, 1.0), (1, 79, 1.5), (2.5, 76, 1.0)],
+    17: [(0, 72, 1.5), (2.5, 69, 1.0), (3.5, 67, 2.0)],
+    18: [(0, 71, 2.0), (2.5, 74, 1.0), (3.5, 72, 2.0)],
+    19: [(0, 74, 1.0), (1, 71, 1.5), (2.5, 67, 1.0), (3.5, 71, 2.0)],
+    20: [(0, 76, 1.5), (2, 72, 1.0), (3, 69, 1.5)],
+    21: [(0, 77, 1.5), (2, 76, 1.0), (3, 72, 1.5)],
+    22: [(0, 74, 1.0), (1, 79, 1.5), (2.5, 76, 1.0)],
 }
 for b, name in enumerate(PROG):
     t0 = b * BAR
@@ -168,7 +168,7 @@ for b, name in enumerate(PROG):
             m = arpn[[3, 4, 3, 5, 4, 3, 5, 6][i]]
             pn(m, t0 + i * BEAT / 2, 0.26 + 0.015 * i + 0.03 * (b - 3), 0.75, 1.2, 0.3 * (-1) ** i, 0.5)
     elif s == "solution":
-        if b >= 6:                                           # arpège ascendant qui s'ouvre
+        if b >= 8:                                           # arpège ascendant qui s'ouvre
             for i in range(8):
                 m = arpn[[0, 2, 3, 4, 5, 4, 6, 5][i]] + (12 if i == 6 else 0)
                 pn(m, t0 + i * BEAT / 2, 0.40 + 0.02 * i, 1.0, 2.0, -0.3 + 0.09 * i)
@@ -184,7 +184,7 @@ for b, name in enumerate(PROG):
         pn(arpn[0] - 12, t0, 0.5, 0.7, 3.5, -0.3)
         pn(arpn[2], t0 + 2 * BEAT, 0.33, 0.7, 2.5, 0.2)
     elif s == "cta":
-        if b < 24:
+        if b < 26:
             for i, sx in enumerate([0, 3, 6, 8, 10, 12, 14]):
                 pn(arpn[[2, 4, 3, 5, 4, 5, 6][i]], t0 + sx * S16, 0.55, 1.0, 1.6, 0.25 * (-1) ** i, 0.46)
             pn(arpn[0] - 12, t0, 0.6, 0.9, 3.0, -0.3)
@@ -199,13 +199,13 @@ for b, name in enumerate(PROG):
     arpn = CH[name][2]
     s = section(b)
     if s == "features":
-        fi = (b - 9) / 5.0
+        fi = (b - 11) / 5.0
         g, step = 0.20 + 0.12 * fi, 1
-    elif s == "cta" and b < 24:
-        g, step = 0.34 + 0.03 * (b - 21), 1
+    elif s == "cta" and b < 26:
+        g, step = 0.34 + 0.03 * (b - 23), 1
     elif s == "local":
         g, step = 0.10, 2
-    elif s == "solution" and b == 8:
+    elif s == "solution" and b == 10:
         g, step = 0.15, 2
     else:
         continue
@@ -234,34 +234,47 @@ for b_ in (6, 7, 8):
 for b_ in (10, 11):
     kick_at(bt(b_), 0.7, 0.55)
 
-# problème : kick à chaque temps, claps, doubles-croches, roulement
-for t in every(bt(12), bt(23), BEAT):
+# constat (b12 → b32) : un temps fort par chose qui arrive, de plus en plus chargé
+#   b12-15 APPELS : kick à chaque temps, sec  ·  b15-18 MESSAGES : + charleys  ·  b18-21 VISITES : + claps
+#   b21-24 QUESTIONS : riser, gros impact sur b23  ·  b24-28 compteur : tout accélère  ·  b28-31 : demi-temps, tension  ·  b31.25-32 : silence
+for t in every(bt(12), bt(24), BEAT):
     kick_at(t, 0.95, 0.7)
-for t in every(bt(14), bt(22), BEAT * 2):
+for t in every(bt(24), bt(28), BEAT):
+    kick_at(t, 1.0, 0.74)
+for t in every(bt(28), bt(31.2), BEAT * 2):
+    kick_at(t, 0.8, 0.6)
+for t in every(bt(15), bt(24), BEAT):
+    drum_bus.put(hat(0.45, open_=True), t + BEAT / 2, 0.22)
+for t in every(bt(18), bt(28), BEAT * 2):
     drum_bus.put(clap(0.85), t + BEAT, 0.5)
-for t in every(bt(16), bt(20), S16 * 2):
-    drum_bus.put(hat(0.4 + 0.3 * (int(round(t / S16)) % 4 == 0)), t, 0.22)
-for t in every(bt(20), bt(23), S16):
+for t in every(bt(18), bt(24), S16 * 2):
+    drum_bus.put(hat(0.4 + 0.3 * (int(round(t / S16)) % 4 == 0)), t, 0.2)
+for t in every(bt(24), bt(28), S16):
     drum_bus.put(hat(0.5), t, 0.24)
-for i, t in enumerate(every(bt(20.0), bt(23.2), S16 * 2)):     # roulement de caisse claire qui s'accélère
+for i, t in enumerate(every(bt(21.0), bt(23.0), S16 * 2)):     # roulement avant l'impact des QUESTIONS
+    drum_bus.put(hp(clap(0.55), 700), t, 0.08 + 0.012 * i)
+for i, t in enumerate(every(bt(26.0), bt(27.5), S16)):         # roulement avant le « 12 »
     drum_bus.put(hp(clap(0.55), 700), t, 0.10 + 0.012 * i)
+drum_bus.put(lp(kick(1.0), 160), bt(23.0), 0.95)                # impact des QUESTIONS
+drum_bus.put(hp(clap(1.0), 700), bt(23.0), 0.6)
+drum_bus.put(lp(kick(1.0), 160), bt(27.5), 0.95)                # impact du « 12 »
 
 # solution : le kick entre au bar 7
-for t in every(bt(28), bt(36), BEAT):
+for t in every(bt(36), bt(44), BEAT):
     kick_at(t, 0.88, 0.62)
-for t in every(bt(30), bt(36), BEAT):
+for t in every(bt(38), bt(44), BEAT):
     drum_bus.put(hat(0.45, open_=True), t + BEAT / 2, 0.26)
 
 # fonctions : groove complet, qui se charge à chaque fonction
-for t in every(bt(36), bt(60), BEAT):
+for t in every(bt(44), bt(68), BEAT):
     kick_at(t, 0.92, 0.68)
-for t in every(bt(36), bt(60), BEAT):
+for t in every(bt(44), bt(68), BEAT):
     drum_bus.put(hat(0.55, open_=True), t + BEAT / 2, 0.28)
-for t in every(bt(38), bt(60), S16 * 2):
+for t in every(bt(46), bt(68), S16 * 2):
     drum_bus.put(hat(0.3 + 0.2 * rng.random()), t, 0.20)
-for t in every(bt(38), bt(60), BEAT * 2):
+for t in every(bt(46), bt(68), BEAT * 2):
     drum_bus.put(clap(0.85), t + BEAT, 0.52)
-for t in every(bt(48), bt(60), S16):                              # fonction 3 et 4 : shaker en doubles-croches
+for t in every(bt(56), bt(68), S16):                              # fonction 3 et 4 : shaker en doubles-croches
     perc_bus.put(hat(0.28 + 0.22 * (int(round(t / S16)) % 2 == 1)), t, 0.16)
 for k_ in (1, 2, 3):                                              # petits fills avant chaque nouvelle fonction (b = 42, 48, 54)
     bk = 36 + 6 * k_
@@ -270,44 +283,45 @@ for k_ in (1, 2, 3):                                              # petits fills
     fx_bus.put(noise_riser(BEAT * 1.5, 500, 9000, 2.0, 0.35), bt(bk - 1.5), 0.55)
 
 # ancrage local : demi-tempo, très aéré
-for t in every(bt(60), bt(68), BEAT * 2):
+for t in every(bt(68), bt(76), BEAT * 2):
     kick_at(t, 0.7, 0.5)
-for t in every(bt(64), bt(69.5), BEAT):
+for t in every(bt(72), bt(77.5), BEAT):
     drum_bus.put(hat(0.3), t + BEAT / 2, 0.16)
-for i, t in enumerate(every(bt(68.5), bt(72), S16 * 2)):          # montée vers le bénéfice
+for i, t in enumerate(every(bt(76.5), bt(80), S16 * 2)):          # montée vers le bénéfice
     drum_bus.put(hp(clap(0.55), 800), t, 0.10 + 0.01 * i)
-for t in every(bt(70), bt(72), BEAT):
+for t in every(bt(78), bt(80), BEAT):
     kick_at(t, 0.85, 0.6)
 
 # bénéfice : respiration puis retour du rythme
-for t in every(bt(72), bt(80), BEAT * 2):
+for t in every(bt(80), bt(88), BEAT * 2):
     kick_at(t, 0.5, 0.36)
-for t in every(bt(80), bt(84), BEAT):
+for t in every(bt(88), bt(92), BEAT):
     kick_at(t, 0.9, 0.66)
-for t in every(bt(80), bt(83.4), S16 * 2):
+for t in every(bt(88), bt(91.4), S16 * 2):
     drum_bus.put(hat(0.45), t, 0.22)
-for i, t in enumerate(every(bt(82.0), bt(84), S16)):
+for i, t in enumerate(every(bt(90), bt(92), S16)):
     drum_bus.put(hp(clap(0.55), 800), t, 0.10 + 0.012 * i)
 
 # appel à l'action : tout y est
-for t in every(bt(84), bt(96), BEAT):
+for t in every(bt(92), bt(104), BEAT):
     kick_at(t, 1.0, 0.72)
-for t in every(bt(84), bt(96), BEAT):
+for t in every(bt(92), bt(104), BEAT):
     drum_bus.put(hat(0.6, open_=True), t + BEAT / 2, 0.30)
-for t in every(bt(84), bt(96), S16):
-    drum_bus.put(hat(0.35 + 0.35 * (int(round(t / S16)) % 4 == 0)), t, 0.22 + 0.04 * (t > bt(90)))
-for t in every(bt(84), bt(96), BEAT * 2):
+for t in every(bt(92), bt(104), S16):
+    drum_bus.put(hat(0.35 + 0.35 * (int(round(t / S16)) % 4 == 0)), t, 0.22 + 0.04 * (t > bt(98)))
+for t in every(bt(92), bt(104), BEAT * 2):
     drum_bus.put(clap(0.95), t + BEAT, 0.56)
-drum_bus.put(hat(0.8, open_=True), bt(96), 0.3)
+drum_bus.put(hat(0.8, open_=True), bt(104), 0.3)
 
 # ================================================================= RISERS
 fx_bus.put(noise_riser(BEAT * 4, 250, 9500, 2.0, 0.55), bt(8), 0.60)
 fx_bus.put(sine_sweep(BEAT * 4, 180, 1500, 0.22), bt(8), 0.50)
-fx_bus.put(noise_riser(BEAT * 3.2, 300, 10000, 2.0, 0.5), bt(20), 0.55)
-fx_bus.put(noise_riser(BEAT * 4, 250, 9500, 2.0, 0.55), bt(68), 0.55)
-fx_bus.put(sine_sweep(BEAT * 4, 180, 1700, 0.2), bt(68), 0.50)
-fx_bus.put(noise_riser(BEAT * 4, 250, 10500, 2.0, 0.60), bt(80), 0.60)
-fx_bus.put(sine_sweep(BEAT * 4, 200, 1900, 0.22), bt(80), 0.50)
+fx_bus.put(noise_riser(BEAT * 2, 300, 10000, 2.0, 0.5), bt(21), 0.55)
+fx_bus.put(noise_riser(BEAT * 1.5, 300, 10000, 2.0, 0.5), bt(26), 0.55)
+fx_bus.put(noise_riser(BEAT * 4, 250, 9500, 2.0, 0.55), bt(76), 0.55)
+fx_bus.put(sine_sweep(BEAT * 4, 180, 1700, 0.2), bt(76), 0.50)
+fx_bus.put(noise_riser(BEAT * 4, 250, 10500, 2.0, 0.60), bt(88), 0.60)
+fx_bus.put(sine_sweep(BEAT * 4, 200, 1900, 0.22), bt(88), 0.50)
 
 # ================================================================= RÉVERB + MIX
 def wet(bus, rt, mix, damp=1.0, seed=1):
@@ -336,10 +350,10 @@ mix = (cut(pad_bus.a) + cut(pad_rev) + cut(arp_bus.a) + cut(arp_rev) + cut(key_b
 t = np.arange(N) / SR
 g = np.clip(t / 1.4, 0, 1) ** 1.6
 g *= np.clip((DUR - t) / 2.2, 0, 1) ** 1.3
-gap0, gap1 = bt(23.25), bt(24.0)                                   # 13,95 s → 14,4 s : presque rien, puis éclosion
+gap0, gap1 = bt(31.25), bt(32)                                   # 18,75 s → 19,2 s : presque rien, puis éclosion
 g *= 1 - 0.93 * np.clip((t - gap0) / 0.06, 0, 1) * (t < gap1)
 # relief dynamique par section (en dB) : l'ancrage local et le bénéfice respirent, l'appel à l'action est le plus plein
-pts = [(0, 0), (12, 0.5), (36, 0.5), (36.5, 0), (59.5, 0), (60.5, -3.2), (71, -3.2), (72.5, -2.6), (79, -2.6), (82, 0), (84, 1.2), (98, 1.2), (100, 0)]
+pts = [(0, 0), (12, 0.5), (44, 0.5), (44.5, 0), (67.5, 0), (68.5, -3.2), (79, -3.2), (80.5, -2.6), (87, -2.6), (90, 0), (92, 1.2), (106, 1.2), (108, 0)]
 sec_db = np.interp(t, [bt(p_[0]) for p_ in pts], [p_[1] for p_ in pts])
 g *= 10 ** (sec_db / 20)
 mix = mix * g[:, None]

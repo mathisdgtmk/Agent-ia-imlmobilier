@@ -2,7 +2,7 @@ import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {BRAND} from '../config/brand';
 import {useLayout} from '../lib/layout';
-import {F} from '../theme';
+import {NF} from './type';
 import {IconSpark} from '../ui/Icons';
 import {Caps, Cursor, Headline, HLine, NoirMark, NoirWordmark, Ring, Specks, useT} from './kit';
 import {backOut, backOutSoft, beatPulse, lerp, pr, smooth} from './motion';
@@ -12,18 +12,18 @@ import {bt, cue} from './timeline';
 export const N7Cta: React.FC = () => {
   const t = useT();
   const {w, h, vertical, u} = useLayout();
-  const t0 = bt(84);
+  const t0 = bt(92);
   const pulse = beatPulse(t);
 
   // ------------------------------------------------ logo : centre → haut
-  const mv = pr(t, bt(86.4), 0.9, smooth);
+  const mv = pr(t, bt(94.4), 0.9, smooth);
   const lk = lerp(vertical ? 0.74 : 1.05, vertical ? 0.5 : 0.52, mv);
   const lx = w / 2;
   const ly = lerp(h * (vertical ? 0.42 : 0.46), h * (vertical ? 0.125 : 0.17), mv);
   const markP = pr(t, t0 + 0.1, 1.4, smooth);
 
   // ------------------------------------------------ question
-  const lines: HLine[] = [{text: 'Et si vous découvriez'}, {text: "ce que l'IA peut apporter"}, {text: 'à votre agence ?', kind: 'outline', fillAt: bt(91.4)}];
+  const lines: HLine[] = [{text: 'Et si vous découvriez'}, {text: "ce que l'IA peut apporter"}, {text: 'à votre agence ?', kind: 'outline', fillAt: bt(99.4)}];
 
   // ------------------------------------------------ bouton
   const bw = (vertical ? 940 : 1080) * u;
@@ -45,8 +45,8 @@ export const N7Cta: React.FC = () => {
   const cy0 = h * (vertical ? 0.78 : 0.9);
 
   // ------------------------------------------------ cadre + sortie
-  const frame = pr(t, bt(97.5), 1.0, smooth);
-  const fade = 1 - pr(t, bt(99), bt(1), smooth);
+  const frame = pr(t, bt(105.5), 1.0, smooth);
+  const fade = 1 - pr(t, bt(107), bt(1), smooth);
   const fm = 30 * u;
 
   return (
@@ -65,7 +65,7 @@ export const N7Cta: React.FC = () => {
         </div>
         {/* question */}
         <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.235 : 0.265), display: 'flex', justifyContent: 'center'}}>
-          <Headline lines={lines} t={t} a={cue('c_l1')} step={bt(0.8)} size={(vertical ? 100 : 96) * u} maxWidth={w * (vertical ? 0.9 : 0.86)} />
+          <Headline fx="fly" lines={lines} t={t} a={cue('c_l1')} step={bt(0.8)} size={(vertical ? 100 : 96) * u} maxWidth={w * (vertical ? 0.9 : 0.86)} />
         </div>
         {/* bouton */}
         <div style={{position: 'absolute', left: (w - bw) / 2, top: bcy - bh / 2, width: bw, height: bh, opacity: Math.min(1, bin * 3), transform: `translateY(${(1 - bin) * 160 * u}px) scale(${1 - 0.04 * press})`}}>
@@ -93,7 +93,7 @@ export const N7Cta: React.FC = () => {
             <IconSpark size={(vertical ? 52 : 42) * u} color={flip ? '#fff' : '#000'} />
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 * u}}>
               {labelLines.map((ln) => (
-                <Caps key={ln} text={ln} size={(vertical ? 58 : 42) * u} maxWidth={bw - (vertical ? 280 : 260) * u} family={F.display} weight={700} spacing={0.1} />
+                <Caps key={ln} text={ln} size={(vertical ? 58 : 42) * u} maxWidth={bw - (vertical ? 280 : 260) * u} family={NF.tech} weight={700} spacing={0.1} />
               ))}
             </div>
           </div>
@@ -103,7 +103,7 @@ export const N7Cta: React.FC = () => {
           <Caps text={BRAND.tagline.toUpperCase()} size={(vertical ? 34 : 30) * u} maxWidth={w * 0.9} spacing={0.2} weight={600} color="#fff" />
         </div>
         {BRAND.contact.show && (
-          <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.73 : 0.9), textAlign: 'center', fontFamily: F.sans, fontWeight: 400, fontSize: (vertical ? 32 : 28) * u, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.78)', opacity: pr(t, cue('c_contact'), 0.5)}}>
+          <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.73 : 0.9), textAlign: 'center', fontFamily: NF.ui, fontWeight: 400, fontSize: (vertical ? 32 : 28) * u, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.78)', opacity: pr(t, cue('c_contact'), 0.5)}}>
             {BRAND.contact.website}
             <span style={{margin: `0 ${18 * u}px`}}>·</span>
             {BRAND.contact.phone}

@@ -2,10 +2,11 @@ import React from 'react';
 import {AbsoluteFill, random, staticFile, useCurrentFrame} from 'remotion';
 import {BRAND} from '../config/brand';
 import {useLayout} from '../lib/layout';
-import {F} from '../theme';
+import {NF, NF_BIG, NF_TECH} from './type';
+import {Letters, LettersMode} from './fx';
 import {measure} from '../ui/textLayout';
 import {clamp01, expoOut, flashAt, lerp, pr, smooth} from './motion';
-import {FPS, SCENE_IDS, SceneId, scene} from './timeline';
+import {DURATION_F, FPS, SCENE_IDS, SceneId, scene} from './timeline';
 
 export const INK = '#050505';
 export const PAPER = '#F5F5F3';
@@ -51,8 +52,8 @@ export type HLine = {
 };
 
 const FONT = {
-  italic: (px: number) => `italic 500 ${px}px "Playfair Display"`,
-  roman: (px: number) => `700 ${px}px "Playfair Display"`,
+  italic: (px: number) => `400 ${px}px "${NF_BIG}"`,
+  roman: (px: number) => `400 ${px}px "${NF_BIG}"`,
 };
 
 /**
@@ -72,17 +73,40 @@ export const Headline: React.FC<{
   /** [début, durée] de la sortie (toutes les lignes, en cascade) */
   out?: [number, number];
   outStep?: number;
-}> = ({lines, t, a, step = 0.6, size, maxWidth, align = 'center', color = '#fff', lineHeight = 1.08, out, outStep = 0.1}) => {
-  const widest = Math.max(...lines.map((l) => measure(l.text, (l.kind === 'roman' ? FONT.roman : FONT.italic)(size))));
+  /** animation lettre par lettre en 3D (au lieu du rideau) : drop · fly · zoom · flip · slam */
+  fx?: LettersMode;
+  per?: number;
+}> = ({lines, t, a, step = 0.6, size, maxWidth, align = 'center', color = '#fff', lineHeight = 1.02, out, outStep = 0.1, fx, per = 0.03}) => {
+  const up = lines.map((l) => ({...l, text: l.text.toUpperCase()}));
+  const widest = Math.max(...up.map((l) => measure(l.text, FONT.roman(size)) - l.text.length * 0.015 * size));
   const fs = widest > maxWidth ? size * (maxWidth / widest) : size;
-  const sw = Math.max(1.4, fs * 0.022);
+  const sw = Math.max(1.6, fs * 0.017);
   return (
-    <div style={{textAlign: align, color, fontFamily: F.serif, fontSize: fs, lineHeight, letterSpacing: '-0.012em'}}>
-      {lines.map((l, i) => {
+    <div style={{textAlign: align, color, fontFamily: NF.big, fontSize: fs, lineHeight, letterSpacing: '-0.015em'}}>
+      {up.map((l, i) => {
         const kind = l.kind ?? 'solid';
-        const font: React.CSSProperties = {fontStyle: kind === 'roman' ? 'normal' : 'italic', fontWeight: kind === 'roman' ? 700 : 500};
+        const font: React.CSSProperties = {fontWeight: 400};
         const outline: React.CSSProperties = {color: 'transparent', WebkitTextStroke: `${sw}px ${color}`};
         const fill = l.fillAt !== undefined ? pr(t, l.fillAt, 0.55, smooth) : kind === 'outline' ? 0 : 1;
+        if (fx) {
+          const la = a + i * step;
+          const lo = out ? out[0] + i * outStep : undefined;
+          const L = (o?: boolean) => <Letters text={l.text} t={t} a={la} per={per} dur={0.7} mode={fx} seed={`h${i}`} size={fs} out={lo} outPer={0.012} outline={o ? {width: sw, color} : undefined} />;
+          return (
+            <div key={i} style={{perspective: fs * 7, height: fs * lineHeight, whiteSpace: 'nowrap'}}>
+              <div style={{position: 'relative', display: 'inline-block', ...font}}>
+                {kind === 'outline' ? (
+                  <>
+                    {L(true)}
+                    {fill > 0 && <span style={{position: 'absolute', left: 0, top: 0, clipPath: `inset(0 ${(1 - fill) * 100}% 0 0)`}}>{L(false)}</span>}
+                  </>
+                ) : (
+                  L(false)
+                )}
+              </div>
+            </div>
+          );
+        }
         return (
           <Reveal key={i} t={t} a={a + i * step} d={0.8} out={out ? [out[0] + i * outStep, 0.45] : undefined}>
             <div style={{position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', ...font}}>
@@ -114,7 +138,7 @@ export const Caps: React.FC<{
   family?: string;
   color?: string;
   style?: React.CSSProperties;
-}> = ({text, size, maxWidth, spacing = 0.3, weight = 600, family = F.display, color, style}) => {
+}> = ({text, size, maxWidth, spacing = 0.24, weight = 400, family = NF.tech, color, style}) => {
   const fam = family.split(',')[0].replace(/"/g, '');
   let fs = size;
   if (maxWidth) {
@@ -166,11 +190,11 @@ export const NoirWordmark: React.FC<{t: number; a: number; k?: number; color?: s
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 * k}}>
       <div
         style={{
-          fontFamily: F.display,
-          fontWeight: 700,
-          fontSize: 56 * k,
-          letterSpacing: `${lerp(0.9, 0.34, p1)}em`,
-          marginRight: `-${lerp(0.9, 0.34, p1)}em`,
+          fontFamily: NF.tech,
+          fontWeight: 400,
+          fontSize: 34 * k,
+          letterSpacing: `${lerp(0.8, 0.26, p1)}em`,
+          marginRight: `-${lerp(0.8, 0.26, p1)}em`,
           color,
           opacity: p1,
           filter: p1 < 1 ? `blur(${(1 - p1) * 12}px)` : undefined,
@@ -181,12 +205,12 @@ export const NoirWordmark: React.FC<{t: number; a: number; k?: number; color?: s
       </div>
       <div
         style={{
-          fontFamily: F.serif,
-          fontWeight: 600,
-          fontSize: 110 * k,
+          fontFamily: NF.big,
+          fontWeight: 400,
+          fontSize: 96 * k,
           lineHeight: 1,
-          letterSpacing: `${lerp(0.4, 0.13, p2)}em`,
-          marginRight: `-${lerp(0.4, 0.13, p2)}em`,
+          letterSpacing: `${lerp(0.3, 0.02, p2)}em`,
+          marginRight: `-${lerp(0.3, 0.02, p2)}em`,
           whiteSpace: 'nowrap',
           opacity: p2,
           filter: p2 < 1 ? `blur(${(1 - p2) * 14}px)` : undefined,
@@ -310,17 +334,17 @@ export const Hud: React.FC = () => {
   const m = (vertical ? 52 : 58) * u;
   const topY = (vertical ? 120 : 46) * u;
   const botY = h - (vertical ? 250 : 46) * u;
-  const fade = pr(t, 0.4, 1.0) * (1 - pr(t, 58.8, 0.9, smooth));
+  const total = DURATION_F / FPS;
+  const fade = pr(t, 0.4, 1.0) * (1 - pr(t, total - 1.2, 0.9, smooth));
   const idx = SCENE_IDS.findIndex((id) => t >= scene(id).start && t < scene(id).end);
   const cur = SCENE_IDS[Math.max(0, idx)];
-  const total = 60;
-  const tcs = Math.floor(Math.min(t, 59.99));
-  const style: React.CSSProperties = {position: 'absolute', color: '#fff', fontFamily: F.display, fontWeight: 600, fontSize: 15 * u, letterSpacing: '0.3em', whiteSpace: 'nowrap'};
+  const tcs = Math.floor(Math.min(t, total - 0.01));
+  const style: React.CSSProperties = {position: 'absolute', color: '#fff', fontFamily: NF.tech, fontWeight: 400, fontSize: 12.5 * u, letterSpacing: '0.2em', whiteSpace: 'nowrap'};
   const lineW = w - 2 * m;
   return (
     <AbsoluteFill style={{mixBlendMode: 'difference', opacity: fade * 0.85, pointerEvents: 'none'}}>
       <div style={{...style, left: m, top: topY}}>{BRAND.productName.join(' ')}</div>
-      <div style={{...style, right: m - 0.3 * 15 * u, top: topY, textAlign: 'right'}}>
+      <div style={{...style, right: m - 0.2 * 12.5 * u, top: topY, textAlign: 'right'}}>
         {String(Math.max(0, idx) + 1).padStart(2, '0')} / 07 · {CHAPTERS[cur]}
       </div>
       <div style={{position: 'absolute', left: m, top: botY, width: lineW, height: 1, background: 'rgba(255,255,255,0.32)'}} />
@@ -328,10 +352,10 @@ export const Hud: React.FC = () => {
       {SCENE_IDS.map((id) => (
         <div key={id} style={{position: 'absolute', left: m + lineW * (scene(id).start / total) - 0.5, top: botY - 5, width: 1, height: 10, background: '#fff', opacity: 0.8}} />
       ))}
-      <div style={{...style, left: m, top: botY + 16 * u, fontFamily: F.sans, letterSpacing: '0.14em', fontSize: 14 * u}}>
-        {`00:${String(tcs).padStart(2, '0')}`}
+      <div style={{...style, left: m, top: botY + 16 * u, fontFamily: NF.ui, letterSpacing: '0.14em', fontSize: 14 * u}}>
+        {`${String(Math.floor(tcs / 60)).padStart(2, '0')}:${String(tcs % 60).padStart(2, '0')}`}
       </div>
-      <div style={{...style, right: m, top: botY + 16 * u, fontFamily: F.sans, letterSpacing: '0.14em', fontSize: 14 * u}}>14°36′N · 61°04′O</div>
+      <div style={{...style, right: m, top: botY + 16 * u, fontFamily: NF.ui, letterSpacing: '0.14em', fontSize: 14 * u}}>14°36′N · 61°04′O</div>
     </AbsoluteFill>
   );
 };

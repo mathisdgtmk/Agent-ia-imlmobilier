@@ -1,5 +1,5 @@
 import React from 'react';
-import {F} from '../theme';
+import {NF} from './type';
 import {wrap, measure} from '../ui/textLayout';
 import {IconCalendar, IconCheck, IconEuro, IconHome, IconKey, IconMoon, IconPin, IconSend, IconSpark, IconUser, IconPhone, IconChat, IconQuestion} from '../ui/Icons';
 import {backOut, clamp01, expoOut, lerp, pr, smooth} from './motion';
@@ -13,7 +13,7 @@ export const PhoneNoir: React.FC<{w: number; onLight?: boolean; children: React.
   const h = w * 2.04;
   const rad = w * 0.15;
   return (
-    <div style={{width: w, height: h, borderRadius: rad, background: '#070707', border: `${Math.max(2, w * 0.012)}px solid ${onLight ? '#161616' : 'rgba(255,255,255,0.78)'}`, boxShadow: shadow(onLight), position: 'relative', overflow: 'hidden', fontFamily: F.sans}}>
+    <div style={{width: w, height: h, borderRadius: rad, background: '#070707', border: `${Math.max(2, w * 0.012)}px solid ${onLight ? '#161616' : 'rgba(255,255,255,0.78)'}`, boxShadow: shadow(onLight), position: 'relative', overflow: 'hidden', fontFamily: NF.ui}}>
       {/* encoche */}
       <div style={{position: 'absolute', left: '50%', top: w * 0.035, width: w * 0.3, height: w * 0.085, marginLeft: -w * 0.15, borderRadius: w, background: '#000', border: '1px solid rgba(255,255,255,0.12)'}} />
       {/* en-tête */}
@@ -54,7 +54,7 @@ export const Bubble: React.FC<{t: number; a: number; who: 'me' | 'agent'; text: 
       </div>
     );
   }
-  const font = `500 ${fs}px Inter`;
+  const font = `400 ${fs}px Arimo`;
   const mw = maxW ?? w * 0.62;
   const {lines, width} = wrap(text, font, mw);
   const bw = width + fs * 1.5 + 4;
@@ -75,7 +75,7 @@ export const Bubble: React.FC<{t: number; a: number; who: 'me' | 'agent'; text: 
         background: me ? '#fff' : '#161616',
         color: me ? '#000' : '#fff',
         border: me ? 'none' : '1px solid rgba(255,255,255,0.55)',
-        fontFamily: F.sans,
+        fontFamily: NF.ui,
         fontWeight: 500,
         fontSize: fs,
         lineHeight: 1.32,
@@ -119,7 +119,7 @@ export const Chip: React.FC<{t: number; a: number; text: string; fs: number; ico
         background: invert ? '#fff' : '#0a0a0a',
         color: col,
         border: invert ? '1px solid rgba(0,0,0,0.2)' : '1px solid rgba(255,255,255,0.6)',
-        fontFamily: F.sans,
+        fontFamily: NF.ui,
         fontWeight: 500,
         fontSize: fs,
         opacity: clamp01(p * 3),
@@ -143,7 +143,7 @@ export const ProfileCardNoir: React.FC<{t: number; w: number; rows: ProfileRow[]
   const fs = w * 0.044;
   const p = pr(t, a, 0.7);
   return (
-    <div style={{width: w, borderRadius: w * 0.05, background: '#070707', border: `1px solid ${onLight ? '#222' : 'rgba(255,255,255,0.7)'}`, boxShadow: shadow(onLight), padding: w * 0.05, boxSizing: 'border-box', fontFamily: F.sans, color: '#fff', opacity: clamp01(p * 2.5), transform: `translateY(${(1 - p) * 40}px)`}}>
+    <div style={{width: w, borderRadius: w * 0.05, background: '#070707', border: `1px solid ${onLight ? '#222' : 'rgba(255,255,255,0.7)'}`, boxShadow: shadow(onLight), padding: w * 0.05, boxSizing: 'border-box', fontFamily: NF.ui, color: '#fff', opacity: clamp01(p * 2.5), transform: `translateY(${(1 - p) * 40}px)`}}>
       <div style={{display: 'flex', alignItems: 'center', gap: fs * 0.8, marginBottom: fs * 1.1}}>
         <div style={{width: fs * 2.5, height: fs * 2.5, borderRadius: '50%', border: '1.5px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <IconUser size={fs * 1.3} color="#fff" />
@@ -188,7 +188,7 @@ export const CalendarNoir: React.FC<{t: number; w: number; a: number; slots: {co
   const hdr = w * 0.2;
   const picked = pr(t, pick.at, 0.35, backOut);
   return (
-    <div style={{width: w, borderRadius: w * 0.05, background: '#070707', border: `1px solid ${onLight ? '#222' : 'rgba(255,255,255,0.7)'}`, boxShadow: shadow(onLight), boxSizing: 'border-box', fontFamily: F.sans, color: '#fff', padding: w * 0.045, position: 'relative', height: hdr + rh * 6 + w * 0.115, opacity: clamp01(p * 2.5), transform: `translateY(${(1 - p) * 40}px)`}}>
+    <div style={{width: w, borderRadius: w * 0.05, background: '#070707', border: `1px solid ${onLight ? '#222' : 'rgba(255,255,255,0.7)'}`, boxShadow: shadow(onLight), boxSizing: 'border-box', fontFamily: NF.ui, color: '#fff', padding: w * 0.045, position: 'relative', height: hdr + rh * 6 + w * 0.115, opacity: clamp01(p * 2.5), transform: `translateY(${(1 - p) * 40}px)`}}>
       <div style={{display: 'flex', alignItems: 'center', gap: fs * 0.9, height: hdr * 0.55}}>
         <IconCalendar size={fs * 1.6} color="#fff" />
         <div>
@@ -251,7 +251,7 @@ export const CrmNoir: React.FC<{t: number; w: number; rows: CrmRowN[]; a: number
   const fs = w * 0.04;
   const p = pr(t, a, 0.7);
   return (
-    <div style={{width: w, borderRadius: w * 0.05, background: '#070707', border: `1px solid ${onLight ? '#222' : 'rgba(255,255,255,0.7)'}`, boxShadow: shadow(onLight), padding: w * 0.045, boxSizing: 'border-box', fontFamily: F.sans, color: '#fff', opacity: clamp01(p * 2.5), transform: `translateY(${(1 - p) * 40}px)`}}>
+    <div style={{width: w, borderRadius: w * 0.05, background: '#070707', border: `1px solid ${onLight ? '#222' : 'rgba(255,255,255,0.7)'}`, boxShadow: shadow(onLight), padding: w * 0.045, boxSizing: 'border-box', fontFamily: NF.ui, color: '#fff', opacity: clamp01(p * 2.5), transform: `translateY(${(1 - p) * 40}px)`}}>
       <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: fs * 0.9}}>
         <div style={{display: 'flex', alignItems: 'center', gap: fs * 0.8, fontSize: fs * 1.2, fontWeight: 600}}>
           <IconChat size={fs * 1.5} color="#fff" /> Suivi des demandes
@@ -294,7 +294,7 @@ export const NotifCard: React.FC<{t: number; a: number; w: number; icon: 'phone'
         background: onLight ? '#050505' : '#fff',
         color: onLight ? '#fff' : '#000',
         boxShadow: onLight ? '0 22px 60px rgba(0,0,0,0.35)' : '0 22px 60px rgba(255,255,255,0.08)',
-        fontFamily: F.sans,
+        fontFamily: NF.ui,
         opacity: clamp01(p * 3),
         transform: `translateY(${(1 - p) * 70}px) scale(${lerp(0.85, 1, p)})`,
         ...style,

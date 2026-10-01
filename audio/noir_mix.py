@@ -21,7 +21,9 @@ def load(p):
 
 
 def main():
-    n = int(60 * SR)
+    import json
+    plan = json.loads((ROOT / "data/noir.json").read_text())
+    n = int(round(plan["bars"] * 4 * 60.0 / plan["bpm"] * SR))
     music = np.pad(load(ROOT / "audio/stems/noir_music.flac"), ((0, n), (0, 0)))[:n]
     sfx = np.pad(load(ROOT / "audio/stems/noir_sfx.flac"), ((0, n), (0, 0)))[:n]
 

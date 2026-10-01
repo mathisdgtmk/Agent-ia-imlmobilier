@@ -35,14 +35,14 @@ export const AdNoir: React.FC = () => {
         <Win a={S('benefit').start} b={S('benefit').end}><N6Benefit /></Win>
         <Win a={S('cta').start} b={S('cta').end}><N7Cta /></Win>
       </AbsoluteFill>
-      <Shutter at={bt(36)} color="#fff" />
-      <Shutter at={bt(42)} color={INK} dir="up" />
-      <Shutter at={bt(48)} color="#fff" />
-      <Shutter at={bt(54)} color={INK} dir="up" />
-      <Shutter at={bt(60)} color="#fff" dir="up" />
-      <SliceWipe at={bt(72)} color={PAPER} />
+      <Shutter at={bt(44)} color="#fff" />
+      <Shutter at={bt(50)} color={INK} dir="up" />
+      <Shutter at={bt(56)} color="#fff" />
+      <Shutter at={bt(62)} color={INK} dir="up" />
+      <Shutter at={bt(68)} color="#fff" dir="up" />
+      <SliceWipe at={bt(80)} color={PAPER} />
       <Hud />
-      <Flash times={[bt(11.4), bt(11.7), bt(24), bt(84)]} len={0.12} />
+      <Flash times={[bt(11.4), bt(11.7), bt(32), bt(92)]} len={0.12} />
       <NoirGrain />
       <NoirVignette />
       <Audio src={staticFile('audio/noir_soundtrack.wav')} />

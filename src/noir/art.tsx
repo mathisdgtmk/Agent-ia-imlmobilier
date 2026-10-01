@@ -1,6 +1,6 @@
 import React from 'react';
 import {MAP_H, MAP_W, MARTINIQUE_PATH, PLACES} from '../data/martinique';
-import {F} from '../theme';
+import {NF} from './type';
 import {Draw} from './kit';
 import {clamp01, expoOut, pr, smooth} from './motion';
 
@@ -115,7 +115,7 @@ export const MapNoir: React.FC<{k: number; t: number; a: number; pins: {key: Pla
               })}
               <circle cx={pt.x} cy={pt.y} r={14} fill="#000" stroke={color} strokeWidth={1.6 / k} />
               <circle cx={pt.x} cy={pt.y} r={5.5 * (1 + 0.25 * Math.max(0, 1 - since * 3))} fill={color} />
-              <text x={pt.x + 20} y={pt.y - 14} fill={color} fontFamily={F.display} fontWeight={700} fontSize={19} letterSpacing="1">
+              <text x={pt.x + 20} y={pt.y - 14} fill={color} fontFamily={NF.tech} fontWeight={700} fontSize={19} letterSpacing="1">
                 {String(pn.n).padStart(2, '0')}
               </text>
             </g>

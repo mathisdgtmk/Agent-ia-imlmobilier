@@ -23,8 +23,8 @@ export const N1Hook: React.FC = () => {
   const villaOut = 1 - pr(t, bt(10.4), bt(1.4), smooth) * 0.6;
 
   const lines: HLine[] = vertical
-    ? [{text: 'Et si'}, {text: 'votre agence'}, {text: 'immobilière'}, {text: 'ne manquait plus'}, {text: 'aucune opportunité ?', kind: 'outline', fillAt: bt(7)}]
-    : [{text: 'Et si votre agence immobilière'}, {text: 'ne manquait plus'}, {text: 'aucune opportunité ?', kind: 'outline', fillAt: bt(7)}];
+    ? [{text: 'Et si'}, {text: 'votre agence'}, {text: 'immobilière'}, {text: 'ne manquait'}, {text: 'plus aucune'}, {text: 'opportunité ?', kind: 'outline', fillAt: bt(8.6)}]
+    : [{text: 'Et si votre'}, {text: 'agence immobilière'}, {text: 'ne manquait plus'}, {text: 'aucune opportunité ?', kind: 'outline', fillAt: bt(7)}];
 
   const m = 92 * u;
   const cp = pr(t, bt(2), 0.5, backOut);
@@ -48,8 +48,8 @@ export const N1Hook: React.FC = () => {
       <Crosshair x={m} y={h - m - (vertical ? 250 * u : 30 * u)} size={22 * u} p={cp} />
       <Crosshair x={w - m} y={h - m - (vertical ? 250 * u : 30 * u)} size={22 * u} p={cp} />
       {/* question */}
-      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.17 : 0.17), display: 'flex', justifyContent: 'center'}}>
-        <Headline lines={lines} t={t} a={bt(2)} step={bt(1)} size={(vertical ? 130 : 128) * u} maxWidth={w * (vertical ? 0.9 : 0.88)} out={[bt(9), 0.4]} outStep={0.14} />
+      <div style={{position: 'absolute', left: 0, right: 0, top: h * (vertical ? 0.12 : 0.1), display: 'flex', justifyContent: 'center'}}>
+        <Headline fx="fly" lines={lines} t={t} a={bt(2)} step={bt(1)} size={(vertical ? 200 : 150) * u} maxWidth={w * (vertical ? 0.9 : 0.86)} lineHeight={1.0} out={[bt(9), 0.4]} outStep={0.14} />
       </div>
     </AbsoluteFill>
   );

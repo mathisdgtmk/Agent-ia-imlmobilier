@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {useLayout} from '../lib/layout';
-import {F} from '../theme';
+import {NF} from './type';
 import {Caps, Crosshair, Cursor, Headline, HLine, INK, PAPER, Ring, Specks, useT} from './kit';
 import {beatPulse, clamp01, expoOut, lerp, pr, smooth} from './motion';
 import {bt, cue, cueList} from './timeline';
@@ -14,13 +14,13 @@ const TITLES: HLine[][] = [
   [{text: 'Une organisation'}, {text: 'simplifiée.'}],
   [{text: 'Plus de temps'}, {text: 'pour vos clients.'}],
 ];
-const STARTS = [36, 42, 48, 54];
+const STARTS = [44, 50, 56, 62];
 
 /** LES FONCTIONS — quatre plans de 3,6 s : Répondre · Qualifier · Organiser · Gagner du temps. (21,6 → 36 s) */
 export const N4Features: React.FC = () => {
   const t = useT();
   const {w, h, vertical, u} = useLayout();
-  const k = Math.max(0, Math.min(3, Math.floor((t - bt(36)) / bt(6))));
+  const k = Math.max(0, Math.min(3, Math.floor((t - bt(44)) / bt(6))));
   const f0 = bt(STARTS[k]);
   const loc = t - f0;
   const light = k % 2 === 1;
@@ -89,8 +89,8 @@ export const N4Features: React.FC = () => {
     const rh = cw * 0.115;
     const tx = cardLeft + cw * 0.14 + pick.col * cwCell + cwCell * 0.5;
     const ty = cardTop + cw * 0.2 * 0.8 + cw * 0.062 + pick.row * rh + rh * 0.5;
-    const cm = pr(t, bt(51.0), bt(1.15), smooth);
-    const curOp = pr(t, bt(50.6), 0.3);
+    const cm = pr(t, bt(59), bt(1.15), smooth);
+    const curOp = pr(t, bt(58.6), 0.3);
     const cx0 = cardLeft + cw * 1.02;
     const cy0 = cardTop + cw * 0.9;
     const press = Math.max(0, 1 - Math.abs(t - cue('f3_click')) / 0.12);
@@ -104,7 +104,7 @@ export const N4Features: React.FC = () => {
           <Cursor x={lerp(cx0, tx, cm)} y={lerp(cy0, ty, cm)} scale={u * 0.9} press={press} color={'#fff'} edge={'#000'} />
         </div>
         <Ring t={t} a={cue('f3_click')} size={150 * u} d={0.7} color={fg} width={3 * u} x={tx} y={ty} />
-        <div style={{position: 'absolute', left: cardLeft, width: cw, top: cardTop + cw * 0.2 + cw * 0.115 * 6 + cw * 0.12, textAlign: 'center', fontFamily: F.sans, fontSize: 21 * u, color: fg, opacity: pr(t, cue('f3_ui') + 0.9, 0.5) * 0.7}}>
+        <div style={{position: 'absolute', left: cardLeft, width: cw, top: cardTop + cw * 0.2 + cw * 0.115 * 6 + cw * 0.12, textAlign: 'center', fontFamily: NF.ui, fontSize: 21 * u, color: fg, opacity: pr(t, cue('f3_ui') + 0.9, 0.5) * 0.7}}>
           Selon les outils connectés à votre agent
         </div>
       </>
@@ -142,7 +142,7 @@ export const N4Features: React.FC = () => {
           position: 'absolute',
           left: vertical ? w * 0.38 : -w * 0.02,
           top: vertical ? h * 0.01 : h * 0.4,
-          fontFamily: F.serif,
+          fontFamily: NF.big,
           fontWeight: 700,
           fontStyle: 'italic',
           fontFeatureSettings: '"lnum"',
@@ -183,12 +183,12 @@ export const N4Features: React.FC = () => {
       {/* légende + titre */}
       <div style={{position: 'absolute', left: vertical ? 0 : m, right: vertical ? 0 : undefined, top: h * (vertical ? 0.125 : 0.25), display: 'flex', flexDirection: vertical ? 'column' : 'column', alignItems: vertical ? 'center' : 'flex-start', color: fg}}>
         <div style={{opacity: pr(t, cue(`${id}_k`), 0.4), display: 'flex', alignItems: 'center', gap: 18 * u}}>
-          <span style={{fontFamily: F.display, fontWeight: 700, fontSize: 26 * u, letterSpacing: '0.2em'}}>{String(k + 1).padStart(2, '0')}</span>
+          <span style={{fontFamily: NF.tech, fontWeight: 400, fontSize: 26 * u, letterSpacing: '0.2em'}}>{String(k + 1).padStart(2, '0')}</span>
           <span style={{width: 70 * u * pr(t, cue(`${id}_k`), 0.6), height: 2 * u, background: fg}} />
           <Caps text={STEPS[k]} size={26 * u} spacing={0.3} weight={700} color={fg} />
         </div>
         <div style={{marginTop: 34 * u}}>
-          <Headline
+          <Headline fx="flip"
             lines={TITLES[k].map((l, i) => (i === TITLES[k].length - 1 ? {...l, kind: 'outline' as const, fillAt: f0 + bt(2.6)} : l))}
             t={t}
             a={cue(`${id}_t`)}
@@ -201,7 +201,7 @@ export const N4Features: React.FC = () => {
         </div>
       </div>
       {/* mention discrète */}
-      <div style={{position: 'absolute', left: vertical ? 0 : m, right: vertical ? 0 : undefined, top: h - (vertical ? 300 : 125) * u, textAlign: vertical ? 'center' : 'left', fontFamily: F.sans, fontSize: 16 * u, letterSpacing: '0.12em', color: fg, opacity: 0.45}}>
+      <div style={{position: 'absolute', left: vertical ? 0 : m, right: vertical ? 0 : undefined, top: h - (vertical ? 300 : 125) * u, textAlign: vertical ? 'center' : 'left', fontFamily: NF.ui, fontSize: 16 * u, letterSpacing: '0.12em', color: fg, opacity: 0.45}}>
         SIMULATION ILLUSTRATIVE · FONCTIONNALITÉS SELON CONFIGURATION
       </div>
       <Crosshair x={vertical ? 52 * u : m - 40 * u} y={vertical ? 262 * u : h - 160 * u} size={14 * u} color={fg} p={pr(t, f0 + 0.1, 0.4)} />

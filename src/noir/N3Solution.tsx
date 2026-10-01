@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {useLayout} from '../lib/layout';
-import {F} from '../theme';
+import {NF} from './type';
 import {Caps, Headline, HLine, NoirMark, NoirWordmark, Ring, Specks, useT} from './kit';
 import {backOutSoft, beatPulse, clamp01, expoOut, lerp, pr, smooth} from './motion';
 import {bt, cue} from './timeline';
@@ -11,7 +11,7 @@ import {Bubble, PhoneNoir} from './ui';
 export const N3Solution: React.FC = () => {
   const t = useT();
   const {w, h, vertical, u} = useLayout();
-  const t0 = bt(24);
+  const t0 = bt(32);
   const up = cue('s_up');
   const tDial = cue('s_24');
   const tHead = cue('s_24t');
@@ -86,10 +86,10 @@ export const N3Solution: React.FC = () => {
       </div>
       {/* titre « 24 h/24 » */}
       <div style={{position: 'absolute', left: vertical ? 0 : w * 0.06, width: vertical ? w : w * 0.5, top: vertical ? h * 0.07 : h * 0.34, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start'}}>
-        <Headline lines={headLines} t={t} a={tHead} step={bt(0.7)} size={(vertical ? 112 : 128) * u} maxWidth={vertical ? w * 0.86 : w * 0.46} align={vertical ? 'center' : 'left'} />
+        <Headline fx="slam" lines={headLines} t={t} a={tHead} step={bt(0.7)} size={(vertical ? 112 : 128) * u} maxWidth={vertical ? w * 0.86 : w * 0.46} align={vertical ? 'center' : 'left'} />
       </div>
       {/* mention légale discrète */}
-      <div style={{position: 'absolute', left: vertical ? 0 : w * 0.06, right: vertical ? 0 : undefined, top: h - (vertical ? 300 : 120) * u, textAlign: vertical ? 'center' : 'left', fontFamily: F.sans, fontSize: 16 * u, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.45)', opacity: pr(t, cue('s_c1'), 0.6)}}>
+      <div style={{position: 'absolute', left: vertical ? 0 : w * 0.06, right: vertical ? 0 : undefined, top: h - (vertical ? 300 : 120) * u, textAlign: vertical ? 'center' : 'left', fontFamily: NF.ui, fontSize: 16 * u, letterSpacing: '0.12em', color: 'rgba(255,255,255,0.45)', opacity: pr(t, cue('s_c1'), 0.6)}}>
         SIMULATION ILLUSTRATIVE · FONCTIONNALITÉS SELON CONFIGURATION
       </div>
     </AbsoluteFill>

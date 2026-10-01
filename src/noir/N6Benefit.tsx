@@ -1,19 +1,19 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {useLayout} from '../lib/layout';
-import {F} from '../theme';
+import {NF} from './type';
 import {IconSpark} from '../ui/Icons';
 import {Caps, Headline, INK, PAPER, Reveal, Ring, Specks, useT} from './kit';
 import {backOutSoft, beatPulse, lerp, pr, sharpIn, smooth} from './motion';
 import {bt, cue} from './timeline';
 
-const FLIPS = [80, 81, 81.5, 82, 82.25, 82.5, 82.75, 83.0, 83.15, 83.3].map(bt);
+const FLIPS = [88, 89, 89.5, 90, 90.25, 90.5, 90.75, 91.0, 91.15, 91.3].map(bt);
 
 /** LE BÉNÉFICE — l'IA et l'humain : deux cercles se rejoignent. Fin de scène en stroboscope. (43,2 → 50,4 s) */
 export const N6Benefit: React.FC = () => {
   const t = useT();
   const {w, h, vertical, u} = useLayout();
-  const t0 = bt(72);
+  const t0 = bt(80);
   const tMerge = cue('b_merge');
   const Rc = (vertical ? 232 : 262) * u;
   const d = Rc * 0.56;
@@ -27,8 +27,8 @@ export const N6Benefit: React.FC = () => {
 
   const flips = FLIPS.filter((f) => t >= f).length;
   const invert = flips % 2 === 1;
-  const blackout = t >= bt(83.4);
-  const zoom = 1 + 0.22 * pr(t, bt(80), bt(3.4), sharpIn);
+  const blackout = t >= bt(91.4);
+  const zoom = 1 + 0.22 * pr(t, bt(88), bt(3.4), sharpIn);
 
   const size = (vertical ? 108 : 122) * u;
   const colX = vertical ? 0 : w * 0.06;
@@ -71,19 +71,19 @@ export const N6Benefit: React.FC = () => {
         <Ring t={t} a={tMerge + 0.15} size={Rc * 3} d={1.0} color={INK} width={2 * u} x={cx} y={cy} />
         {/* titre en deux temps */}
         <div style={{position: 'absolute', left: colX, width: colW, top: top1, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start'}}>
-          <Headline lines={[{text: "L'intelligence"}, {text: 'artificielle'}]} t={t} a={cue('b_t1')} step={bt(0.5)} size={size} maxWidth={w} align={vertical ? 'center' : 'left'} color={INK} />
+          <Headline fx="drop" lines={[{text: "L'intelligence"}, {text: 'artificielle'}]} t={t} a={cue('b_t1')} step={bt(0.5)} size={size} maxWidth={w} align={vertical ? 'center' : 'left'} color={INK} />
         </div>
         <div style={{position: 'absolute', left: colX, width: colW, top: top2, display: 'flex', justifyContent: vertical ? 'center' : 'flex-start'}}>
-          <Headline lines={[{text: 'au service'}, {text: "de l'humain.", kind: 'outline', fillAt: bt(77.5)}]} t={t} a={cue('b_t2')} step={bt(0.5)} size={size} maxWidth={w} align={vertical ? 'center' : 'left'} color={INK} />
+          <Headline fx="drop" lines={[{text: 'au service'}, {text: "de l'humain.", kind: 'outline', fillAt: bt(85.5)}]} t={t} a={cue('b_t2')} step={bt(0.5)} size={size} maxWidth={w} align={vertical ? 'center' : 'left'} color={INK} />
         </div>
         {/* précisions */}
         <div style={{position: 'absolute', left: colX, width: colW, top: top2 + lineH * 2 + (vertical ? 40 : 44) * u, textAlign: vertical ? 'center' : 'left', color: INK}}>
           <Reveal t={t} a={cue('b_t3')} d={0.7}>
-            <div style={{fontFamily: F.serif, fontStyle: 'italic', fontWeight: 500, fontSize: (vertical ? 42 : 40) * u}}>Elle ne remplace pas votre expertise.</div>
+            <div style={{fontFamily: NF.big, fontWeight: 400, fontSize: (vertical ? 42 : 40) * u}}>Elle ne remplace pas votre expertise.</div>
           </Reveal>
           <div style={{marginTop: 10 * u}}>
             <Reveal t={t} a={cue('b_t4')} d={0.7}>
-              <div style={{fontFamily: F.sans, fontWeight: 500, fontSize: (vertical ? 27 : 26) * u, opacity: 0.7}}>Elle vous aide à mieux accompagner vos clients.</div>
+              <div style={{fontFamily: NF.ui, fontWeight: 500, fontSize: (vertical ? 27 : 26) * u, opacity: 0.7}}>Elle vous aide à mieux accompagner vos clients.</div>
             </Reveal>
           </div>
         </div>

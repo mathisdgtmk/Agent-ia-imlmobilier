@@ -1,7 +1,7 @@
 """Effets sonores « Noir & Blanc » : un bruit d'animation à chaque apparition de texte, d'interface, de coupe.
 Tout est synthétisé (aucun échantillon tiers). Les instants viennent de data/noir.json (même fichier que l'image).
 
-Sortie : audio/stems/noir_sfx.flac (48 kHz stéréo, 60 s)
+Sortie : audio/stems/noir_sfx.flac (48 kHz stéréo, durée de la vidéo)
 Usage  : cd audio && python noir_sfx.py
 """
 import json
@@ -12,8 +12,9 @@ from dsp import *  # noqa
 import build_sfx as base  # effets déjà éprouvés : shimmer, whoosh, ring, notif_*, send, recv, tick, confirm, sweep, bloom, button…
 
 ROOT = Path(__file__).resolve().parent.parent
-DUR = 60.0
 r = np.random.default_rng(404)
+_plan = json.loads((ROOT / "data/noir.json").read_text())
+DUR = _plan["bars"] * 4 * 60.0 / _plan["bpm"]   # 64,8 s
 st = base.stereo_from_mono
 
 
@@ -147,6 +148,45 @@ def sfx_glitch():
     return st(fade(y * 0.7, 0.001, 0.03), 1, 5)
 
 
+def sfx_clack():
+    """Lamelle de panneau d'affichage qui retombe : claquement plastique sec + petit « tac » grave."""
+    n = int(0.22 * SR)
+    t = np.arange(n) / SR
+    y = bp(r.normal(0, 1, n), 1400, 7000) * np.exp(-t / 0.0065) * 0.75
+    y += np.sin(2 * np.pi * 2300 * t) * np.exp(-t / 0.012) * 0.22
+    d = int(0.016 * SR)
+    y[d:] += bp(r.normal(0, 1, n - d), 900, 4200) * np.exp(-t[: n - d] / 0.008) * 0.45
+    y += np.sin(2 * np.pi * 190 * t) * np.exp(-t / 0.028) * 0.5
+    return st(fade(y, 0.0002, 0.02), 0)
+
+
+def sfx_keytype():
+    """Touche de clavier mécanique."""
+    n = int(0.16 * SR)
+    t = np.arange(n) / SR
+    y = bp(r.normal(0, 1, n), 2500, 9000) * np.exp(-t / 0.004) * 0.45
+    y += np.sin(2 * np.pi * 1180 * t) * np.exp(-t / 0.014) * 0.2
+    y += np.sin(2 * np.pi * 150 * t) * np.exp(-t / 0.03) * 0.42
+    return st(fade(y, 0.0002, 0.015), 1, 3)
+
+
+def sfx_flaproll():
+    """Roulement de lamelles qui défilent (panneau d'aéroport) : suite rapide de claquements, serrés puis espacés."""
+    dur = 1.15
+    n = int(dur * SR)
+    out = np.zeros((n, 2))
+    tm = 0.0
+    k = 0
+    while tm < dur - 0.05:
+        c = sfx_clack()
+        i = int(tm * SR)
+        m = min(len(c), n - i)
+        out[i : i + m] += c[:m] * (0.35 + 0.35 * r.random())
+        tm += 0.052 + 0.03 * (tm / dur) + 0.01 * r.random()
+        k += 1
+    return out
+
+
 def sfx_boom():
     return st(boom(3.2, 58, 32, 0.9), 1, 13)
 
@@ -167,6 +207,7 @@ TYPES = {
     "confirm": base.sfx_confirm, "sweep": base.sfx_sweep, "button": base.sfx_button,
     "hit": sfx_hit, "slam": sfx_slam, "thud": sfx_thud, "swish": sfx_swish, "pop": sfx_pop, "click": sfx_click, "chime": sfx_chime,
     "ping": sfx_ping, "bell": sfx_bell, "glitch": sfx_glitch, "boom": sfx_boom,
+    "clack": sfx_clack, "keytype": sfx_keytype, "flaproll": sfx_flaproll,
 }
 
 

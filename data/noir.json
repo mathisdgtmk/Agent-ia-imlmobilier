@@ -2,7 +2,7 @@
  "_note": "Plan de montage « Noir & Blanc » — source unique pour l'image (src/noir/*) et le son (audio/noir_*.py). Les temps sont en TEMPS DE MUSIQUE (beats) : 100 BPM, 1 beat = 0,6 s, 1 mesure = 4 beats = 2,4 s, 25 mesures = 60 s. Pour déplacer un événement : changer son « b » (image et son suivent).",
  "bpm": 100,
  "fps": 30,
- "bars": 25,
+ "bars": 27,
  "scenes": [
   {
    "id": "hook",
@@ -12,31 +12,31 @@
   {
    "id": "problem",
    "b": 12,
-   "len": 12
+   "len": 20
   },
   {
    "id": "solution",
-   "b": 24,
+   "b": 32,
    "len": 12
   },
   {
    "id": "features",
-   "b": 36,
+   "b": 44,
    "len": 24
   },
   {
    "id": "local",
-   "b": 60,
+   "b": 68,
    "len": 12
   },
   {
    "id": "benefit",
-   "b": 72,
+   "b": 80,
    "len": 12
   },
   {
    "id": "cta",
-   "b": 84,
+   "b": 92,
    "len": 16
   }
  ],
@@ -81,6 +81,24 @@
    "shake": 0.35
   },
   {
+   "id": "hook_l4",
+   "b": 5,
+   "sfx": "swish",
+   "gain": 0.6
+  },
+  {
+   "id": "hook_l5",
+   "b": 6,
+   "sfx": "swish",
+   "gain": 0.5
+  },
+  {
+   "id": "hook_l6",
+   "b": 7,
+   "sfx": "swish",
+   "gain": 0.55
+  },
+  {
    "id": "hook_riser2",
    "b": 8,
    "sfx": "riser",
@@ -113,590 +131,704 @@
    "shake": 0.8
   },
   {
-   "id": "p_w1",
-   "b": 12,
+   "id": "p1_ring",
+   "b": 12.05,
+   "sfx": "ring",
+   "gain": 0.6
+  },
+  {
+   "id": "p1_letters",
+   "bs": [
+    12.35,
+    12.5,
+    12.65,
+    12.8,
+    12.95,
+    13.1,
+    13.25
+   ],
+   "sfx": "clack",
+   "gain": 0.55
+  },
+  {
+   "id": "p1_ring2",
+   "b": 13.3,
    "sfx": "ring",
    "gain": 0.5
   },
   {
-   "id": "p_w1c",
-   "b": 12.35,
-   "sfx": "pop",
-   "gain": 0.6
-  },
-  {
-   "id": "p_w2",
-   "b": 13,
-   "sfx": "thud",
-   "gain": 0.75,
-   "shake": 0.45
-  },
-  {
-   "id": "p_w2n",
-   "b": 13.1,
+   "id": "p1_card",
+   "b": 13.6,
    "sfx": "notif_a",
    "gain": 0.55
   },
   {
-   "id": "p_w2c",
-   "b": 13.35,
+   "id": "p1_cardpop",
+   "b": 13.6,
    "sfx": "pop",
    "gain": 0.6
   },
   {
-   "id": "p_w3",
-   "b": 14,
-   "sfx": "thud",
-   "gain": 0.8,
-   "shake": 0.5
-  },
-  {
-   "id": "p_w3n",
-   "b": 14.1,
-   "sfx": "notif_b",
+   "id": "p1_out",
+   "b": 14.75,
+   "sfx": "swish",
    "gain": 0.55
   },
   {
-   "id": "p_w3c",
-   "b": 14.35,
-   "sfx": "pop",
-   "gain": 0.6
-  },
-  {
-   "id": "p_w4",
+   "id": "p2_cut",
    "b": 15,
-   "sfx": "thud",
+   "sfx": "slam",
    "gain": 0.85,
-   "shake": 0.55
+   "shake": 0.6
   },
   {
-   "id": "p_w4n",
-   "b": 15.1,
-   "sfx": "notif_c",
-   "gain": 0.55
-  },
-  {
-   "id": "p_w4c",
-   "b": 15.35,
+   "id": "p2_bub",
+   "bs": [
+    15.0,
+    15.3,
+    15.6,
+    15.9,
+    16.2,
+    16.5,
+    16.8,
+    17.1,
+    17.4
+   ],
    "sfx": "pop",
+   "gain": 0.38
+  },
+  {
+   "id": "p2_type",
+   "bs": [
+    15.35,
+    15.55,
+    15.75,
+    15.95,
+    16.15,
+    16.35,
+    16.55,
+    16.75
+   ],
+   "sfx": "keytype",
    "gain": 0.6
   },
   {
-   "id": "p_count_in",
-   "b": 16,
+   "id": "p2_badge",
+   "b": 17.0,
+   "sfx": "notif_b",
+   "gain": 0.5
+  },
+  {
+   "id": "p2_out",
+   "b": 17.75,
+   "sfx": "swish",
+   "gain": 0.55
+  },
+  {
+   "id": "p3_cut",
+   "b": 18,
+   "sfx": "slam",
+   "gain": 0.85,
+   "shake": 0.6
+  },
+  {
+   "id": "p3_roll",
+   "b": 18.1,
+   "sfx": "flaproll",
+   "gain": 0.6
+  },
+  {
+   "id": "p3_flap",
+   "bs": [
+    19.0,
+    19.2,
+    19.4,
+    19.6,
+    19.8,
+    20.0,
+    20.2,
+    20.4
+   ],
+   "sfx": "clack",
+   "gain": 0.7
+  },
+  {
+   "id": "p3_slots",
+   "bs": [
+    20.45,
+    20.7,
+    20.95
+   ],
+   "sfx": "tick",
+   "gain": 0.5
+  },
+  {
+   "id": "p3_out",
+   "b": 20.8,
+   "sfx": "swish",
+   "gain": 0.55
+  },
+  {
+   "id": "p4_cut",
+   "b": 21,
+   "sfx": "slam",
+   "gain": 0.85,
+   "shake": 0.6
+  },
+  {
+   "id": "p4_riser",
+   "b": 21.0,
+   "sfx": "riser",
+   "gain": 0.6,
+   "dur": 1.2
+  },
+  {
+   "id": "p4_pass",
+   "bs": [
+    21.3,
+    21.6,
+    21.9,
+    22.2
+   ],
    "sfx": "whoosh_soft",
    "gain": 0.5
   },
   {
+   "id": "p4_lock",
+   "b": 23.0,
+   "sfx": "hit",
+   "gain": 0.9,
+   "shake": 0.9
+  },
+  {
+   "id": "p4_q",
+   "b": 23.4,
+   "sfx": "thud",
+   "gain": 0.6
+  },
+  {
+   "id": "p_count_in",
+   "b": 24,
+   "sfx": "slam",
+   "gain": 0.8,
+   "shake": 0.5
+  },
+  {
    "id": "p_count",
    "bs": [
-    16.2,
-    16.8,
-    17.3,
-    17.7,
-    18.0,
-    18.25,
-    18.45,
-    18.62,
-    18.78,
-    18.92,
-    19.05,
-    19.17
+    24.25,
+    24.8,
+    25.3,
+    25.7,
+    26.0,
+    26.25,
+    26.45,
+    26.62,
+    26.78,
+    26.92,
+    27.05,
+    27.17
    ],
    "sfx": "tick",
    "gain": 0.55
   },
   {
    "id": "p_freeze",
-   "b": 19.5,
+   "b": 27.5,
    "sfx": "hit",
-   "gain": 0.8,
-   "shake": 0.7
+   "gain": 0.85,
+   "shake": 0.8
   },
   {
    "id": "p_text",
-   "b": 20,
+   "b": 28.1,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "p_text2",
-   "b": 21,
+   "b": 28.9,
    "sfx": "swish",
-   "gain": 0.5
+   "gain": 0.55
+  },
+  {
+   "id": "p_text3",
+   "b": 29.7,
+   "sfx": "swish",
+   "gain": 0.6
   },
   {
    "id": "p_collapse",
-   "b": 22.3,
+   "b": 30.3,
    "sfx": "downshift",
    "gain": 0.8
   },
   {
    "id": "s_bloom",
-   "b": 24,
+   "b": 32,
    "sfx": "bloom",
    "gain": 0.95,
    "shake": 0.7
   },
   {
    "id": "s_boom",
-   "b": 24,
+   "b": 32,
    "sfx": "boom",
    "gain": 0.8
   },
   {
    "id": "s_l1",
-   "b": 24.7,
+   "b": 32.7,
    "sfx": "swish",
    "gain": 0.5
   },
   {
    "id": "s_l2",
-   "b": 25.4,
+   "b": 33.4,
    "sfx": "shimmer",
    "gain": 0.55
   },
   {
    "id": "s_up",
-   "b": 27,
+   "b": 35,
    "sfx": "whoosh",
    "gain": 0.55
   },
   {
    "id": "s_phone",
-   "b": 27.5,
+   "b": 35.5,
    "sfx": "whoosh_soft",
    "gain": 0.5
   },
   {
    "id": "s_c1",
-   "b": 28.4,
+   "b": 36.4,
    "sfx": "send",
    "gain": 0.55
   },
   {
    "id": "s_c2",
-   "b": 29.8,
+   "b": 37.8,
    "sfx": "recv",
    "gain": 0.55
   },
   {
    "id": "s_c3",
-   "b": 31.0,
+   "b": 39.0,
    "sfx": "send",
    "gain": 0.55
   },
   {
    "id": "s_c4",
-   "b": 32.2,
+   "b": 40.2,
    "sfx": "recv",
    "gain": 0.55
   },
   {
    "id": "s_24",
-   "b": 33,
+   "b": 41,
    "sfx": "sweep",
    "gain": 0.55
   },
   {
    "id": "s_24t",
-   "b": 34,
+   "b": 42,
    "sfx": "shimmer",
    "gain": 0.5
   },
   {
    "id": "s_out",
-   "b": 35.4,
+   "b": 43.4,
    "sfx": "whoosh",
    "gain": 0.7
   },
   {
    "id": "f1_in",
-   "b": 36,
+   "b": 44,
    "sfx": "slam",
    "gain": 0.85,
    "shake": 0.7
   },
   {
    "id": "f1_k",
-   "b": 36.3,
+   "b": 44.3,
    "sfx": "tick",
    "gain": 0.5
   },
   {
    "id": "f1_t",
-   "b": 36.7,
+   "b": 44.7,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "f1_ui",
-   "b": 37.4,
+   "b": 45.4,
    "sfx": "whoosh_soft",
    "gain": 0.45
   },
   {
    "id": "f1_m1",
-   "b": 38.4,
+   "b": 46.4,
    "sfx": "recv",
    "gain": 0.55
   },
   {
    "id": "f1_m2",
-   "b": 39.6,
+   "b": 47.6,
    "sfx": "send",
    "gain": 0.55
   },
   {
    "id": "f1_ok",
-   "b": 40.6,
+   "b": 48.6,
    "sfx": "confirm",
    "gain": 0.5
   },
   {
    "id": "f2_in",
-   "b": 42,
+   "b": 50,
    "sfx": "slam",
    "gain": 0.85,
    "shake": 0.7
   },
   {
    "id": "f2_k",
-   "b": 42.3,
+   "b": 50.3,
    "sfx": "tick",
    "gain": 0.5
   },
   {
    "id": "f2_t",
-   "b": 42.7,
+   "b": 50.7,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "f2_ui",
-   "b": 43.4,
+   "b": 51.4,
    "sfx": "whoosh_soft",
    "gain": 0.45
   },
   {
    "id": "f2_r",
    "bs": [
-    44.4,
-    45.2,
-    46.0,
-    46.8
+    52.4,
+    53.2,
+    54.0,
+    54.8
    ],
    "sfx": "tick",
    "gain": 0.6
   },
   {
    "id": "f2_ok",
-   "b": 47.4,
+   "b": 55.4,
    "sfx": "confirm",
    "gain": 0.5
   },
   {
    "id": "f3_in",
-   "b": 48,
+   "b": 56,
    "sfx": "slam",
    "gain": 0.85,
    "shake": 0.7
   },
   {
    "id": "f3_k",
-   "b": 48.3,
+   "b": 56.3,
    "sfx": "tick",
    "gain": 0.5
   },
   {
    "id": "f3_t",
-   "b": 48.7,
+   "b": 56.7,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "f3_ui",
-   "b": 49.4,
+   "b": 57.4,
    "sfx": "whoosh_soft",
    "gain": 0.45
   },
   {
    "id": "f3_s",
    "bs": [
-    50.0,
-    50.35,
-    50.7,
-    51.05,
-    51.4,
-    51.75
+    58.0,
+    58.35,
+    58.7,
+    59.05,
+    59.4,
+    59.75
    ],
    "sfx": "pop",
    "gain": 0.5
   },
   {
    "id": "f3_click",
-   "b": 52.2,
+   "b": 60.2,
    "sfx": "click",
    "gain": 0.7
   },
   {
    "id": "f3_ok",
-   "b": 52.45,
+   "b": 60.45,
    "sfx": "confirm",
    "gain": 0.5
   },
   {
    "id": "f4_in",
-   "b": 54,
+   "b": 62,
    "sfx": "slam",
    "gain": 0.85,
    "shake": 0.7
   },
   {
    "id": "f4_k",
-   "b": 54.3,
+   "b": 62.3,
    "sfx": "tick",
    "gain": 0.5
   },
   {
    "id": "f4_t",
-   "b": 54.7,
+   "b": 62.7,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "f4_ui",
-   "b": 55.4,
+   "b": 63.4,
    "sfx": "whoosh_soft",
    "gain": 0.45
   },
   {
    "id": "f4_r",
    "bs": [
-    55.8,
-    56.3,
-    56.8,
-    57.3,
-    57.8
+    63.8,
+    64.3,
+    64.8,
+    65.3,
+    65.8
    ],
    "sfx": "swish",
    "gain": 0.4
   },
   {
    "id": "f4_ok",
-   "b": 58.6,
+   "b": 66.6,
    "sfx": "chime",
    "gain": 0.5
   },
   {
    "id": "f4_out",
-   "b": 59.4,
+   "b": 67.4,
    "sfx": "whoosh",
    "gain": 0.7
   },
   {
    "id": "l_in",
-   "b": 60,
+   "b": 68,
    "sfx": "slam",
    "gain": 0.9,
    "shake": 0.8
   },
   {
    "id": "l_draw",
-   "b": 60.2,
+   "b": 68.2,
    "sfx": "riser",
    "gain": 0.45,
    "dur": 1.7
   },
   {
    "id": "l_t1",
-   "b": 61,
+   "b": 69,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "l_t2",
-   "b": 61.6,
+   "b": 69.6,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "l_t3",
-   "b": 62.2,
+   "b": 70.2,
    "sfx": "swish",
    "gain": 0.6
   },
   {
    "id": "l_p1",
-   "b": 63,
+   "b": 71,
    "sfx": "ping",
    "gain": 0.75
   },
   {
    "id": "l_p2",
-   "b": 65,
+   "b": 73,
    "sfx": "ping",
    "gain": 0.75
   },
   {
    "id": "l_p3",
-   "b": 67,
+   "b": 75,
    "sfx": "ping",
    "gain": 0.75
   },
   {
    "id": "l_p4",
-   "b": 69,
+   "b": 77,
    "sfx": "ping",
    "gain": 0.75
   },
   {
    "id": "l_out",
-   "b": 71.4,
+   "b": 79.4,
    "sfx": "whoosh",
    "gain": 0.7
   },
   {
    "id": "b_in",
-   "b": 72,
+   "b": 80,
    "sfx": "slam",
    "gain": 0.85,
    "shake": 0.6
   },
   {
    "id": "b_c",
-   "b": 72.5,
+   "b": 80.5,
    "sfx": "whoosh",
    "gain": 0.6
   },
   {
    "id": "b_t1",
-   "b": 73.2,
+   "b": 81.2,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "b_t2",
-   "b": 74.4,
+   "b": 82.4,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "b_merge",
-   "b": 76,
+   "b": 84,
    "sfx": "bell",
    "gain": 0.8,
    "shake": 0.35
   },
   {
    "id": "b_mergeh",
-   "b": 76,
+   "b": 84,
    "sfx": "boom",
    "gain": 0.6
   },
   {
    "id": "b_t3",
-   "b": 78,
+   "b": 86,
    "sfx": "swish",
    "gain": 0.5
   },
   {
    "id": "b_t4",
-   "b": 79.5,
+   "b": 87.5,
    "sfx": "tick",
    "gain": 0.4
   },
   {
    "id": "b_strobe",
-   "b": 82.2,
+   "b": 90.2,
    "sfx": "riser",
    "gain": 0.5,
    "dur": 1.1
   },
   {
    "id": "b_glitch",
-   "b": 83.4,
+   "b": 91.4,
    "sfx": "glitch",
    "gain": 0.55
   },
   {
    "id": "c_in",
-   "b": 84,
+   "b": 92,
    "sfx": "slam",
    "gain": 0.95,
    "shake": 0.9
   },
   {
    "id": "c_boom",
-   "b": 84,
+   "b": 92,
    "sfx": "boom",
    "gain": 0.7
   },
   {
    "id": "c_logo",
-   "b": 84.8,
+   "b": 92.8,
    "sfx": "shimmer",
    "gain": 0.55
   },
   {
    "id": "c_l1",
-   "b": 88.2,
+   "b": 96.2,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "c_l2",
-   "b": 89.0,
+   "b": 97.0,
    "sfx": "swish",
    "gain": 0.55
   },
   {
    "id": "c_l3",
-   "b": 89.8,
+   "b": 97.8,
    "sfx": "swish",
    "gain": 0.6
   },
   {
    "id": "c_btn",
-   "b": 92.4,
+   "b": 100.4,
    "sfx": "button",
    "gain": 0.65,
    "shake": 0.35
   },
   {
    "id": "c_cur",
-   "b": 94.0,
+   "b": 102.0,
    "sfx": "whoosh_soft",
    "gain": 0.35
   },
   {
    "id": "c_click",
-   "b": 95.4,
+   "b": 103.4,
    "sfx": "click",
    "gain": 0.85,
    "shake": 0.3
   },
   {
    "id": "c_ok",
-   "b": 95.5,
+   "b": 103.5,
    "sfx": "confirm",
    "gain": 0.6
   },
   {
    "id": "c_tag",
-   "b": 96.8,
+   "b": 104.8,
    "sfx": "tick",
    "gain": 0.5
   },
   {
    "id": "c_contact",
-   "b": 97.4,
+   "b": 105.4,
    "sfx": "tick",
    "gain": 0.45
   },
   {
    "id": "c_end",
-   "b": 98.6,
+   "b": 106.6,
    "sfx": "boom",
    "gain": 0.6
   }
