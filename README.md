@@ -6,6 +6,8 @@ Publicité de **60 secondes** présentant un agent IA aux agences immobilières 
 |---|---|---|
 | `out/agent-ia-immobilier-16x9.mp4` | 16:9 — 1920 × 1080, 30 i/s | site web, YouTube, présentation commerciale, Facebook |
 | `out/agent-ia-immobilier-9x16.mp4` | 9:16 — 1080 × 1920, 30 i/s | TikTok, Instagram Reels, stories |
+| `out/noir-et-blanc-16x9.mp4` | 16:9 — **version « Noir & Blanc »**, très animée, sans voix ni sous‑titres | refonte complète : voir `docs/NOIR-ET-BLANC.md` |
+| `out/noir-et-blanc-9x16.mp4` | 9:16 — idem | TikTok, Reels, stories |
 | `out/agent-ia-immobilier-16x9-sans-voix.mp4` | 16:9, sans voix off ni sous‑titres | mêmes images, **musique et effets seulement** |
 | `out/agent-ia-immobilier-9x16-sans-voix.mp4` | 9:16, sans voix off ni sous‑titres | idem, format vertical |
 
