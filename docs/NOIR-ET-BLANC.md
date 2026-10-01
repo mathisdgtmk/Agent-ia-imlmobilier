@@ -3,7 +3,7 @@
 Nouvelle réalisation de la publicité (**64,8 s**, 16:9 et 9:16), pensée comme un clip : **noir et blanc strict**, typographie qui bouge à chaque
 temps, transitions sur le rythme, un bruitage à chaque animation, **aucune voix off, aucun sous‑titre**. Le message tient dans les textes à l'écran.
 
-Fichiers : `out/noir-et-blanc-16x9.mp4` (1920 × 1080) et `out/noir-et-blanc-9x16.mp4` (1080 × 1920), 30 i/s, H.264 + AAC, ≈ 14 Mo chacun. Aperçus : `docs/apercu-noir-*.png`.
+Fichiers : `out/noir-et-blanc-16x9.mp4` (1920 × 1080) et `out/noir-et-blanc-9x16.mp4` (1080 × 1920), 30 i/s, H.264 + AAC, ≈ 21 Mo chacun. Aperçus : `docs/apercu-noir-*.png`.
 
 ## Principe de montage
 
@@ -65,8 +65,8 @@ npx remotion still src/index.ts Noir-16x9 img.png --frame=900                 # 
 | Contrôle | Résultat |
 |---|---|
 | Durée / format | 64,85 s, 1 944 images à 30 i/s ; 1920 × 1080 et 1080 × 1920, H.264 High, yuv420p, BT.709, AAC stéréo 48 kHz |
-| Loudness | −14,0 LUFS intégré, crête −1,9 dBFS (mesuré sur la piste audio des MP4) |
-| Calage image ↔ rythme | les coupes principales (sur les temps de musique) tombent à 0 – 33 ms du saut d'image correspondant (≤ 1 image), volets compris |
+| Loudness | −14,0 LUFS intégré, crête −1,8 dBFS (mesuré sur la piste audio des MP4) |
+| Calage image ↔ rythme | les coupes principales (sur les temps de musique) tombent à 0 – 33 ms du saut d'image correspondant (≤ 1 image), volets compris ; chaque nouvelle « chose » de l'intro (APPELS, MESSAGES, VISITES, QUESTIONS, compteur) a sa coupe sur un temps |
 | Lisibilité | titres mesurés et réduits automatiquement pour rester dans la zone de sécurité ; images clés de chaque scène vérifiées dans les deux formats |
 
 ## Honnêteté
