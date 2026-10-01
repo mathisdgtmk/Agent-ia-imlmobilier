@@ -223,7 +223,7 @@ export const Shutter: React.FC<{at: number; color: string; n?: number; dir?: 'do
       {Array.from({length: n}, (_, i) => {
         const j = dir === 'down' ? i : n - 1 - i;
         const c = pr(t, at - before + j * 0.02, before - 0.04, smooth); // couvre
-        const u = pr(t, at + j * 0.02, after - 0.04, smooth); // dévoile
+        const u = pr(t, at + j * 0.012, after - 0.04, expoOut); // dévoile : démarre net sur le temps (le gros du changement tombe pile avec l'impact)
         const top = u * h;
         const height = (c - u) * h;
         if (height <= 0) return null;
