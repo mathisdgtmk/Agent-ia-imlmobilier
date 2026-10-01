@@ -3,7 +3,7 @@
 Nouvelle réalisation de la publicité (60 s, 16:9 et 9:16), pensée comme un clip : **noir et blanc strict**, typographie qui bouge à chaque
 temps, transitions sur le rythme, un bruitage à chaque animation, **aucune voix off, aucun sous‑titre**. Le message tient dans les textes à l'écran.
 
-Fichiers : `out/noir-et-blanc-16x9.mp4` (1920 × 1080) et `out/noir-et-blanc-9x16.mp4` (1080 × 1920), 30 i/s, H.264 + AAC.
+Fichiers : `out/noir-et-blanc-16x9.mp4` (1920 × 1080) et `out/noir-et-blanc-9x16.mp4` (1080 × 1920), 30 i/s, H.264 + AAC, ≈ 14 Mo chacun. Aperçus : `docs/apercu-noir-*.png`.
 
 ## Principe de montage
 
@@ -42,13 +42,22 @@ Fichiers : `out/noir-et-blanc-16x9.mp4` (1920 × 1080) et `out/noir-et-blanc-9x1
 
 ```bash
 cd audio && python noir_music.py && python noir_sfx.py && python noir_mix.py   # bande‑son
-cd .. && bash scripts/render.sh noir                                          # rend les deux MP4 (≈ 12 min par format)
+cd .. && bash scripts/render.sh noir                                          # rend les deux MP4 (≈ 7 min par format sur 4 cœurs)
 npx remotion still src/index.ts Noir-16x9 img.png --frame=900                 # contrôle d'une image
 ```
 
 * Textes : dans les fichiers `src/noir/N*.tsx` (balises `Headline` / `Caps`).
 * Nom, slogan, bouton, coordonnées (provisoires) : `src/config/brand.ts`.
 * Timing d'un événement : champ `b` (en temps de musique) dans `data/noir.json`, puis relancer `noir_sfx.py` et `noir_mix.py`.
+
+## Contrôles effectués sur les fichiers finaux
+
+| Contrôle | Résultat |
+|---|---|
+| Durée / format | 60,05 s, 1 800 images à 30 i/s ; 1920 × 1080 et 1080 × 1920, H.264 High, yuv420p, BT.709, AAC stéréo 48 kHz |
+| Loudness | −14,0 LUFS intégré, crête −1,9 dBFS (mesuré sur la piste audio des MP4) |
+| Calage image ↔ rythme | les 14 coupes principales (sur les temps de musique) tombent à 0 – 33 ms du saut d'image correspondant (≤ 1 image), volets compris |
+| Lisibilité | titres mesurés et réduits automatiquement pour rester dans la zone de sécurité ; images clés de chaque scène vérifiées dans les deux formats |
 
 ## Honnêteté
 
